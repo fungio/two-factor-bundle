@@ -1,0 +1,5 @@
+code:
+    valid: This value should be valid 2FAS code.
+
+totp_secret:
+    valid: This value should be valid TOTP Secret.

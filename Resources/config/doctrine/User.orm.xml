@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="TwoFAS\TwoFactorBundle\Entity\User" table="two_fas_user">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="username" type="string" column="username" length="255" unique="true"/>
+        <field name="channels" type="array" column="channels"/>
+        <one-to-many field="authentications" target-entity="TwoFAS\TwoFactorBundle\Entity\Authentication"
+                     mapped-by="user">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <one-to-many field="tokens" target-entity="TwoFAS\TwoFactorBundle\Entity\RememberMeToken" mapped-by="user">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,91 @@
+{% extends "TwoFASTwoFactorBundle::layout.html.twig" %}
+
+{% trans_default_domain 'TwoFASTwoFactorBundle' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block title %}{{ 'configure.totp.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="twofas-wrapper container">
+        <div class="twofas-header page-header">
+            <h1>
+                <img src="{{ asset('bundles/twofastwofactor/images/2fas.png') }}" alt="2FAS logo"/>
+                <span>2FAS - Two Factor Authentication Service</span>
+            </h1>
+        </div>
+        <div class="twofas-container">
+            <h3>{{ 'configure.totp.header'|trans }}</h3>
+        </div>
+        <div class="twofas-container twofas-step">
+            <h3>{{ 'configure.totp.step_1.header'|trans }}</h3>
+            <div class="twofas-center">
+                <div class="twofas-step-desc">
+                    <p>{{ 'configure.totp.step_1.content'|trans }}</p>
+                    <p>{{ 'configure.totp.step_1.content2'|trans }}</p>
+                </div>
+                <div class="twofas-totp-apps">
+                    <h4>2FAS Auth</h4>
+                    <div class="twofas-totp-app">
+                        <div class="twofas-app-description">
+                            <div class="twofas-app-desc-text">
+                                <a href="https://play.google.com/store/apps/details?id=com.twofasapp" target="_blank">
+                                    <img src="{{ asset('bundles/twofastwofactor/images/android.png') }}" alt="Download on Google Android">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="twofas-totp-app">
+                        <div class="twofas-app-description">
+                            <div class="twofas-app-desc-text">
+                                <a href="https://itunes.apple.com/us/app/2fas-auth/id1217793794?mt=8" target="_blank">
+                                    <img src="{{ asset('bundles/twofastwofactor/images/apple.png') }}" alt="Download on the App Store">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="twofas-container twofas-step">
+            <h3>{{ 'configure.totp.step_2.header'|trans }}</h3>
+            <div class="twofas-center">
+                <div class="twofas-step-desc">
+                    <p>{{ 'configure.totp.step_2.content'|trans }}</p>
+                </div>
+                <div class="twofas-totp-qrcode">
+                    {{ render(controller('TwoFASTwoFactorBundle:GenerateQrCode:generate',
+                    {
+                        'totpSecret' : totp_secret,
+                        'mobileSecret' : mobile_secret
+                    }
+                    )) }}
+                </div>
+                <div class="twofas-totp-qrcode-buttons">
+                    <button class="twofas-button btn btn-default" id="twofas-totp-enter-btn">
+                        <span>
+                            {{ 'configure.totp.step_2.enter_button'|trans }}
+                        </span>
+                    </button>
+                    <button class="twofas-button btn btn-default" id="twofas-totp-reload-btn">
+                        <span>
+                            {{ 'configure.totp.step_2.reload_button'|trans }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="twofas-container twofas-step">
+            <h3>{{ 'configure.totp.step_3.header'|trans }}</h3>
+            <div class="twofas-center">
+                {{ form_start(form, {'action': path('twofas_configure_totp'), 'attr' : {'class': 'form-inline'} }) }}
+                {{ form_row(form._token) }}
+                {{ form_row(form.code, {'attr' : {'class': 'input-token'}}) }}
+                {{ form_widget(form.totp_secret, {'id' : 'totp-secret', 'value' : totp_secret}) }}
+                {{ form_row(form.submit, {'label' : 'form.code.enable_button'|trans}) }}
+                {{ form_errors(form.totp_secret) }}
+                {{ form_end(form,{'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

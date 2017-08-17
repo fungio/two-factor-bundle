@@ -1,0 +1,30 @@
+{% extends "TwoFASTwoFactorBundle::layout.html.twig" %}
+
+{% trans_default_domain 'TwoFASTwoFactorBundle' %}
+{% form_theme form with ['bootstrap_3_layout.html.twig', '@TwoFASTwoFactor/fields.html.twig'] %}
+{% block title %}{{ 'check_code.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="twofas twofas-wrapper container">
+        <div class="twofas twofas-login-container">
+            <div class="login-box">
+                <div class="login-box-header">
+                    <h3>
+                        <img src="{{ asset('bundles/twofastwofactor/images/2fas_small.png') }}" alt="2FAS logo">
+                        <span>{{ 'form.code.label'|trans }}</span>
+                    </h3>
+                </div>
+                <div class="login-box-body">
+                    {{ form_start(form, {'action': path('twofas_check')}) }}
+                    {{ form_row(form._token) }}
+                    {{ form_widget(form.code, {'attr' : {'class': 'input-token'}}) }}
+                    {{ form_errors(form.code) }}
+                    {{ form_row(form.remember_two_factor) }}
+                    {{ form_row(form.auth_id) }}
+                    {{ form_row(form.submit, {'label' : 'form.code.login_button'|trans, 'attr': {'class': 'twofas-button btn-success pull-right'}}) }}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+dashboard:
+    title: Welcome to Two Factor Authentication Service Dashboard
+    two_factor:
+        status: Two Factor Authentication Status
+        disabled: Disabled
+        enabled: Enabled
+        disable: Disable
+        enable: Enable
+        choose_channel: Choose a new 2FA channel
+        free_channels: Free Channels
+        premium_channels: Premium channels
+        available_channels:
+            totp: TOTP
+            sms: Text Message
+            call: Voice Call
+            email: Email Message
+            none: None
+        content:
+            totp: To verify, you will need a token from a mobile app. You can use TOTP app, i.e. 2FAS Auth, Google Authenticator or Authy.
+            sms: To verify you will need a code from a text message.
+            call: To verify you will need a code from a voice call.
+            email: To verify you will need a code from a email message.
+        configure_button: Configure
+    trusted_devices:
+        title: Trusted devices list
+        content: When you are using a trusted device, you don't need to enter a verification code each time you log in.
+        empty: You don't have any trusted device
+        browser: Browser and device
+        created: Added on
+        ip: Ip Address
+        action: Action
+        remove_button: Remove
+
+configure:
+    totp:
+        title: Configure Two Factor Authentication Service
+        header: Enable 2FA (TOTP) for your account
+        step_1:
+            header: Step 1 - Download an app
+            content: Please, download an app on your smartphone to generate tokens.
+            content2: Feel free to choose any app based on TOTP, i.e. 2FAS Auth, Google Authenticator, Authy, FreeOTP.
+        step_2:
+            header: Step 2 - Configure your app
+            content: "Please, scan the QR code with your app:"
+            enter_button: Enter private key manually
+            reload_button: Reload QR Code
+        step_3:
+            header: Step 3 - Verify and enable
+
+check_code:
+    title: Enter your 2FAS Token
+
+form:
+    code:
+        label: Enter your token
+        login_button: Login
+        enable_button: Submit
+        remember_me: This is my private computer, please don't ask me for my token next time.

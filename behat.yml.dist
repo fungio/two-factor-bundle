@@ -1,0 +1,17 @@
+default:
+    suites:
+        two_factor:
+            type: symfony_bundle
+            bundle: TwoFASTwoFactorBundle
+            mink_session: symfony2
+            contexts:
+                - TwoFAS\TwoFactorBundle\Features\Context\MainContext
+                - TwoFAS\TwoFactorBundle\Features\Context\FeatureContext
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            base_url:  http://twofas-twofactor-bundle.app/app_test.php
+            browser_name: chrome
+            symfony2: ~
+            goutte: ~
+            selenium2: ~

@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/twofastwofactor/js/main.js')|fileMTime }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js')|fileMTime }}"></script>
+    <script src="{{ asset('js/fos_js_routes.js')|fileMTime }}"></script>
+{% endblock %}
+
+{% block title %}{% endblock %}
+{% block body %}{% endblock %}

@@ -1,0 +1,98 @@
+<?php
+
+namespace TwoFAS\TwoFactorBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use TwoFAS\TwoFactorBundle\Form\Type\CodeType;
+use TwoFAS\TwoFactorBundle\Validator\Constraints\Code;
+use TwoFAS\TwoFactorBundle\Validator\Constraints\TotpSecret;
+
+/**
+ * Form to provide Two Factor Authentication Code.
+ *
+ * @author Krystian Dąbek <k.dabek@2fas.com>
+ * @package TwoFAS\TwoFactorBundle\Form
+ */
+class CodeForm extends AbstractType
+{
+    /**
+     * @inheritdoc
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('code', CodeType::class, [
+                'constraints'        => [
+                    new Code([
+                        'message' => 'code.valid',
+                        'groups'  => ['configure', 'check_code']
+                    ]),
+                ],
+                'attr' => [
+                    'minlength' => 6,
+                    'maxlength' => 6
+                ],
+                'label_attr'         => ['class' => 'twofas-code-label'],
+                'label_format'       => 'form.code.label',
+                'translation_domain' => 'TwoFASTwoFactorBundle'
+            ])
+            ->add('remember_two_factor', CheckboxType::class, [
+                'required'           => false,
+                'label_attr'         => ['class' => 'twofas-remember-me-label'],
+                'label_format'       => 'form.code.remember_me',
+                'translation_domain' => 'TwoFASTwoFactorBundle'
+            ])
+            ->add('auth_id', CollectionType::class, [
+                'entry_type'  => HiddenType::class,
+                'label'       => false,
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => ['check_code']
+                    ])
+                ]
+            ])
+            ->add('totp_secret', HiddenType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => ['configure']
+                    ]),
+                    new TotpSecret([
+                        'message' => 'totp_secret.valid',
+                        'groups'  => ['configure']
+                    ])
+                ],
+                'error_bubbling'  => false
+            ])
+            ->add('submit', SubmitType::class, [
+                'translation_domain' => false // Translate in twig
+            ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'method'          => 'POST',
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id'   => 'twofas_csrf_token'
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getBlockPrefix()
+    {
+        return '';
+    }
+}

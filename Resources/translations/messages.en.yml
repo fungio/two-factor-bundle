@@ -1,0 +1,29 @@
+general:
+    something_wrong: Something went wrong. Please try again.
+    unknown_error: Unknown 2FAS Error.
+    denied_action: You not permitted to perform this action.
+
+configure:
+    totp:
+        success: TOTP has been configured successfully.
+
+authentication:
+    code:
+        required: Code is required, please provide valid code.
+        digits: Code should have 6 digits, please provide valid code.
+        can_retry: Code is invalid, please try again.
+        cannot_retry: Code is invalid and authentication is closed, please try again later.
+    totp_secret:
+        required: Totp Secret is required to generate code.
+
+trusted_devices:
+    remove:
+        not_found: Device you want to remove does not exist.
+        success: Trusted device has been removed successfully.
+        error: Error while removing trusted device.
+
+channel:
+    success_enabled: Channel has been enabled.
+    success_disabled: Channel has been disabled.
+    cannot_enable: Channel is not configured, you can not enable it.
+    not_valid: Channel name is not valid.

@@ -1,0 +1,5 @@
+.idea
+behat.yml
+phpunit.xml
+/vendor
+composer.lock

@@ -1,0 +1,53 @@
+{
+    "name": "twofas/two-factor-bundle",
+    "type": "symfony-bundle",
+    "description": "Two Factor Authentication for Symfony using Two Factor Authentication Service",
+    "keywords": ["Two Factor Authentication"],
+    "homepage": "https://2fas.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krystian Dąbek",
+            "email": "k.dabek@2fas.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "twofas/sdk": "~3.0",
+        "twofas/account-sdk": "~2.0",
+        "whichbrowser/parser": "~2.0",
+        "symfony/symfony": "~2.8|~3.0",
+        "symfony/framework-bundle": "~2.8|~3.0",
+        "symfony/twig-bundle": "~2.8|~3.0",
+        "symfony/form": "~2.8|~3.0",
+        "symfony/validator": "~2.8 | ~3.0",
+        "symfony/templating": "~2.8 | ~3.0",
+        "symfony/security-bundle": "~2.8|~3.0",
+        "symfony/proxy-manager-bridge": "~2.8|~3.0",
+        "psr/simple-cache": "^1.0",
+        "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
+        "doctrine/common": "~2.4",
+        "twig/twig": "~1.28|~2.0",
+        "friendsofsymfony/jsrouting-bundle": "~1.0|~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8|~5.0",
+        "behat/behat": "^3.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/mink": "^1.6",
+        "behat/mink-extension": "^2.0",
+        "behat/mink-browserkit-driver": "^1.2",
+        "behat/mink-goutte-driver": "^1.0",
+        "behat/mink-selenium2-driver": "^1.0",
+        "doctrine/dbal": "~2.4",
+        "doctrine/orm": "~2.4,>=2.4.5",
+        "doctrine/doctrine-bundle": "~1.2",
+        "symfony/doctrine-bridge": "~2.8|~3.0",
+        "twofas/simple-login-form-bundle": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TwoFAS\\TwoFactorBundle\\": ""
+        }
+    }
+}

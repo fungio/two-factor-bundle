@@ -1,0 +1,81 @@
+{% extends "TwoFASTwoFactorBundle::layout.html.twig" %}
+
+{% trans_default_domain 'TwoFASTwoFactorBundle' %}
+
+{% block title %}{{ 'dashboard.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="twofas-wrapper container">
+        <div class="twofas-header page-header">
+            <h1>
+                <img src="{{ asset('bundles/twofastwofactor/images/2fas.png') }}" alt="2FAS logo"/>
+                <span>2FAS - Two Factor Authentication Service</span>
+            </h1>
+        </div>
+        <div class="twofas-container">
+            <h3>
+                {{ 'dashboard.two_factor.status'|trans }}:
+                {% if status == false %}
+                    <span class="twofas-status-disabled label danger">{{ 'dashboard.two_factor.disabled'|trans }}</span>
+                {% else %}
+                    <span class="twofas-status-enabled label success">{{ 'dashboard.two_factor.enabled'|trans }}</span>
+                {% endif %}
+            </h3>
+        </div>
+        <div class="twofas-container">
+            <div class="twofas-channels">
+                <div class="twofas-free-channels">
+                    {{ include('@TwoFASTwoFactor/Dashboard/channel.html.twig', {
+                        'channel': 'totp',
+                        'status': channels.totp,
+                        'configured' : (integration_user.totpSecret is not null)
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="twofas-container">
+            <h3>{{ 'dashboard.trusted_devices.title'|trans }}</h3>
+            <p>{{ 'dashboard.trusted_devices.content'|trans }}</p>
+            <table class="twofas-table table">
+                <thead>
+                    <tr>
+                        <th>{{ 'dashboard.trusted_devices.browser'|trans }}</th>
+                        <th>{{ 'dashboard.trusted_devices.created'|trans }}</th>
+                        <th>{{ 'dashboard.trusted_devices.ip'|trans }}</th>
+                        <th>{{ 'dashboard.trusted_devices.action'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if trusted_devices|length  == 0 %}
+                    <tr>
+                        <td colspan="4">
+                            <div class="td-content empty">
+                                {{ 'dashboard.trusted_devices.empty'|trans }}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    {% for device in trusted_devices %}
+                        <tr>
+                            <td><div class="td-content">{{ device.browser }}</div></td>
+                            <td><div class="td-content">{{ device.createdAt|date("Y-m-d H:i:s") }}</div></td>
+                            <td><div class="td-content">{{ device.ip }}</div></td>
+                            <td>
+                                <div class="td-content">
+                                    <form action="{{ path('twofas_remove_device') }}" method="post" class="form-remove">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('twofas_csrf_token') }}"/>
+                                        <input type="hidden" name="id" value="{{ device.series }}"/>
+                                        <button type="submit" class="btn-link btn-remove">
+                                            <span>{{ 'dashboard.trusted_devices.remove_button'|trans }}</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
