@@ -4,7 +4,6 @@ namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpKernel\Kernel;
 use TwoFAS\Api\TwoFAS;
 use TwoFAS\Encryption\Cryptographer;
 use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
@@ -15,7 +14,6 @@ use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
 use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
 use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
 use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
-use TwoFAS\TwoFactorBundle\TwoFASTwoFactorBundle;
 
 class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -65,7 +63,7 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertEquals($this->getInstance(), $this->factory->createInstance());
+        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
     }
 
     public function testCreateEmptyInstanceIfCannotGetOptions()
@@ -78,42 +76,6 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertEquals($this->getEmptyInstance(), $this->factory->createInstance());
-    }
-
-    /**
-     * @return TwoFAS
-     */
-    private function getEmptyInstance()
-    {
-        $twoFAS = new TwoFAS(null, null, $this->getHeaders());
-        $twoFAS->setBaseUrl('http://localhost');
-        return $twoFAS;
-    }
-
-    /**
-     * @return TwoFAS
-     */
-    private function getInstance()
-    {
-        $twoFAS = new TwoFAS('foo', 'bar', $this->getHeaders());
-        $twoFAS->setBaseUrl('http://localhost');
-        return $twoFAS;
-    }
-
-    /**
-     * @return array
-     */
-    private function getHeaders()
-    {
-        $headers = [
-            'Plugin-Version' => TwoFASTwoFactorBundle::VERSION,
-            'Php-Version'    => phpversion(),
-            'App-Version'    => Kernel::VERSION,
-            'App-Name'       => 'Symfony-FooBar',
-            'App-Url'        => 'http://symfony.app'
-        ];
-
-        return $headers;
+        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
     }
 }

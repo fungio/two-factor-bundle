@@ -14,7 +14,7 @@ use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\RememberMePass;
  */
 class TwoFASTwoFactorBundle extends Bundle
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     /**
      * @inheritdoc
