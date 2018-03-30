@@ -8,7 +8,7 @@ use TwoFAS\Api\AuthenticationCollection;
 use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
 use TwoFAS\Api\TwoFAS;
-use TwoFAS\Encryption\Interfaces\KeyStorage;
+use TwoFAS\Encryption\Interfaces\ReadKey;
 use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
 use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
@@ -27,7 +27,7 @@ class ApiProvider implements ApiProviderInterface
     private $api;
 
     /**
-     * @var KeyStorage
+     * @var ReadKey
      */
     private $encryptionStorage;
 
@@ -41,9 +41,9 @@ class ApiProvider implements ApiProviderInterface
      *
      * @param TwoFAS                   $api
      * @param ObjectPersisterInterface $authenticationPersister
-     * @param KeyStorage               $encryptionStorage
+     * @param ReadKey               $encryptionStorage
      */
-    public function __construct(TwoFAS $api, ObjectPersisterInterface $authenticationPersister, KeyStorage $encryptionStorage)
+    public function __construct(TwoFAS $api, ObjectPersisterInterface $authenticationPersister, ReadKey $encryptionStorage)
     {
         $this->api                     = $api;
         $this->authenticationPersister = $authenticationPersister;

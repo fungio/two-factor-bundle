@@ -2,10 +2,8 @@
 
 namespace TwoFAS\TwoFactorBundle\Storage;
 
-use BadMethodCallException;
 use TwoFAS\Encryption\AESKey;
-use TwoFAS\Encryption\Interfaces\Key;
-use TwoFAS\Encryption\Interfaces\KeyStorage;
+use TwoFAS\Encryption\Interfaces\ReadKey;
 
 /**
  * Store encryption key for TwoFAS Data.
@@ -13,7 +11,7 @@ use TwoFAS\Encryption\Interfaces\KeyStorage;
  * @author Krystian Dąbek <k.dabek@2fas.com>
  * @package TwoFAS\TwoFactorBundle\Storage\Encryption
  */
-class EncryptionStorage implements KeyStorage
+class EncryptionStorage implements ReadKey
 {
     /**
      * @var string
@@ -31,15 +29,7 @@ class EncryptionStorage implements KeyStorage
     /**
      * @inheritDoc
      */
-    public function storeKey(Key $key)
-    {
-        throw new BadMethodCallException('This method should not be used.');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function retrieveKey()
+    public function retrieve()
     {
         return new AESKey(base64_decode($this->base64Key));
     }
