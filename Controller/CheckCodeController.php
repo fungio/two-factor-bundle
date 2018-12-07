@@ -47,7 +47,7 @@ class CheckCodeController extends Controller
             throw new ChannelNotActiveException('No channel is enabled.');
         }
 
-        $authentications = $this->getUsersAuthentications($channel);
+        $authentications = $this->getUserAuthentications($channel);
 
         $form = $this->createForm(CodeForm::class,
             ['auth_id' => $this->getAuthenticationIds($authentications)],
@@ -79,7 +79,7 @@ class CheckCodeController extends Controller
      *
      * @throws ApiException
      */
-    protected function getUsersAuthentications($channel)
+    protected function getUserAuthentications($channel)
     {
         try {
             $userStorage           = $this->get('two_fas_two_factor.storage.user_session_storage');
@@ -88,8 +88,7 @@ class CheckCodeController extends Controller
             $authentications       = $authenticationManager->getOpenAuthentications($user, $channel);
 
             if (0 === $authentications->count()) {
-                $integrationUser = $this->getIntegrationUser();
-                $authentication  = $authenticationManager->openAuthentication($user, $integrationUser, $channel);
+                $authentication  = $authenticationManager->openAuthentication($user, $channel);
                 $user->addAuthentication($authentication);
                 $authentications->add($authentication);
                 $userStorage->updateUser($user);

@@ -3,6 +3,7 @@
 namespace TwoFAS\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
 
 /**
@@ -22,6 +23,11 @@ class User implements UserInterface
      * @var string
      */
     protected $username;
+
+    /**
+     * @var IntegrationUser
+     */
+    protected $integrationUser;
 
     /**
      * @var array
@@ -70,6 +76,24 @@ class User implements UserInterface
     public function setUsername($username)
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getIntegrationUser()
+    {
+        return $this->integrationUser;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setIntegrationUser(IntegrationUser $integrationUser)
+    {
+        $this->integrationUser = $integrationUser;
 
         return $this;
     }

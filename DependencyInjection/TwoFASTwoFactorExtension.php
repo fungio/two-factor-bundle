@@ -51,5 +51,9 @@ class TwoFASTwoFactorExtension extends Extension
         $loader->load('services.xml');
         $loader->load('listeners.xml');
         $loader->load('security.xml');
+
+        if ('test' == $container->getParameter('kernel.environment')) {
+            $loader->load('test.xml');
+        }
     }
 }

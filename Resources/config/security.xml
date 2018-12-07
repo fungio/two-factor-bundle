@@ -1,25 +1,28 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="two_fas_two_factor.security.two_factor_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter</parameter>
+        <parameter key="two_fas_two_factor.security_voter.two_factor_remembered_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorRememberedVoter</parameter>
+        <parameter key="two_fas_two_factor.security_voter.trusted_device_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TrustedDeviceVoter</parameter>
+        <parameter key="two_fas_two_factor.authentication.manager.class">Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager</parameter>
+        <parameter key="two_fas_two_factor.authentication.provider.remember_me.class">Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider</parameter>
+        <parameter key="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory.class">TwoFAS\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory</parameter>
+        <parameter key="two_fas_two_factor.security.persistent_remember_me_token_provider.class">TwoFAS\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider</parameter>
+    </parameters>
     <services>
         <!-- Voters -->
-        <service id="two_fas_two_factor.security.two_factor_voter"
-                 class="TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter" public="false" lazy="true">
+        <service id="two_fas_two_factor.security.two_factor_voter" class="%two_fas_two_factor.security.two_factor_voter.class%" public="false" lazy="true">
             <argument type="service" id="security.access.decision_manager"/>
             <tag name="security.voter"/>
         </service>
 
-        <service id="two_fas_two_factor.security_voter.two_factor_remembered_voter"
-                 class="TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorRememberedVoter" public="false" lazy="true">
+        <service id="two_fas_two_factor.security_voter.two_factor_remembered_voter" class="%two_fas_two_factor.security_voter.two_factor_remembered_voter.class%" public="false" lazy="true">
             <argument id="security.access.decision_manager" type="service"/>
             <tag name="security.voter"/>
         </service>
 
-        <service id="two_fas_two_factor.security_voter.trusted_device_voter"
-                 class="TwoFAS\TwoFactorBundle\Security\Voter\TrustedDeviceVoter" lazy="true">
+        <service id="two_fas_two_factor.security_voter.trusted_device_voter" class="%two_fas_two_factor.security_voter.trusted_device_voter.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.user_session_storage" type="service"/>
             <argument id="two_fas_two_factor.object_manager" type="service"/>
             <tag name="security.voter"/>
@@ -28,8 +31,7 @@
         <!-- Remember ME -->
 
         <!-- Authentication Manager -->
-        <service id="two_fas_two_factor.authentication.manager"
-                 class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" lazy="true">
+        <service id="two_fas_two_factor.authentication.manager" class="%two_fas_two_factor.authentication.manager.class%" lazy="true">
             <argument type="collection"/>
             <argument>%security.authentication.manager.erase_credentials%</argument>
             <call method="setEventDispatcher">
@@ -38,33 +40,25 @@
         </service>
 
         <!-- Authentication Provider -->
-        <service id="two_fas_two_factor.authentication.provider.remember_me"
-                 class="Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider"
-                 lazy="true">
+        <service id="two_fas_two_factor.authentication.provider.remember_me" class="%two_fas_two_factor.authentication.provider.remember_me.class%" lazy="true">
             <argument/> <!-- User Checker -->
             <argument type="string"/> <!-- Secret -->
             <argument type="string"/> <!-- Provider Key -->
         </service>
 
         <!-- Remember me services factory -->
-        <service
-                id="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory"
-                class="TwoFAS\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory"
-                lazy="true">
+        <service id="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory" class="%two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory.class%" lazy="true">
             <argument type="collection"/> <!--  User Providers -->
             <argument type="string"/> <!-- Secret -->
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
             <argument id="two_fas_two_factor.security.persistent_remember_me_token_provider" type="service"/>
-            <argument id="two_fas_two_factor.storage.user_session_storage" type="service" />
+            <argument id="two_fas_two_factor.storage.user_session_storage" type="service"/>
             <argument id="logger" type="service" on-invalid="null"/>
             <argument type="collection"/> <!-- Options -->
         </service>
 
         <!-- Persistent Remember Me Provider -->
-        <service
-                id="two_fas_two_factor.security.persistent_remember_me_token_provider"
-                class="TwoFAS\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider"
-                lazy="true">
+        <service id="two_fas_two_factor.security.persistent_remember_me_token_provider" class="%two_fas_two_factor.security.persistent_remember_me_token_provider.class%" lazy="true">
             <argument id="two_fas_two_factor.user_persister" type="service"/>
             <argument id="two_fas_two_factor.remember_me_persister" type="service"/>
             <argument id="two_fas_two_factor.browser.parser" type="service"/>

@@ -2,6 +2,7 @@
 
 namespace TwoFAS\TwoFactorBundle\Security\RememberMe;
 
+use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
@@ -171,7 +172,7 @@ class PersistentTokenBasedRememberMeServices implements RememberMeServicesInterf
     /**
      * @inheritDoc
      */
-    public function loginFail(Request $request)
+    public function loginFail(Request $request, Exception $exception = null)
     {
         $this->cancelCookie($request);
     }

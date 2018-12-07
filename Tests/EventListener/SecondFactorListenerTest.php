@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
-use TwoFAS\TwoFactorBundle\Controller\CheckCodeController;
 use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\RememberMeServicesFactoryInterface;
 use TwoFAS\TwoFactorBundle\EventListener\SecondFactorListener;
 use TwoFAS\TwoFactorBundle\Storage\TokenStorage;

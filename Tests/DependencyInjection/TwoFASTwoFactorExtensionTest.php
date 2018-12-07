@@ -125,8 +125,11 @@ class TwoFASTwoFactorExtensionTest extends \PHPUnit_Framework_TestCase
     private function load(array $configs)
     {
         $container = new ContainerBuilder();
+        $container->setParameter('kernel.environment', 'test');
+
         $extension = new TwoFASTwoFactorExtension();
         $extension->load($configs, $container);
+
         return $container;
     }
 

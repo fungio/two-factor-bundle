@@ -1,32 +1,29 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="two_fas_two_factor.persister.default.class">TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister</parameter>
+    </parameters>
     <services>
         <!-- ORM Persisters -->
-        <service id="two_fas_two_factor.option_persister.default"
-                 class="TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister" public="false">
+        <service id="two_fas_two_factor.option_persister.default" class="%two_fas_two_factor.persister.default.class%" public="false">
             <argument id="doctrine.orm.entity_manager" type="service"/>
             <argument>%two_fas_two_factor.entities.option_class%</argument>
         </service>
-        <service id="two_fas_two_factor.user_persister.default"
-                 class="TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister" public="false">
+        <service id="two_fas_two_factor.user_persister.default" class="%two_fas_two_factor.persister.default.class%" public="false">
             <argument id="doctrine.orm.entity_manager" type="service"/>
             <argument>%two_fas_two_factor.entities.user_class%</argument>
         </service>
-        <service id="two_fas_two_factor.authentication_persister.default"
-                 class="TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister" public="false">
+        <service id="two_fas_two_factor.authentication_persister.default" class="%two_fas_two_factor.persister.default.class%" public="false">
             <argument id="doctrine.orm.entity_manager" type="service"/>
             <argument>%two_fas_two_factor.entities.authentication_class%</argument>
         </service>
-        <service id="two_fas_two_factor.remember_me_persister.default"
-                 class="TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister" public="false">
+        <service id="two_fas_two_factor.remember_me_persister.default" class="%two_fas_two_factor.persister.default.class%" public="false">
             <argument id="doctrine.orm.entity_manager" type="service"/>
             <argument>%two_fas_two_factor.entities.remember_me_class%</argument>
         </service>
 
         <!-- Default Object Manager -->
-        <service id="two_fas_two_factor.object_manager" alias="doctrine.orm.entity_manager" />
+        <service id="two_fas_two_factor.object_manager" alias="doctrine.orm.entity_manager"/>
     </services>
 </container>

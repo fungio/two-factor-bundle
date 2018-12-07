@@ -2,7 +2,6 @@
 
 namespace TwoFAS\TwoFactorBundle\Tests\Storage;
 
-use TwoFAS\Encryption\AESGeneratedKey;
 use TwoFAS\Encryption\AESKey;
 use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
 

@@ -4,7 +4,6 @@ namespace TwoFAS\TwoFactorBundle\Tests\Util;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use TwoFAS\TwoFactorBundle\Model\Entity\User;
 use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;

@@ -3,6 +3,8 @@
 namespace TwoFAS\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Exception\Exception as ApiException;
 
 /**
  * Contract for User Model class.
@@ -28,6 +30,20 @@ interface UserInterface
      * @return string
      */
     public function getUsername();
+
+    /**
+     * @return IntegrationUser
+     *
+     * @throws ApiException
+     */
+    public function getIntegrationUser();
+
+    /**
+     * @param IntegrationUser $integrationUser
+     *
+     * @return UserInterface
+     */
+    public function setIntegrationUser(IntegrationUser $integrationUser);
 
     /**
      * @return array

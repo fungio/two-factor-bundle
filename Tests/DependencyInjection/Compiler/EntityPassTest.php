@@ -24,7 +24,7 @@ class EntityPassTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->containerBuilder = new ContainerBuilder();
-        $this->pass             = new EntityPass($this->containerBuilder);
+        $this->pass             = new EntityPass();
     }
 
     public function testDoctrineOrmDriver()

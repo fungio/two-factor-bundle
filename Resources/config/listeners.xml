@@ -1,56 +1,59 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="two_fas_two_factor.event_listener.command_exception.class">TwoFAS\TwoFactorBundle\EventListener\ConsoleExceptionListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.two_fas_controller.class">TwoFAS\TwoFactorBundle\EventListener\TwoFASControllerListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.api_exception.class">TwoFAS\TwoFactorBundle\EventListener\ApiExceptionListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.authentication.class">TwoFAS\TwoFactorBundle\EventListener\AuthenticationSubscriber</parameter>
+        <parameter key="two_fas_two_factor.event_listener.flash.class">TwoFAS\TwoFactorBundle\EventListener\FlashSubscriber</parameter>
+        <parameter key="two_fas_two_factor.event_listener.logger.class">TwoFAS\TwoFactorBundle\EventListener\AuthenticationLoggerSubscriber</parameter>
+        <parameter key="two_fas_two_factor.event_listener.second_factor.class">TwoFAS\TwoFactorBundle\EventListener\SecondFactorListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.trusted_device.class">TwoFAS\TwoFactorBundle\EventListener\TrustedDeviceListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.token.class">TwoFAS\TwoFactorBundle\EventListener\TokenListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.browser.class">TwoFAS\TwoFactorBundle\EventListener\BrowserListener</parameter>
+        <parameter key="two_fas_two_factor.event_listener.channel_listener.class">TwoFAS\TwoFactorBundle\EventListener\ChannelListener</parameter>
+    </parameters>
     <services>
-        <service id="two_fas_two_factor.event_listener.command_exception"
-                 class="TwoFAS\TwoFactorBundle\EventListener\ConsoleExceptionListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.command_exception" class="%two_fas_two_factor.event_listener.command_exception.class%" lazy="true">
             <argument id="logger" type="service" on-invalid="null"/>
             <tag name="kernel.event_listener" event="console.exception"/>
         </service>
-        <service id="two_fas_two_factor.event_listener.two_fas_controller"
-                 class="TwoFAS\TwoFactorBundle\EventListener\TwoFASControllerListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.two_fas_controller" class="%two_fas_two_factor.event_listener.two_fas_controller.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
             <argument id="two_fas_two_factor.util.configuration_checker" type="service"/>
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.api_exception"
-                 class="TwoFAS\TwoFactorBundle\EventListener\ApiExceptionListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.api_exception" class="%two_fas_two_factor.event_listener.api_exception.class%" lazy="true">
             <argument id="session" type="service"/>
             <argument id="translator" type="service"/>
             <tag name="kernel.event_listener" event="kernel.exception"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.authentication"
-                 class="TwoFAS\TwoFactorBundle\EventListener\AuthenticationSubscriber" lazy="true">
+        <service id="two_fas_two_factor.event_listener.authentication" class="%two_fas_two_factor.event_listener.authentication.class%" lazy="true">
             <argument id="two_fas_two_factor.util.authentication_manager" type="service"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.flash"
-                 class="TwoFAS\TwoFactorBundle\EventListener\FlashSubscriber" lazy="true">
+        <service id="two_fas_two_factor.event_listener.flash" class="%two_fas_two_factor.event_listener.flash.class%" lazy="true">
             <argument id="session" type="service"/>
             <argument id="translator" type="service"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.logger"
-                 class="TwoFAS\TwoFactorBundle\EventListener\AuthenticationLoggerSubscriber" lazy="true">
+        <service id="two_fas_two_factor.event_listener.logger" class="%two_fas_two_factor.event_listener.logger.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
             <argument id="logger" type="service" on-invalid="null"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.second_factor"
-                 class="TwoFAS\TwoFactorBundle\EventListener\SecondFactorListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.second_factor" class="%two_fas_two_factor.event_listener.second_factor.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
             <argument id="security.authorization_checker" type="service"/>
             <argument id="two_fas_two_factor.authentication.manager" type="service"/>
-            <argument id="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory"
-                      type="service"/>
+            <argument id="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory" type="service"/>
             <argument id="router" type="service"/>
             <argument id="session" type="service"/>
             <argument id="two_fas_two_factor.util.configuration_checker" type="service"/>
@@ -58,30 +61,26 @@
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.trusted_device"
-                 class="TwoFAS\TwoFactorBundle\EventListener\TrustedDeviceListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.trusted_device" class="%two_fas_two_factor.event_listener.trusted_device.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.user_session_storage" type="service"/>
             <argument id="two_fas_two_factor.object_manager" type="service"/>
             <argument id="two_fas_two_factor.remember_me_persister" type="service"/>
             <tag name="kernel.event_listener" event="two_fas_two_factor.integration_user.configuration.complete.totp" method="onTotpSecretChanged"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.token" class="TwoFAS\TwoFactorBundle\EventListener\TokenListener"
-                 lazy="true">
+        <service id="two_fas_two_factor.event_listener.token" class="%two_fas_two_factor.event_listener.token.class%" lazy="true">
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
-            <tag name="kernel.event_listener" event="two_fas_two_factor.code.accepted"
-                 method="onAuthenticationSuccess"/>
+            <tag name="kernel.event_listener" event="two_fas_two_factor.code.accepted" method="onAuthenticationSuccess"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.browser"
-                 class="TwoFAS\TwoFactorBundle\EventListener\BrowserListener" lazy="true">
+        <service id="two_fas_two_factor.event_listener.browser" class="%two_fas_two_factor.event_listener.browser.class%" lazy="true">
             <argument id="two_fas_two_factor.browser.parser" type="service"/>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="128"/>
         </service>
 
-        <service id="two_fas_two_factor.event_listener.channel_listener" class="TwoFAS\TwoFactorBundle\EventListener\ChannelListener">
+        <service id="two_fas_two_factor.event_listener.channel_listener" class="%two_fas_two_factor.event_listener.channel_listener.class%">
             <argument id="two_fas_two_factor.storage.token_storage" type="service"/>
-            <tag name="kernel.event_listener" event="two_fas_two_factor.channel.enabled" method="onChannelEnabled" />
+            <tag name="kernel.event_listener" event="two_fas_two_factor.channel.enabled" method="onChannelEnabled"/>
         </service>
 
     </services>

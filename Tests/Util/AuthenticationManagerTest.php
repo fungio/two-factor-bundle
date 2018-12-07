@@ -5,7 +5,6 @@ namespace TwoFAS\TwoFactorBundle\Tests\Util;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TwoFAS\Api\Authentication as TwoFASAuthentication;
-use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
 use TwoFAS\Api\TotpSecretGenerator;
 use TwoFAS\Api\TwoFAS;

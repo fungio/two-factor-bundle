@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use TwoFAS\Api\Methods;
 use TwoFAS\TwoFactorBundle\Event\ChannelStatusChangedEvent;
 use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
+use TwoFAS\Api\Exception\Exception as ApiException;
 
 /**
  * Manage 2FAS channels.
@@ -20,6 +21,8 @@ class ChannelController extends Controller
      * @param Request $request
      *
      * @return RedirectResponse
+     *
+     * @throws ApiException
      */
     public function enableAction(Request $request)
     {
@@ -85,6 +88,8 @@ class ChannelController extends Controller
      * @param string $channel
      *
      * @return bool
+     *
+     * @throws ApiException
      */
     protected function canEnable($channel)
     {

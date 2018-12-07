@@ -31,11 +31,6 @@ interface UserStorageInterface
     public function updateUser(UserInterface $user);
 
     /**
-     * @return IntegrationUser|null
-     */
-    public function getIntegrationUser();
-
-    /**
      * @param UserInterface $user
      *
      * @return IntegrationUser

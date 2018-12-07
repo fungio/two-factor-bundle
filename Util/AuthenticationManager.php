@@ -12,7 +12,6 @@ use TwoFAS\Api\Code\Code;
 use InvalidArgumentException;
 use TwoFAS\Api\Exception\Exception as ApiException;
 use TwoFAS\Api\Exception\IntegrationUserHasNoActiveMethodException;
-use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
 use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
 use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
@@ -100,20 +99,19 @@ class AuthenticationManager
     }
 
     /**
-     * @param UserInterface   $user
-     * @param IntegrationUser $integrationUser
-     * @param string          $channel
+     * @param UserInterface $user
+     * @param string        $channel
      *
      * @return AuthenticationInterface
      *
      * @throws ApiException
      * @throws IntegrationUserHasNoActiveMethodException
      */
-    public function openAuthentication(UserInterface $user, IntegrationUser $integrationUser, $channel)
+    public function openAuthentication(UserInterface $user, $channel)
     {
         switch ($channel) {
             case Methods::TOTP:
-                return $this->openTotpAuthentication($user, $integrationUser->getTotpSecret());
+                return $this->openTotpAuthentication($user, $user->getIntegrationUser()->getTotpSecret());
             default:
                 throw new InvalidArgumentException('Channel is not supported.');
         }

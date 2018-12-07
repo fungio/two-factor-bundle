@@ -6,7 +6,7 @@ use TwoFAS\Api\Exception\AuthorizationException;
 use TwoFAS\Api\Exception\ValidationException;
 use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
-use TwoFAS\Api\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 use TwoFAS\TwoFactorBundle\EventListener\TrustedDeviceListener;
 
 class ConfigureTotpControllerTest extends ControllerTestCase

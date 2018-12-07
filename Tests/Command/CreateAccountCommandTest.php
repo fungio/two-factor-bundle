@@ -11,7 +11,7 @@ use TwoFAS\Account\Exception\AuthorizationException;
 use TwoFAS\Account\Exception\Exception as AccountException;
 use TwoFAS\Account\Exception\ValidationException;
 use TwoFAS\Account\TwoFAS;
-use TwoFAS\Account\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class CreateAccountCommandTest extends CommandTestCase
 {
@@ -33,7 +33,7 @@ class CreateAccountCommandTest extends CommandTestCase
 
         $command = $this->application->find('twofas:account:create');
 
-        $this->questionHelper = $this->getMock(QuestionHelper::class, ['ask']);
+        $this->questionHelper = $this->getMockBuilder(QuestionHelper::class)->setMethods(['ask'])->getMock();
         $this->sdk            = $this
             ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()

@@ -11,7 +11,7 @@ use TwoFAS\TwoFactorBundle\EventListener\ConsoleExceptionListener;
 use TwoFAS\Account\Exception\AuthorizationException;
 use TwoFAS\Account\Exception\Exception;
 use TwoFAS\Account\Exception\ValidationException;
-use TwoFAS\Account\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class ConsoleExceptionListenerTest extends \PHPUnit_Framework_TestCase
 {

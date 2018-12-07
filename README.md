@@ -25,7 +25,7 @@ You can use for example:
 **Requirements:** 
 
 - PHP >= 5.5
-- Symfony >=2.8 <3.4
+- Symfony ~2.8|~3.0
 - JQuery (or another JS framework or plain javascript, but you have to make some changes in the template - more info in documentation)
 - Doctrine ORM (Doctrine ODM, CouchDB and Propel is not supported for now)
 - Supports only for "Form" login method (your own login form or [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle))

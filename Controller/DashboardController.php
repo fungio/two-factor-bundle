@@ -24,10 +24,9 @@ class DashboardController extends Controller
     {
         $configuration   = $this->get('two_fas_two_factor.util.configuration_checker');
         $user            = $this->getTwoFASUser();
-        $integrationUser = $this->getIntegrationUser();
 
         return $this->render('TwoFASTwoFactorBundle:Dashboard:index.html.twig', [
-            'integration_user' => $integrationUser,
+            'integration_user' => $user->getIntegrationUser(),
             'status'           => $configuration->isTwoFASEnabled(),
             'channels'         => $user->getChannels(),
             'trusted_devices'  => $this->getTrustedDevices()

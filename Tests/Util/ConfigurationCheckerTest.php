@@ -2,7 +2,6 @@
 
 namespace TwoFAS\TwoFactorBundle\Tests\Util;
 
-use TwoFAS\Api\IntegrationUser;
 use TwoFAS\Api\Methods;
 use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
 use TwoFAS\TwoFactorBundle\Model\Entity\Option;
@@ -74,22 +73,6 @@ class ConfigurationCheckerTest extends \PHPUnit_Framework_TestCase
     public function testIntegrationUserNotConfiguredWhenUserNotExists()
     {
         $this->userStorage->method('getUser')->willReturn(null);
-
-        $this->assertFalse($this->checker->isSecondFactorEnabledForUser());
-    }
-
-    public function testIntegrationUserNotConfiguredWhenIntegrationUserNotExists()
-    {
-        $this->userStorage->method('getUser')->willReturn($this->getUser());
-        $this->userStorage->method('getIntegrationUser')->willReturn(null);
-
-        $this->assertFalse($this->checker->isSecondFactorEnabledForUser());
-    }
-
-    public function testIntegrationUserNotConfiguredWhenHasNoActiveMethod()
-    {
-        $this->userStorage->method('getUser')->willReturn($this->getUser());
-        $this->userStorage->method('getIntegrationUser')->willReturn(new IntegrationUser());
 
         $this->assertFalse($this->checker->isSecondFactorEnabledForUser());
     }

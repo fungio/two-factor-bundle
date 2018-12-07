@@ -131,6 +131,23 @@ abstract class ControllerTestCase extends WebTestCase
         $this->mockConfigurationChecker();
     }
 
+    /**
+     * Creates a Client.
+     *
+     * @param array $options An array of options to pass to the createKernel class
+     * @param array $server  An array of server parameters
+     *
+     * @return Client A Client instance
+     */
+    protected static function createClient(array $options = array(), array $server = array())
+    {
+        static::bootKernel($options);
+        $client = static::$kernel->getContainer()->get('twofas.test.client');
+        $client->setServerParameters($server);
+
+        return $client;
+    }
+
     protected function login()
     {
         $firewall = '2fas';
@@ -173,7 +190,8 @@ abstract class ControllerTestCase extends WebTestCase
 
         $this->twoFASUser
             ->setId('1')
-            ->setUsername($token->getUser()->getUsername());
+            ->setUsername($token->getUser()->getUsername())
+            ->setIntegrationUser($this->integrationUser);
 
         $this->userRepository->add($this->twoFASUser);
     }
@@ -197,7 +215,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function generateCookie($series, $tokenValue)
     {
         $cookie = new Cookie(
-            'TWOFAS_REMEMBERME['.$this->twoFASUser->getId().']',
+            'TWOFAS_REMEMBERME[' . $this->twoFASUser->getId() . ']',
             base64_encode(implode(':', [$series, $tokenValue])),
             time(),
             '/',

@@ -2,7 +2,6 @@
 
 namespace TwoFAS\TwoFactorBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use TwoFAS\Api\Exception\Exception as ApiException;
 use TwoFAS\Api\IntegrationUser;
@@ -49,14 +48,7 @@ class Controller extends BaseController
      */
     protected function getIntegrationUser()
     {
-        $userStorage     = $this->get('two_fas_two_factor.storage.user_session_storage');
-        $integrationUser = $userStorage->getIntegrationUser();
-
-        if (is_null($integrationUser)) {
-            $integrationUser = $userStorage->storeIntegrationUser($this->getTwoFASUser());
-        }
-
-        return $integrationUser;
+        return $this->getTwoFASUser()->getIntegrationUser();
     }
 
     /**

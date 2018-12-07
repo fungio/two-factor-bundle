@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Translation\TranslatorInterface;
 use TwoFAS\Api\Exception\AuthorizationException;
 use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\Api\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 
 /**
  * Listen for TwoFAS Api Exceptions, add flash, etc.

@@ -24,7 +24,7 @@ dashboard:
     trusted_devices:
         title: Trusted devices list
         content: When you are using a trusted device, you don't need to enter a verification code each time you log in.
-        empty: You don't have any trusted device
+        empty: You don't have any trusted devices
         browser: Browser and device
         created: Added on
         ip: Ip Address

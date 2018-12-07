@@ -86,7 +86,10 @@ class UserSessionStorage implements UserStorageInterface
 
         $user = $this->userManager->findByUserName($loggedUser->getUsername());
 
+
         if (!is_null($user)) {
+            $integrationUser = $this->integrationUserManager->findByExternalId($user->getId());
+            $user->setIntegrationUser($integrationUser);
             $this->session->set(self::USER_KEY, $user);
         }
 
@@ -104,7 +107,10 @@ class UserSessionStorage implements UserStorageInterface
             throw new LogicException('Can\'t store TwoFAS User when not logged in.');
         }
 
-        $user = $this->userManager->createUser($loggedUser);
+        $user            = $this->userManager->createUser($loggedUser);
+        $integrationUser = $this->storeIntegrationUser($user);
+
+        $user->setIntegrationUser($integrationUser);
         $this->session->set(self::USER_KEY, $user);
 
         return $user;
@@ -124,33 +130,9 @@ class UserSessionStorage implements UserStorageInterface
     /**
      * @inheritdoc
      */
-    public function getIntegrationUser()
-    {
-        if ($this->session->has(self::INTEGRATION_USER_KEY)) {
-            return unserialize($this->session->get(self::INTEGRATION_USER_KEY));
-        }
-
-        if (is_null($this->getUser())) {
-            return null;
-        }
-
-        $integrationUser = $this->integrationUserManager->findByExternalId($this->getUser()->getId());
-
-        if (!is_null($integrationUser)) {
-            $this->session->set(self::INTEGRATION_USER_KEY, serialize($integrationUser));
-        }
-
-        return $integrationUser;
-
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function storeIntegrationUser(TwoFASUserInterface $user)
     {
         $integrationUser = $this->integrationUserManager->createUser($user);
-        $this->session->set(self::INTEGRATION_USER_KEY, serialize($integrationUser));
 
         return $integrationUser;
     }
@@ -161,7 +143,6 @@ class UserSessionStorage implements UserStorageInterface
     public function updateIntegrationUser(IntegrationUser $user)
     {
         $integrationUser = $this->integrationUserManager->updateUser($user);
-        $this->session->set(self::INTEGRATION_USER_KEY, serialize($integrationUser));
 
         return $integrationUser;
     }

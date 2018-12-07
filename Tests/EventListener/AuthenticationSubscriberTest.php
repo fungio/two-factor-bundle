@@ -4,7 +4,6 @@ namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
 
 use TwoFAS\Api\Code\AcceptedCode;
 use TwoFAS\Api\Code\RejectedCodeCannotRetry;
-use TwoFAS\Api\Code\RejectedCodeCanRetry;
 use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
 use TwoFAS\TwoFactorBundle\EventListener\AuthenticationSubscriber;
 use TwoFAS\TwoFactorBundle\Util\AuthenticationManager;

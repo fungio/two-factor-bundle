@@ -7,7 +7,7 @@ use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use TwoFAS\Account\Exception\AuthorizationException;
 use TwoFAS\Account\Exception\Exception as AccountException;
 use TwoFAS\Account\Exception\ValidationException;
-use TwoFAS\Account\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 
 /**
  * Class for handle exceptions from TwoFAS Console Commands.

@@ -57,7 +57,7 @@ Feature: Manage Two Factor Authentication Service
     Then I fill in "Enter your token" with "123456"
     And I press "Login"
     And I go to "/2fas/index"
-    And I should see "You don't have any trusted device"
+    And I should see "You don't have any trusted devices"
 
   @javascript
   Scenario: Show trusted devices list when i check "Remember me" on second login form
@@ -67,7 +67,7 @@ Feature: Manage Two Factor Authentication Service
     And I check "This is my private computer, please don't ask me for my token next time."
     And I press "Login"
     And I go to "/2fas/index"
-    And I should not see "You don't have any trusted device"
+    And I should not see "You don't have any trusted devices"
     And I should see new trusted device in list
 
   @javascript
@@ -80,4 +80,4 @@ Feature: Manage Two Factor Authentication Service
     And I go to "/2fas/index"
     When I press "Remove"
     Then I should see "Trusted device has been removed successfully."
-    And I should see "You don't have any trusted device"
+    And I should see "You don't have any trusted devices"

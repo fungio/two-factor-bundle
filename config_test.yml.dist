@@ -1,0 +1,21 @@
+imports:
+    - { resource: config_dev.yml }
+
+parameters:
+    test.session.listener.class: "TwoFAS\\TwoFactorBundle\\Tests\\EventListener\\TestSessionListener"
+    test.client.cookiejar.class: "TwoFAS\\TwoFactorBundle\\Tests\\BrowserKit\\CookieJar"
+    router.request_context.base_url: /app_test.php
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true

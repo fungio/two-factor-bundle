@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use TwoFAS\Api\Exception\AuthorizationException;
 use TwoFAS\Api\Exception\ValidationException;
 use TwoFAS\Api\Methods;
-use TwoFAS\Api\ValidationRules;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class CheckCodeControllerTest extends ControllerTestCase
 {
@@ -298,7 +298,9 @@ class CheckCodeControllerTest extends ControllerTestCase
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertEquals('/2fas/index', $this->client->getRequest()->getRequestUri());
-        $this->assertTrue($this->client->getRequest()->cookies->has('TWOFAS_REMEMBERME'));
+
+        $cookieNames = $this->client->getRequest()->cookies->keys();
+        $this->assertCount(1, preg_grep('/^TWOFAS_REMEMBERME/', $cookieNames));
     }
 
     public function testLoginWithoutSecondFactorWhenUserIsRememberedOnTwoFASForm()

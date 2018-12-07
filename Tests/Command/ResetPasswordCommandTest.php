@@ -28,7 +28,7 @@ class ResetPasswordCommandTest extends CommandTestCase
         parent::setUp();
 
         $command              = $this->application->find('twofas:account:create');
-        $this->questionHelper = $this->getMock(QuestionHelper::class, ['ask']);
+        $this->questionHelper = $this->getMockBuilder(QuestionHelper::class)->setMethods(['ask'])->getMock();
         $this->sdk            = $this
             ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()
