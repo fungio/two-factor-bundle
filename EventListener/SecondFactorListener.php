@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,17 +11,17 @@ use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterfac
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\RememberMeServicesFactoryInterface;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorRememberMeToken;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\RememberMeServicesFactoryInterface;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorRememberMeToken;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
 /**
  * Listen on every request that is two factor authentication is enabled
  * and redirect user to code check controller if not authenticated with 2FAS.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class SecondFactorListener
 {
@@ -118,7 +118,7 @@ class SecondFactorListener
             return;
         }
 
-        if (!$this->configurationChecker->isTwoFASEnabled()) {
+        if (!$this->configurationChecker->isFungioEnabled()) {
             return;
         }
 
@@ -126,13 +126,13 @@ class SecondFactorListener
             return;
         }
 
-        if ($this->isTwoFASCheckRoute($event->getRequest()->getRequestUri())) {
+        if ($this->isFungioCheckRoute($event->getRequest()->getRequestUri())) {
             return;
         }
 
         $this->saveRedirectPath($event->getRequest());
 
-        $event->setResponse(new RedirectResponse($this->router->generate('twofas_check')));
+        $event->setResponse(new RedirectResponse($this->router->generate('fungio_check')));
     }
 
     /**
@@ -206,9 +206,9 @@ class SecondFactorListener
      *
      * @return bool
      */
-    protected function isTwoFASCheckRoute($uri)
+    protected function isFungioCheckRoute($uri)
     {
-        return false !== stripos($uri, $this->router->generate('twofas_check'));
+        return false !== stripos($uri, $this->router->generate('fungio_check'));
     }
 
     /**

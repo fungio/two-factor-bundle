@@ -1,16 +1,16 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\Exception\Exception as ApiException;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Exception\Exception as ApiException;
 
 /**
  * Contract for User Model class.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 interface UserInterface
 {

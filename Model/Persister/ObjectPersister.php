@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Persister;
+namespace Fungio\TwoFactorBundle\Model\Persister;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
- * ObjectManager for TwoFAS Entities.
+ * ObjectManager for Fungio Entities.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 class ObjectPersister implements ObjectPersisterInterface
 {

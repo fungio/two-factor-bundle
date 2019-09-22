@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
-use TwoFAS\Api\QrCodeGenerator;
+use Fungio\Api\QrCodeGenerator;
 
 /**
  * Generates Qr Code includes TOTP(Time-based One-time Password Algorithm) secret.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class TotpQrCodeGenerator implements TotpQrCodeGeneratorInterface
 {

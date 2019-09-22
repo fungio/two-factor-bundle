@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Security\Provider;
+namespace Fungio\TwoFactorBundle\Tests\Security\Provider;
 
 use Symfony\Component\Security\Core\Authentication\RememberMe\PersistentToken;
 use Symfony\Component\Security\Core\Exception\TokenNotFoundException;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider;
-use TwoFAS\TwoFactorBundle\Util\BrowserParser;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider;
+use Fungio\TwoFactorBundle\Util\BrowserParser;
 
 class PersistentRememberMeTokenProviderTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,23 +1,23 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Compiler;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TwoFAS\TwoFactorBundle\Entity\Authentication as OrmAuthentication;
-use TwoFAS\TwoFactorBundle\Entity\Option as OrmOption;
-use TwoFAS\TwoFactorBundle\Entity\RememberMeToken as OrmRememberMeToken;
-use TwoFAS\TwoFactorBundle\Entity\User as OrmUser;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication as ModelAuthentication;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option as ModelOption;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken as ModelRememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\User as ModelUser;
+use Fungio\TwoFactorBundle\Entity\Authentication as OrmAuthentication;
+use Fungio\TwoFactorBundle\Entity\Option as OrmOption;
+use Fungio\TwoFactorBundle\Entity\RememberMeToken as OrmRememberMeToken;
+use Fungio\TwoFactorBundle\Entity\User as OrmUser;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication as ModelAuthentication;
+use Fungio\TwoFactorBundle\Model\Entity\Option as ModelOption;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken as ModelRememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\User as ModelUser;
 
 /**
  * Sets entity classes for multiple db drivers.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Compiler
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Compiler
  */
 class EntityPass implements CompilerPassInterface
 {

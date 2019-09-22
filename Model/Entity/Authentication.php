@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use DateTime;
 
 /**
- * Model class for TwoFAS Authentication.
+ * Model class for Fungio Authentication.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 class Authentication implements AuthenticationInterface
 {

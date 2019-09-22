@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TwoFAS\TwoFactorBundle\DependencyInjection\TwoFASTwoFactorExtension;
+use Fungio\TwoFactorBundle\DependencyInjection\FungioTwoFactorExtension;
 
-class TwoFASTwoFactorExtensionTest extends \PHPUnit_Framework_TestCase
+class FungioTwoFactorExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string
@@ -127,7 +127,7 @@ class TwoFASTwoFactorExtensionTest extends \PHPUnit_Framework_TestCase
         $container = new ContainerBuilder();
         $container->setParameter('kernel.environment', 'test');
 
-        $extension = new TwoFASTwoFactorExtension();
+        $extension = new FungioTwoFactorExtension();
         $extension->load($configs, $container);
 
         return $container;

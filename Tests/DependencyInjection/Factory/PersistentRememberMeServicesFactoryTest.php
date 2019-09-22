@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\Security\Core\Authentication\RememberMe\TokenProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
@@ -8,9 +8,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 class PersistentRememberMeServicesFactoryTest extends \PHPUnit_Framework_TestCase
 {

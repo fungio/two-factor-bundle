@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\Account\OAuth\Interfaces\TokenStorage as AccountTokenStorage;
-use TwoFAS\Account\OAuth\Token;
-use TwoFAS\Account\OAuth\TokenNotFoundException;
+use Fungio\Encryption\Cryptographer;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\Account\OAuth\Interfaces\TokenStorage as AccountTokenStorage;
+use Fungio\Account\OAuth\Token;
+use Fungio\Account\OAuth\TokenNotFoundException;
 
 /**
  * Storage for OAuth tokens.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage
+ * @package Fungio\TwoFactorBundle\Storage
  */
 class OAuthTokenStorage implements AccountTokenStorage
 {

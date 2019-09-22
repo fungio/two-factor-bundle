@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Event;
+namespace Fungio\TwoFactorBundle\Tests\Event;
 
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
 
 class CodeCheckEventTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,31 +1,31 @@
-{% extends "TwoFASTwoFactorBundle::layout.html.twig" %}
+{% extends "FungioTwoFactorBundle::layout.html.twig" %}
 
-{% trans_default_domain 'TwoFASTwoFactorBundle' %}
+{% trans_default_domain 'FungioTwoFactorBundle' %}
 
 {% block title %}{{ 'dashboard.title'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="twofas-wrapper container">
-        <div class="twofas-header page-header">
+    <div class="fungio-wrapper container">
+        <div class="fungio-header page-header">
             <h1>
-                <img src="{{ asset('bundles/twofastwofactor/images/2fas.png') }}" alt="2FAS logo"/>
+                <img src="{{ asset('bundles/fungiotwofactor/images/2fas.png') }}" alt="2FAS logo"/>
                 <span>2FAS - Two Factor Authentication Service</span>
             </h1>
         </div>
-        <div class="twofas-container">
+        <div class="fungio-container">
             <h3>
                 {{ 'dashboard.two_factor.status'|trans }}:
                 {% if status == false %}
-                    <span class="twofas-status-disabled label danger">{{ 'dashboard.two_factor.disabled'|trans }}</span>
+                    <span class="fungio-status-disabled label danger">{{ 'dashboard.two_factor.disabled'|trans }}</span>
                 {% else %}
-                    <span class="twofas-status-enabled label success">{{ 'dashboard.two_factor.enabled'|trans }}</span>
+                    <span class="fungio-status-enabled label success">{{ 'dashboard.two_factor.enabled'|trans }}</span>
                 {% endif %}
             </h3>
         </div>
-        <div class="twofas-container">
-            <div class="twofas-channels">
-                <div class="twofas-free-channels">
-                    {{ include('@TwoFASTwoFactor/Dashboard/channel.html.twig', {
+        <div class="fungio-container">
+            <div class="fungio-channels">
+                <div class="fungio-free-channels">
+                    {{ include('@FungioTwoFactor/Dashboard/channel.html.twig', {
                         'channel': 'totp',
                         'status': channels.totp,
                         'configured' : (integration_user.totpSecret is not null)
@@ -33,10 +33,10 @@
                 </div>
             </div>
         </div>
-        <div class="twofas-container">
+        <div class="fungio-container">
             <h3>{{ 'dashboard.trusted_devices.title'|trans }}</h3>
             <p>{{ 'dashboard.trusted_devices.content'|trans }}</p>
-            <table class="twofas-table table">
+            <table class="fungio-table table">
                 <thead>
                     <tr>
                         <th>{{ 'dashboard.trusted_devices.browser'|trans }}</th>
@@ -62,8 +62,8 @@
                             <td><div class="td-content">{{ device.ip }}</div></td>
                             <td>
                                 <div class="td-content">
-                                    <form action="{{ path('twofas_remove_device') }}" method="post" class="form-remove">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('twofas_csrf_token') }}"/>
+                                    <form action="{{ path('fungio_remove_device') }}" method="post" class="form-remove">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('fungio_csrf_token') }}"/>
                                         <input type="hidden" name="id" value="{{ device.series }}"/>
                                         <button type="submit" class="btn-link btn-remove">
                                             <span>{{ 'dashboard.trusted_devices.remove_button'|trans }}</span>

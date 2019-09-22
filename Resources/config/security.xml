@@ -2,13 +2,13 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="two_fas_two_factor.security.two_factor_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter</parameter>
-        <parameter key="two_fas_two_factor.security_voter.two_factor_remembered_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorRememberedVoter</parameter>
-        <parameter key="two_fas_two_factor.security_voter.trusted_device_voter.class">TwoFAS\TwoFactorBundle\Security\Voter\TrustedDeviceVoter</parameter>
+        <parameter key="two_fas_two_factor.security.two_factor_voter.class">Fungio\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter</parameter>
+        <parameter key="two_fas_two_factor.security_voter.two_factor_remembered_voter.class">Fungio\TwoFactorBundle\Security\Voter\TwoFactorRememberedVoter</parameter>
+        <parameter key="two_fas_two_factor.security_voter.trusted_device_voter.class">Fungio\TwoFactorBundle\Security\Voter\TrustedDeviceVoter</parameter>
         <parameter key="two_fas_two_factor.authentication.manager.class">Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager</parameter>
         <parameter key="two_fas_two_factor.authentication.provider.remember_me.class">Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider</parameter>
-        <parameter key="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory.class">TwoFAS\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory</parameter>
-        <parameter key="two_fas_two_factor.security.persistent_remember_me_token_provider.class">TwoFAS\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider</parameter>
+        <parameter key="two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory.class">Fungio\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory</parameter>
+        <parameter key="two_fas_two_factor.security.persistent_remember_me_token_provider.class">Fungio\TwoFactorBundle\Security\Provider\PersistentRememberMeTokenProvider</parameter>
     </parameters>
     <services>
         <!-- Voters -->

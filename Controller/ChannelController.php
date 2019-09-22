@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use TwoFAS\Api\Methods;
-use TwoFAS\TwoFactorBundle\Event\ChannelStatusChangedEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\Api\Exception\Exception as ApiException;
+use Fungio\Api\Methods;
+use Fungio\TwoFactorBundle\Event\ChannelStatusChangedEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\Api\Exception\Exception as ApiException;
 
 /**
  * Manage 2FAS channels.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class ChannelController extends Controller
 {
@@ -30,17 +30,17 @@ class ChannelController extends Controller
 
         if (!$this->isChannelValid($channel)) {
             $this->addFlash('danger', $this->trans('channel.not_valid'));
-            return $this->redirectToRoute('twofas_index');
+            return $this->redirectToRoute('fungio_index');
         }
 
         if (!$this->canEnable($channel)) {
             $this->addFlash('danger', $this->trans('channel.cannot_enable'));
-            return $this->redirectToRoute('twofas_index');
+            return $this->redirectToRoute('fungio_index');
         }
 
         $this->changeChannelStatus($channel, true);
 
-        return $this->redirectToRoute('twofas_index');
+        return $this->redirectToRoute('fungio_index');
     }
 
     /**
@@ -54,12 +54,12 @@ class ChannelController extends Controller
 
         if (!$this->isChannelValid($channel)) {
             $this->addFlash('danger', $this->trans('channel.not_valid'));
-            return $this->redirectToRoute('twofas_index');
+            return $this->redirectToRoute('fungio_index');
         }
 
         $this->changeChannelStatus($channel, false);
 
-        return $this->redirectToRoute('twofas_index');
+        return $this->redirectToRoute('fungio_index');
     }
 
     /**
@@ -68,14 +68,14 @@ class ChannelController extends Controller
      */
     protected function changeChannelStatus($channel, $status)
     {
-        $user            = $this->getTwoFASUser();
+        $user            = $this->getFungioUser();
         $userStorage     = $this->get('two_fas_two_factor.storage.user_session_storage');
         $eventDispatcher = $this->get('event_dispatcher');
 
         if (true === (bool) $status) {
             $user->enableChannel($channel);
             $userStorage->updateUser($user);
-            $eventDispatcher->dispatch(TwoFASEvents::CHANNEL_ENABLED, new ChannelStatusChangedEvent($user, $channel));
+            $eventDispatcher->dispatch(FungioEvents::CHANNEL_ENABLED, new ChannelStatusChangedEvent($user, $channel));
             $this->addFlash('success', $this->trans('channel.success_enabled'));
         } else {
             $user->disableChannel($channel);

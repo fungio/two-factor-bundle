@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
 /**
  * Contract for Totp Qr Code Generators.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 interface TotpQrCodeGeneratorInterface
 {

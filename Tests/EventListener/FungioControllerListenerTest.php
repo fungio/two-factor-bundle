@@ -1,20 +1,20 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use TwoFAS\TwoFactorBundle\Controller\DashboardController;
-use TwoFAS\TwoFactorBundle\EventListener\TwoFASControllerListener;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Tests\DummyEntity;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\Controller\DashboardController;
+use Fungio\TwoFactorBundle\EventListener\FungioControllerListener;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Tests\DummyEntity;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
-class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
+class FungioControllerListenerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var TokenStorage|\PHPUnit_Framework_MockObject_MockObject
@@ -27,7 +27,7 @@ class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
     private $configurationChecker;
 
     /**
-     * @var TwoFASControllerListener
+     * @var FungioControllerListener
      */
     private $listener;
 
@@ -41,7 +41,7 @@ class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->listener = new TwoFASControllerListener($this->tokenStorage, $this->configurationChecker);
+        $this->listener = new FungioControllerListener($this->tokenStorage, $this->configurationChecker);
     }
 
     public function testNotArrayOfControllers()
@@ -51,7 +51,7 @@ class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->onKernelController($event);
     }
 
-    public function testNoTwoFASController()
+    public function testNoFungioController()
     {
         $this->tokenStorage->expects($this->never())->method('getToken');
         $controller = new DummyEntity();
@@ -59,7 +59,7 @@ class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->onKernelController($event);
     }
 
-    public function testNotLoggedUserInTwoFASController()
+    public function testNotLoggedUserInFungioController()
     {
         $this->setExpectedException(AccessDeniedHttpException::class, 'This user does not have access to this section.');
         $this->tokenStorage->method('getToken')->willReturn(null);
@@ -79,13 +79,13 @@ class TwoFASControllerListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener->onKernelController($event);
     }
 
-    public function testTwoFASNotConfigured()
+    public function testFungioNotConfigured()
     {
         $this->setExpectedException(AccessDeniedHttpException::class, 'You have to create 2FAS account to have access to this section.');
         $token = $this->getMockForAbstractClass(TokenInterface::class);
         $token->method('getUser')->willReturn(new User());
         $this->tokenStorage->method('getToken')->willReturn($token);
-        $this->configurationChecker->method('isTwoFASConfigured')->willReturn(false);
+        $this->configurationChecker->method('isFungioConfigured')->willReturn(false);
         $controller = new DashboardController();
         $event      = new FilterControllerEvent($this->getKernel(), [$controller, 'indexAction'], new Request(), HttpKernelInterface::MASTER_REQUEST);
         $this->listener->onKernelController($event);

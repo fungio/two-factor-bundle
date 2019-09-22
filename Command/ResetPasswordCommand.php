@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -11,15 +11,15 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use TwoFAS\Account\Exception\Exception as AccountException;
-use TwoFAS\Account\Exception\NotFoundException;
-use TwoFAS\Account\TwoFAS;
+use Fungio\Account\Exception\Exception as AccountException;
+use Fungio\Account\Exception\NotFoundException;
+use Fungio\Account\Fungio;
 
 /**
  * Send instructions to reset password to email.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 class ResetPasswordCommand extends ContainerAwareCommand
 {
@@ -29,7 +29,7 @@ class ResetPasswordCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('twofas:reset-password')
+            ->setName('fungio:reset-password')
             ->setDescription('Reset your 2FAS password.');
     }
 
@@ -109,7 +109,7 @@ class ResetPasswordCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return TwoFAS
+     * @return Fungio
      */
     private function getSdk()
     {

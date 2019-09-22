@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\Api\Code\RejectedCodeCannotRetry;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\EventListener\AuthenticationSubscriber;
-use TwoFAS\TwoFactorBundle\Util\AuthenticationManager;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\Api\Code\RejectedCodeCannotRetry;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\EventListener\AuthenticationSubscriber;
+use Fungio\TwoFactorBundle\Util\AuthenticationManager;
 
 class AuthenticationSubscriberTest extends \PHPUnit_Framework_TestCase
 {

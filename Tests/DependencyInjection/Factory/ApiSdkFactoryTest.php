@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\ApiSdkFactory;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
+use Fungio\Api\Fungio;
+use Fungio\Encryption\Cryptographer;
+use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\ApiSdkFactory;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
 
 class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,7 +63,7 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
+        $this->assertInstanceOf(Fungio::class, $this->factory->createInstance());
     }
 
     public function testCreateEmptyInstanceIfCannotGetOptions()
@@ -76,6 +76,6 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
+        $this->assertInstanceOf(Fungio::class, $this->factory->createInstance());
     }
 }

@@ -3,27 +3,27 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="two_fas_two_factor.sdk.api_factory.class">TwoFAS\TwoFactorBundle\DependencyInjection\Factory\ApiSdkFactory</parameter>
-        <parameter key="two_fas_two_factor.sdk.account_factory.class">TwoFAS\TwoFactorBundle\DependencyInjection\Factory\AccountSdkFactory</parameter>
-        <parameter key="two_fas_two_factor.sdk.api.class">TwoFAS\Api\TwoFAS</parameter>
-        <parameter key="two_fas_two_factor.sdk.account.class">TwoFAS\Account\TwoFAS</parameter>
-        <parameter key="two_fas_two_factor.proxy.api_provider.class">TwoFAS\TwoFactorBundle\Proxy\ApiProvider</parameter>
-        <parameter key="two_fas_two_factor.storage.encryption_storage.class">TwoFAS\TwoFactorBundle\Storage\EncryptionStorage</parameter>
-        <parameter key="two_fas_two_factor.encryption.cryptographer.class">TwoFAS\Encryption\Cryptographer</parameter>
-        <parameter key="two_fas_two_factor.storage.token_storage.class">TwoFAS\TwoFactorBundle\Storage\TokenStorage</parameter>
-        <parameter key="two_fas_two_factor.storage.oauth_token_storage.class">TwoFAS\TwoFactorBundle\Storage\OAuthTokenStorage</parameter>
-        <parameter key="two_fas_two_factor.account.oauth.token_type_symfony.class">TwoFAS\Account\OAuth\TokenType</parameter>
-        <parameter key="two_fas_two_factor.qr_code.endroid_qr_client.class">TwoFAS\Api\QrCode\EndroidQrClient</parameter>
-        <parameter key="two_fas_two_factor.qr_code.generator.class">TwoFAS\Api\QrCodeGenerator</parameter>
-        <parameter key="two_fas_two_factor.util.totp_qr_code_generator.class">TwoFAS\TwoFactorBundle\Util\TotpQrCodeGenerator</parameter>
-        <parameter key="two_fas_two_factor.util.user_manager.class">TwoFAS\TwoFactorBundle\Util\UserManager</parameter>
-        <parameter key="two_fas_two_factor.util.integration_user_manager.class">TwoFAS\TwoFactorBundle\Util\IntegrationUserManager</parameter>
-        <parameter key="two_fas_two_factor.util.authentication_manager.class">TwoFAS\TwoFactorBundle\Util\AuthenticationManager</parameter>
-        <parameter key="two_fas_two_factor.util.configuration_checker.class">TwoFAS\TwoFactorBundle\Util\ConfigurationChecker</parameter>
-        <parameter key="two_fas_two_factor.storage.user_session_storage.class">TwoFAS\TwoFactorBundle\Storage\UserSessionStorage</parameter>
-        <parameter key="two_fas_two_factor.storage.file_cache_storage.class">TwoFAS\TwoFactorBundle\Cache\FileCacheStorage</parameter>
-        <parameter key="two_fas_two_factor.browser.parser.class">TwoFAS\TwoFactorBundle\Util\BrowserParser</parameter>
-        <parameter key="two_fas_two_factor.twig.two_fas_extension.class">TwoFAS\TwoFactorBundle\Twig\TwoFASExtension</parameter>
+        <parameter key="two_fas_two_factor.sdk.api_factory.class">Fungio\TwoFactorBundle\DependencyInjection\Factory\ApiSdkFactory</parameter>
+        <parameter key="two_fas_two_factor.sdk.account_factory.class">Fungio\TwoFactorBundle\DependencyInjection\Factory\AccountSdkFactory</parameter>
+        <parameter key="two_fas_two_factor.sdk.api.class">Fungio\Api\Fungio</parameter>
+        <parameter key="two_fas_two_factor.sdk.account.class">Fungio\Account\Fungio</parameter>
+        <parameter key="two_fas_two_factor.proxy.api_provider.class">Fungio\TwoFactorBundle\Proxy\ApiProvider</parameter>
+        <parameter key="two_fas_two_factor.storage.encryption_storage.class">Fungio\TwoFactorBundle\Storage\EncryptionStorage</parameter>
+        <parameter key="two_fas_two_factor.encryption.cryptographer.class">Fungio\Encryption\Cryptographer</parameter>
+        <parameter key="two_fas_two_factor.storage.token_storage.class">Fungio\TwoFactorBundle\Storage\TokenStorage</parameter>
+        <parameter key="two_fas_two_factor.storage.oauth_token_storage.class">Fungio\TwoFactorBundle\Storage\OAuthTokenStorage</parameter>
+        <parameter key="two_fas_two_factor.account.oauth.token_type_symfony.class">Fungio\Account\OAuth\TokenType</parameter>
+        <parameter key="two_fas_two_factor.qr_code.endroid_qr_client.class">Fungio\Api\QrCode\EndroidQrClient</parameter>
+        <parameter key="two_fas_two_factor.qr_code.generator.class">Fungio\Api\QrCodeGenerator</parameter>
+        <parameter key="two_fas_two_factor.util.totp_qr_code_generator.class">Fungio\TwoFactorBundle\Util\TotpQrCodeGenerator</parameter>
+        <parameter key="two_fas_two_factor.util.user_manager.class">Fungio\TwoFactorBundle\Util\UserManager</parameter>
+        <parameter key="two_fas_two_factor.util.integration_user_manager.class">Fungio\TwoFactorBundle\Util\IntegrationUserManager</parameter>
+        <parameter key="two_fas_two_factor.util.authentication_manager.class">Fungio\TwoFactorBundle\Util\AuthenticationManager</parameter>
+        <parameter key="two_fas_two_factor.util.configuration_checker.class">Fungio\TwoFactorBundle\Util\ConfigurationChecker</parameter>
+        <parameter key="two_fas_two_factor.storage.user_session_storage.class">Fungio\TwoFactorBundle\Storage\UserSessionStorage</parameter>
+        <parameter key="two_fas_two_factor.storage.file_cache_storage.class">Fungio\TwoFactorBundle\Cache\FileCacheStorage</parameter>
+        <parameter key="two_fas_two_factor.browser.parser.class">Fungio\TwoFactorBundle\Util\BrowserParser</parameter>
+        <parameter key="two_fas_two_factor.twig.two_fas_extension.class">Fungio\TwoFactorBundle\Twig\FungioExtension</parameter>
     </parameters>
     <services>
         <!-- SDK -->

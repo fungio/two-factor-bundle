@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-use TwoFAS\TwoFactorBundle\EventListener\BrowserListener;
-use TwoFAS\TwoFactorBundle\Util\BrowserParser;
+use Fungio\TwoFactorBundle\EventListener\BrowserListener;
+use Fungio\TwoFactorBundle\Util\BrowserParser;
 
 class BrowserListenerTest extends \PHPUnit_Framework_TestCase
 {

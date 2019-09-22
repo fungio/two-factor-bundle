@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
 use DomainException;
 
@@ -8,7 +8,7 @@ use DomainException;
  * Throws if token in storage is not valid.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage
+ * @package Fungio\TwoFactorBundle\Storage
  */
 class InvalidTokenException extends DomainException
 {

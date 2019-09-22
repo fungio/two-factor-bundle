@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Persister;
+namespace Fungio\TwoFactorBundle\Model\Persister;
 
 /**
  * InMemoryObjectPersister for tests only.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model\Persister
+ * @package Fungio\TwoFactorBundle\Model\Persister
  */
 class InMemoryObjectPersister implements ObjectPersisterInterface
 {

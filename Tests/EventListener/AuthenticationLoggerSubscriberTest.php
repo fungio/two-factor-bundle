@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\Api\Code\RejectedCodeCannotRetry;
-use TwoFAS\Api\Code\RejectedCodeCanRetry;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\EventListener\AuthenticationLoggerSubscriber;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\Api\Code\RejectedCodeCannotRetry;
+use Fungio\Api\Code\RejectedCodeCanRetry;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\EventListener\AuthenticationLoggerSubscriber;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as BaseTokenStorage;
 
 class AuthenticationLoggerSubscriberTest extends \PHPUnit_Framework_TestCase
@@ -50,32 +50,32 @@ class AuthenticationLoggerSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->logger->expects($this->once())
             ->method('info')
-            ->with($this->equalTo('TwoFAS authentication: accepted (cannot retry) from user: admin'));
+            ->with($this->equalTo('Fungio authentication: accepted (cannot retry) from user: admin'));
 
         $event = new CodeCheckEvent(new AcceptedCode([]));
 
-        $this->dispatcher->dispatch(TwoFASEvents::CODE_ACCEPTED, $event);
+        $this->dispatcher->dispatch(FungioEvents::CODE_ACCEPTED, $event);
     }
 
     public function testRejectedCodeCanRetryLog()
     {
         $this->logger->expects($this->once())
             ->method('info')
-            ->with($this->equalTo('TwoFAS authentication: rejected (can retry) from user: admin'));
+            ->with($this->equalTo('Fungio authentication: rejected (can retry) from user: admin'));
 
         $event = new CodeCheckEvent(new RejectedCodeCanRetry([]));
 
-        $this->dispatcher->dispatch(TwoFASEvents::CODE_REJECTED_CAN_RETRY, $event);
+        $this->dispatcher->dispatch(FungioEvents::CODE_REJECTED_CAN_RETRY, $event);
     }
 
     public function testRejectedCodeCannotRetryLog()
     {
         $this->logger->expects($this->once())
             ->method('info')
-            ->with($this->equalTo('TwoFAS authentication: rejected (cannot retry) from user: admin'));
+            ->with($this->equalTo('Fungio authentication: rejected (cannot retry) from user: admin'));
 
         $event = new CodeCheckEvent(new RejectedCodeCannotRetry([]));
 
-        $this->dispatcher->dispatch(TwoFASEvents::CODE_REJECTED_CANNOT_RETRY, $event);
+        $this->dispatcher->dispatch(FungioEvents::CODE_REJECTED_CANNOT_RETRY, $event);
     }
 }

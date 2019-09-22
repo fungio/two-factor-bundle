@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Persister;
+namespace Fungio\TwoFactorBundle\Model\Persister;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 
@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
  * Interface to be implemented by object persisters.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model\Persister
+ * @package Fungio\TwoFactorBundle\Model\Persister
  */
 interface ObjectPersisterInterface
 {

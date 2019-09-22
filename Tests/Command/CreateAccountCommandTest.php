@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use TwoFAS\TwoFactorBundle\Command\CreateAccountCommand;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\Account\Exception\AuthorizationException;
-use TwoFAS\Account\Exception\Exception as AccountException;
-use TwoFAS\Account\Exception\ValidationException;
-use TwoFAS\Account\TwoFAS;
-use TwoFAS\ValidationRules\ValidationRules;
+use Fungio\TwoFactorBundle\Command\CreateAccountCommand;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\Account\Exception\AuthorizationException;
+use Fungio\Account\Exception\Exception as AccountException;
+use Fungio\Account\Exception\ValidationException;
+use Fungio\Account\Fungio;
+use Fungio\ValidationRules\ValidationRules;
 
 class CreateAccountCommandTest extends CommandTestCase
 {
@@ -21,7 +21,7 @@ class CreateAccountCommandTest extends CommandTestCase
     private $questionHelper;
 
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     private $sdk;
 
@@ -31,11 +31,11 @@ class CreateAccountCommandTest extends CommandTestCase
 
         parent::setUp();
 
-        $command = $this->application->find('twofas:account:create');
+        $command = $this->application->find('fungio:account:create');
 
         $this->questionHelper = $this->getMockBuilder(QuestionHelper::class)->setMethods(['ask'])->getMock();
         $this->sdk            = $this
-            ->getMockBuilder(TwoFAS::class)
+            ->getMockBuilder(Fungio::class)
             ->disableOriginalConstructor()
             ->setMethods(['createClient', 'createIntegration', 'createKey', 'generateOAuthSetupToken', 'generateIntegrationSpecificToken'])
             ->getMock();
@@ -152,7 +152,7 @@ class CreateAccountCommandTest extends CommandTestCase
         $this->assertContains('This value is not a valid email address.', $output);
     }
 
-    public function testTwoFASEmailValidation()
+    public function testFungioEmailValidation()
     {
         $this->questionHelper->expects($this->at(0))
             ->method('ask')
@@ -201,7 +201,7 @@ class CreateAccountCommandTest extends CommandTestCase
         $this->assertContains('The password can not be empty', $output);
     }
 
-    public function testTwoFASPasswordValidation()
+    public function testFungioPasswordValidation()
     {
         $this->questionHelper->expects($this->at(0))
             ->method('ask')
@@ -252,10 +252,10 @@ class CreateAccountCommandTest extends CommandTestCase
         $this->applicationTester->run([$this->command->getName()]);
 
         $output = $this->applicationTester->getDisplay();
-        $this->assertContains('Unknown TwoFAS Exception', $output);
+        $this->assertContains('Unknown Fungio Exception', $output);
     }
 
-    public function testExecuteOnTwoFASError()
+    public function testExecuteOnFungioError()
     {
         $this->questionHelper->expects($this->at(0))
             ->method('ask')
@@ -279,7 +279,7 @@ class CreateAccountCommandTest extends CommandTestCase
 
     public function testCannotExecuteIfEncryptionKeyIsNotSet()
     {
-        $this->setExpectedException(\Exception::class, 'Two FAS Encryption Key is not set! Run "twofas:encryption-key:create first."');
+        $this->setExpectedException(\Exception::class, 'Two FAS Encryption Key is not set! Run "fungio:encryption-key:create first."');
         $container = $this->getMockBuilder(ContainerInterface::class)->getMockForAbstractClass();
         $container->method('get')->willReturn(null);
         $container->method('getParameter')->willReturn(null);
@@ -291,7 +291,7 @@ class CreateAccountCommandTest extends CommandTestCase
 
     public function testCannotExecuteIfPreviousConfigurationWasDetected()
     {
-        $this->setExpectedException(\Exception::class, 'Previous configuration has detected! Run "twofas:account:delete first if you want create new account or use another credentials."');
+        $this->setExpectedException(\Exception::class, 'Previous configuration has detected! Run "fungio:account:delete first if you want create new account or use another credentials."');
         $container = $this->getMockBuilder(ContainerInterface::class)->getMockForAbstractClass();
         $container->method('get')->willReturn($this->container->get('two_fas_two_factor.option_persister'));
         $container->method('getParameter')->willReturn('not_null');

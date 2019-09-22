@@ -1,23 +1,23 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use TwoFAS\Api\Exception\Exception as ApiException;
-use TwoFAS\Api\Methods;
-use TwoFAS\Api\TotpSecretGenerator;
-use TwoFAS\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\Form\CodeForm;
+use Fungio\Api\Exception\Exception as ApiException;
+use Fungio\Api\Methods;
+use Fungio\Api\TotpSecretGenerator;
+use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\Form\CodeForm;
 
 /**
  * Configure 2FAS to use TOTP Authentication.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class ConfigureTotpController extends Controller
 {
@@ -39,7 +39,7 @@ class ConfigureTotpController extends Controller
             $authenticationManager = $this->get('two_fas_two_factor.util.authentication_manager');
             $userStorage           = $this->get('two_fas_two_factor.storage.user_session_storage');
             $dispatcher            = $this->get('event_dispatcher');
-            $user                  = $this->getTwoFASUser();
+            $user                  = $this->getFungioUser();
             $data                  = $form->getData();
             $totpSecret            = $data['totp_secret'];
             $code                  = $data['code'];
@@ -55,13 +55,13 @@ class ConfigureTotpController extends Controller
                 $userStorage->updateIntegrationUser($integrationUser);
                 $userStorage->updateUser($user);
 
-                $dispatcher->dispatch(TwoFASEvents::INTEGRATION_USER_CONFIGURATION_COMPLETE_TOTP, new IntegrationUserConfigurationCompleteEvent($integrationUser));
+                $dispatcher->dispatch(FungioEvents::INTEGRATION_USER_CONFIGURATION_COMPLETE_TOTP, new IntegrationUserConfigurationCompleteEvent($integrationUser));
 
-                return $this->redirectToRoute('twofas_index');
+                return $this->redirectToRoute('fungio_index');
             }
         }
 
-        return $this->render('TwoFASTwoFactorBundle:ConfigureTotp:configure.html.twig', [
+        return $this->render('FungioTwoFactorBundle:ConfigureTotp:configure.html.twig', [
             'totp_secret'   => (!empty($integrationUser->getTotpSecret()) ? $integrationUser->getTotpSecret() : TotpSecretGenerator::generate()),
             'mobile_secret' => $integrationUser->getMobileSecret(),
             'form'          => $form->createView()
@@ -77,7 +77,7 @@ class ConfigureTotpController extends Controller
     {
         $integrationUser = $this->getIntegrationUser();
 
-        return $this->forward('TwoFASTwoFactorBundle:GenerateQrCode:generateJson', [
+        return $this->forward('FungioTwoFactorBundle:GenerateQrCode:generateJson', [
             'totpSecret'   => TotpSecretGenerator::generate(),
             'mobileSecret' => $integrationUser->getMobileSecret()
         ]);

@@ -1,20 +1,20 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use TwoFAS\TwoFactorBundle\Controller\Controller as TwoFASController;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\Controller\Controller as FungioController;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
 /**
- * Listen for call TwoFAS Controller and check that user is logged.
+ * Listen for call Fungio Controller and check that user is logged.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
-class TwoFASControllerListener
+class FungioControllerListener
 {
     /**
      * @var TokenStorage
@@ -49,14 +49,14 @@ class TwoFASControllerListener
             return;
         }
 
-        if ($controller[0] instanceof TwoFASController) {
+        if ($controller[0] instanceof FungioController) {
             $token = $this->tokenStorage->getToken();
 
             if (null === $token || !is_object($token->getUser())) {
                 throw new AccessDeniedHttpException('This user does not have access to this section.');
             }
 
-            if (!$this->configurationChecker->isTwoFASConfigured()) {
+            if (!$this->configurationChecker->isFungioConfigured()) {
                 throw new AccessDeniedHttpException('You have to create 2FAS account to have access to this section.');
             }
         }

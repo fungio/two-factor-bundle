@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests;
+namespace Fungio\TwoFactorBundle\Tests;
 
 /**
  * Related entity only for tests.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Tests
+ * @package Fungio\TwoFactorBundle\Tests
  */
 class RelatedEntity
 {

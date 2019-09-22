@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Event;
+namespace Fungio\TwoFactorBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use TwoFAS\Api\IntegrationUser;
+use Fungio\Api\IntegrationUser;
 
 /**
  * Event fires when configuration is completed.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Event
+ * @package Fungio\TwoFactorBundle\Event
  */
 class IntegrationUserConfigurationCompleteEvent extends Event
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Event;
+namespace Fungio\TwoFactorBundle\Tests\Event;
 
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
 
 class IntegrationUserConfigurationCompleteEventTest extends \PHPUnit_Framework_TestCase
 {

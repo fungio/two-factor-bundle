@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Event;
+namespace Fungio\TwoFactorBundle\Event;
 
 /**
  * All events dispatched by TwoFactorBundle
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Event
+ * @package Fungio\TwoFactorBundle\Event
  */
-final class TwoFASEvents
+final class FungioEvents
 {
     const CODE_ACCEPTED              = 'two_fas_two_factor.code.accepted';
     const CODE_REJECTED_CAN_RETRY    = 'two_fas_two_factor.code.rejected_can_retry';

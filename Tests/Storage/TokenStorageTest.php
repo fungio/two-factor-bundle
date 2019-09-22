@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Storage;
+namespace Fungio\TwoFactorBundle\Tests\Storage;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as BaseTokenStorage;
 
 class TokenStorageTest extends \PHPUnit_Framework_TestCase

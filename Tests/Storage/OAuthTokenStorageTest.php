@@ -1,16 +1,16 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Storage;
+namespace Fungio\TwoFactorBundle\Tests\Storage;
 
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
-use TwoFAS\TwoFactorBundle\Storage\OAuthTokenStorage;
-use TwoFAS\Account\OAuth\Token;
-use TwoFAS\Account\OAuth\TokenNotFoundException;
+use Fungio\Encryption\Cryptographer;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
+use Fungio\TwoFactorBundle\Storage\OAuthTokenStorage;
+use Fungio\Account\OAuth\Token;
+use Fungio\Account\OAuth\TokenNotFoundException;
 
 class OAuthTokenStorageTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 /**
- * Model class for TwoFAS Remember Me functionality.
+ * Model class for Fungio Remember Me functionality.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model\Entity
+ * @package Fungio\TwoFactorBundle\Model\Entity
  */
 class RememberMeToken implements RememberMeTokenInterface
 {

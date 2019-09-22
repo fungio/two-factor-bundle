@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle;
+namespace Fungio\TwoFactorBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\CachePass;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\EntityPass;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\RememberMePass;
+use Fungio\TwoFactorBundle\DependencyInjection\Compiler\CachePass;
+use Fungio\TwoFactorBundle\DependencyInjection\Compiler\EntityPass;
+use Fungio\TwoFactorBundle\DependencyInjection\Compiler\RememberMePass;
 
 /**
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle
+ * @package Fungio\TwoFactorBundle
  */
-class TwoFASTwoFactorBundle extends Bundle
+class FungioTwoFactorBundle extends Bundle
 {
     const VERSION = '1.0.1';
 

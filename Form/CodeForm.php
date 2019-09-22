@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Form;
+namespace Fungio\TwoFactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -10,15 +10,15 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use TwoFAS\TwoFactorBundle\Form\Type\CodeType;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\Code;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\TotpSecret;
+use Fungio\TwoFactorBundle\Form\Type\CodeType;
+use Fungio\TwoFactorBundle\Validator\Constraints\Code;
+use Fungio\TwoFactorBundle\Validator\Constraints\TotpSecret;
 
 /**
  * Form to provide Two Factor Authentication Code.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Form
+ * @package Fungio\TwoFactorBundle\Form
  */
 class CodeForm extends AbstractType
 {
@@ -39,15 +39,15 @@ class CodeForm extends AbstractType
                     'minlength' => 6,
                     'maxlength' => 6
                 ],
-                'label_attr'         => ['class' => 'twofas-code-label'],
+                'label_attr'         => ['class' => 'fungio-code-label'],
                 'label_format'       => 'form.code.label',
-                'translation_domain' => 'TwoFASTwoFactorBundle'
+                'translation_domain' => 'FungioTwoFactorBundle'
             ])
             ->add('remember_two_factor', CheckboxType::class, [
                 'required'           => false,
-                'label_attr'         => ['class' => 'twofas-remember-me-label'],
+                'label_attr'         => ['class' => 'fungio-remember-me-label'],
                 'label_format'       => 'form.code.remember_me',
-                'translation_domain' => 'TwoFASTwoFactorBundle'
+                'translation_domain' => 'FungioTwoFactorBundle'
             ])
             ->add('auth_id', CollectionType::class, [
                 'entry_type'  => HiddenType::class,
@@ -84,7 +84,7 @@ class CodeForm extends AbstractType
             'method'          => 'POST',
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'twofas_csrf_token'
+            'csrf_token_id'   => 'fungio_csrf_token'
         ]);
     }
 

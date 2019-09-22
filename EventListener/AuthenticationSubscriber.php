@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\Util\AuthenticationManager;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\Util\AuthenticationManager;
 
 /**
  * Listen for code accepted event is fired (on authentication success)
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class AuthenticationSubscriber implements EventSubscriberInterface
 {
@@ -36,8 +36,8 @@ class AuthenticationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            TwoFASEvents::CODE_ACCEPTED              => 'onAuthenticationSuccess',
-            TwoFASEvents::CODE_REJECTED_CANNOT_RETRY => 'onAuthenticationFailure'
+            FungioEvents::CODE_ACCEPTED              => 'onAuthenticationSuccess',
+            FungioEvents::CODE_REJECTED_CANNOT_RETRY => 'onAuthenticationFailure'
         ];
     }
 

@@ -5,12 +5,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="twofas.test.client" class="Symfony\Bundle\FrameworkBundle\Client" shared="false" public="true">
+        <service id="fungio.test.client" class="Symfony\Bundle\FrameworkBundle\Client" shared="false" public="true">
             <argument type="service" id="kernel" />
             <argument>%test.client.parameters%</argument>
             <argument type="service" id="test.client.history" />
-            <argument type="service" id="twofas.test.client.cookiejar" />
+            <argument type="service" id="fungio.test.client.cookiejar" />
         </service>
-        <service id="twofas.test.client.cookiejar" class="%test.client.cookiejar.class%" shared="false" />
+        <service id="fungio.test.client.cookiejar" class="%test.client.cookiejar.class%" shared="false" />
     </services>
 </container>

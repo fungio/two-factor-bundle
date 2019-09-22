@@ -1,8 +1,8 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
-use TwoFAS\TwoFactorBundle\Command\CreateEncryptionKeyCommand;
+use Fungio\TwoFactorBundle\Command\CreateEncryptionKeyCommand;
 
 class CreateEncryptionKeyCommandTest extends CommandTestCase
 {

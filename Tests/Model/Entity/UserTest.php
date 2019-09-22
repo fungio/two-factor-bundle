@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Entity;
+namespace Fungio\TwoFactorBundle\Tests\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\Methods;
-use TwoFAS\TwoFactorBundle\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
+use Fungio\Api\Methods;
+use Fungio\TwoFactorBundle\Entity\Authentication;
+use Fungio\TwoFactorBundle\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\User;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {

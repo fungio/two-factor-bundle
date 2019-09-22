@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Persister;
+namespace Fungio\TwoFactorBundle\Tests\Model\Persister;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Tests\DummyEntity;
-use TwoFAS\TwoFactorBundle\Tests\RelatedEntity;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Tests\DummyEntity;
+use Fungio\TwoFactorBundle\Tests\RelatedEntity;
 
 class InMemoryRepositoryTest extends \PHPUnit_Framework_TestCase
 {

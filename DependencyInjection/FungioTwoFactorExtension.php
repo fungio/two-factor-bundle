@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection;
+namespace Fungio\TwoFactorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class TwoFASTwoFactorExtension extends Extension
+class FungioTwoFactorExtension extends Extension
 {
     /**
      * {@inheritdoc}

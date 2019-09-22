@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Disable Two Factor Authentication
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 class DisableCommand extends SwitchCommand
 {
@@ -19,7 +19,7 @@ class DisableCommand extends SwitchCommand
     protected function configure()
     {
         $this
-            ->setName('twofas:disable')
+            ->setName('fungio:disable')
             ->setDescription('Disable Two Factor Authentication');
     }
 

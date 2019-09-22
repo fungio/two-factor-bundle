@@ -1,22 +1,22 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Security\Provider;
+namespace Fungio\TwoFactorBundle\Security\Provider;
 
 use Symfony\Component\Security\Core\Authentication\RememberMe\PersistentToken;
 use Symfony\Component\Security\Core\Authentication\RememberMe\PersistentTokenInterface;
 use Symfony\Component\Security\Core\Authentication\RememberMe\TokenProviderInterface;
 use Symfony\Component\Security\Core\Exception\TokenNotFoundException;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\Util\BrowserParser;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Util\BrowserParser;
 use DateTime;
 
 /**
- * Persistent provider for TwoFAS Remember Me Token which save token and browser information.
+ * Persistent provider for Fungio Remember Me Token which save token and browser information.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Security\Provider
+ * @package Fungio\TwoFactorBundle\Security\Provider
  */
 class PersistentRememberMeTokenProvider implements TokenProviderInterface
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Model class for TwoFAS Option.
+ * Model class for Fungio Option.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 class Option implements OptionInterface
 {

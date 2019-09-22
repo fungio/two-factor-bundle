@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 /**
  * Contract for RememberMeToken Model class.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 interface RememberMeTokenInterface
 {

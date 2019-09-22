@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,9 +11,9 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
-use TwoFAS\Api\Exception\AuthorizationException;
-use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\TwoFactorBundle\EventListener\ApiExceptionListener;
+use Fungio\Api\Exception\AuthorizationException;
+use Fungio\Api\Exception\ValidationException;
+use Fungio\TwoFactorBundle\EventListener\ApiExceptionListener;
 
 class ApiExceptionListenerTest extends \PHPUnit_Framework_TestCase
 {

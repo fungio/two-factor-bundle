@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
-use TwoFAS\Api\Exception\IntegrationUserNotFoundException;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\Exception\Exception as ApiException;
-use TwoFAS\Api\MobileSecretGenerator;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Proxy\ApiProviderInterface;
+use Fungio\Api\Exception\IntegrationUserNotFoundException;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Exception\Exception as ApiException;
+use Fungio\Api\MobileSecretGenerator;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Proxy\ApiProviderInterface;
 
 /**
  * Facade class between application and 2FAS api - manages IntegrationUser (find, save, update etc.)
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class IntegrationUserManager
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Compiler;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
+use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
 
 /**
  * Compile classes used for cache some of 2FAS values stored in db.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Compiler
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Compiler
  */
 class CachePass implements CompilerPassInterface
 {

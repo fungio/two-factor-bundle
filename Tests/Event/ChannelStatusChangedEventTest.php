@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Event;
+namespace Fungio\TwoFactorBundle\Tests\Event;
 
-use TwoFAS\TwoFactorBundle\Event\ChannelStatusChangedEvent;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
+use Fungio\TwoFactorBundle\Event\ChannelStatusChangedEvent;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
 
 class ChannelStatusChangedEventTest extends \PHPUnit_Framework_TestCase
 {

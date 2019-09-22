@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Compiler;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Compiler;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\EntityUserProvider;
@@ -14,8 +14,8 @@ use Symfony\Component\Security\Core\User\ChainUserProvider;
 use Symfony\Component\Security\Core\User\InMemoryUserProvider;
 use Symfony\Component\Security\Core\User\LdapUserProvider;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\RememberMePass;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory;
+use Fungio\TwoFactorBundle\DependencyInjection\Compiler\RememberMePass;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\PersistentRememberMeServicesFactory;
 
 class RememberMePassTest extends \PHPUnit_Framework_TestCase
 {

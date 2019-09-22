@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
-use TwoFAS\TwoFactorBundle\EventListener\TrustedDeviceListener;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
+use Fungio\TwoFactorBundle\EventListener\TrustedDeviceListener;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
 
 class TrustedDeviceListenerTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use TwoFAS\TwoFactorBundle\Event\ChannelStatusChangedEvent;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Event\ChannelStatusChangedEvent;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
 
 /**
  * Listen for channel status changes.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class ChannelListener
 {
@@ -48,13 +48,13 @@ class ChannelListener
             throw new LogicException('Can\'t login with 2FAS with current token.');
         }
 
-        $twoFASToken = new TwoFactorToken(
+        $fungioToken = new TwoFactorToken(
             $currentToken->getUser(),
             $currentToken->getCredentials(),
             $currentToken->getProviderKey(),
             $currentToken->getRoles()
         );
 
-        $this->tokenStorage->setToken($twoFASToken);
+        $this->tokenStorage->setToken($fungioToken);
     }
 }

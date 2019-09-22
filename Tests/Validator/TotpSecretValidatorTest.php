@@ -1,11 +1,11 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Validator;
+namespace Fungio\TwoFactorBundle\Tests\Validator;
 
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\TotpSecret;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\TotpSecretValidator;
+use Fungio\TwoFactorBundle\Validator\Constraints\TotpSecret;
+use Fungio\TwoFactorBundle\Validator\Constraints\TotpSecretValidator;
 
 class TotpSecretValidatorTest extends \PHPUnit_Framework_TestCase
 {

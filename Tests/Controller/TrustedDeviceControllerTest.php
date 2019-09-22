@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\User\User;
-use TwoFAS\TwoFactorBundle\Controller\TrustedDeviceController;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\User as TwoFASUser;
+use Fungio\TwoFactorBundle\Controller\TrustedDeviceController;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\User as FungioUser;
 
 class TrustedDeviceControllerTest extends ControllerTestCase
 {
@@ -92,19 +92,19 @@ class TrustedDeviceControllerTest extends ControllerTestCase
         $this->generateCookie($series, $tokenValue);
         $this->login();
 
-        $twoFASUser = new TwoFASUser();
-        $twoFASUser->setUsername('tom');
+        $fungioUser = new FungioUser();
+        $fungioUser->setUsername('tom');
 
         $token = new RememberMeToken();
         $token
             ->setSeries('123')
             ->setValue('321')
             ->setClass(User::class)
-            ->setUser($twoFASUser)
+            ->setUser($fungioUser)
             ->setBrowser('')
             ->setLastUsedAt($lastUsed);
 
-        $twoFASUser->addToken($token);
+        $fungioUser->addToken($token);
         $this->tokenRepository->add($token);
 
         $request = new Request();

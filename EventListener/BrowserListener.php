@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use TwoFAS\TwoFactorBundle\Util\BrowserParser;
+use Fungio\TwoFactorBundle\Util\BrowserParser;
 
 /**
  * Get browser information from request.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class BrowserListener
 {

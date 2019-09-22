@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Factory;
 
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
 
@@ -8,7 +8,7 @@ use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
  * Contract for remember me factories.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Factory
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Factory
  */
 interface RememberMeServicesFactoryInterface
 {

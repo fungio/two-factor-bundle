@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
@@ -8,15 +8,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Psr\SimpleCache\CacheInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
 
 /**
  * Deletes all 2FAS data from database.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 class DeleteAccountCommand extends ContainerAwareCommand
 {
@@ -26,7 +26,7 @@ class DeleteAccountCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('twofas:account:delete')
+            ->setName('fungio:account:delete')
             ->setDescription('Delete all 2FAS data from database.');
     }
 

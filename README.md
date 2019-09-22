@@ -1,9 +1,9 @@
-TwoFAS/TwoFactorBundle
+Fungio/TwoFactorBundle
 =====================
 
 ![Badge Symfony Version](https://img.shields.io/badge/Symfony-2.8%20and%203.x-green.svg)
 
-TwoFAS/TwoFactorBundle adds support for two-factor authentication and increases security on your website by adding the second step in the login process.
+Fungio/TwoFactorBundle adds support for two-factor authentication and increases security on your website by adding the second step in the login process.
 This Bundle uses an external API to serve the authentication process, so You have to create an account to use it.
 This can be done quickly and easily in one of our `console` commands.
  

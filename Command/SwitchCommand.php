@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Psr\SimpleCache\CacheInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
 
 /**
  * Abstract class for enable/disable commands
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 abstract class SwitchCommand extends ContainerAwareCommand
 {
@@ -24,11 +24,11 @@ abstract class SwitchCommand extends ContainerAwareCommand
         $optionPersister = $this->getOptionPersister();
 
         if (is_null($optionPersister->getRepository()->findOneBy(['name' => OptionInterface::LOGIN]))) {
-            throw new LogicException('TwoFAS Login has not been set.');
+            throw new LogicException('Fungio Login has not been set.');
         }
 
         if (is_null($optionPersister->getRepository()->findOneBy(['name' => OptionInterface::TOKEN]))) {
-            throw new LogicException('TwoFAS Login has not been set.');
+            throw new LogicException('Fungio Login has not been set.');
         }
     }
 

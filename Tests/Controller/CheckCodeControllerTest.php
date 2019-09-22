@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\Exception\AuthorizationException;
-use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\Api\Methods;
-use TwoFAS\ValidationRules\ValidationRules;
+use Fungio\Api\Exception\AuthorizationException;
+use Fungio\Api\Exception\ValidationException;
+use Fungio\Api\Methods;
+use Fungio\ValidationRules\ValidationRules;
 
 class CheckCodeControllerTest extends ControllerTestCase
 {
@@ -24,8 +24,8 @@ class CheckCodeControllerTest extends ControllerTestCase
     {
         parent::setUp();
 
-        $this->loginButton = $this->translator->trans('form.code.login_button', [], 'TwoFASTwoFactorBundle');
-        $this->twoFASUser->enableChannel(Methods::TOTP);
+        $this->loginButton = $this->translator->trans('form.code.login_button', [], 'FungioTwoFactorBundle');
+        $this->fungioUser->enableChannel(Methods::TOTP);
     }
 
     public function testNoLogged()
@@ -46,7 +46,7 @@ class CheckCodeControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
@@ -234,7 +234,7 @@ class CheckCodeControllerTest extends ControllerTestCase
     public function testOpenNewAuthenticationWhenUserHasNotAnyOpenedAuthentications()
     {
         $authentication = $this->getAuthentication(Methods::TOTP);
-        $authentication->setUser($this->twoFASUser);
+        $authentication->setUser($this->fungioUser);
 
         $this->login();
         $this->checkCodeAccepted();
@@ -258,7 +258,7 @@ class CheckCodeControllerTest extends ControllerTestCase
 
     public function testCannotCheckCodeTwice()
     {
-        $this->loginWithTwoFAS();
+        $this->loginWithFungio();
         $this->client->request('GET', $this->uri);
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
     }
@@ -275,11 +275,11 @@ class CheckCodeControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
-    public function testLoginAndCheckTwoFASRememberMe()
+    public function testLoginAndCheckFungioRememberMe()
     {
         $this->login();
         $this->openAuthentication(Methods::TOTP);
@@ -300,10 +300,10 @@ class CheckCodeControllerTest extends ControllerTestCase
         $this->assertEquals('/2fas/index', $this->client->getRequest()->getRequestUri());
 
         $cookieNames = $this->client->getRequest()->cookies->keys();
-        $this->assertCount(1, preg_grep('/^TWOFAS_REMEMBERME/', $cookieNames));
+        $this->assertCount(1, preg_grep('/^FUNGIO_REMEMBERME/', $cookieNames));
     }
 
-    public function testLoginWithoutSecondFactorWhenUserIsRememberedOnTwoFASForm()
+    public function testLoginWithoutSecondFactorWhenUserIsRememberedOnFungioForm()
     {
         $series     = base64_encode(random_bytes(64));
         $tokenValue = base64_encode(random_bytes(64));
@@ -320,7 +320,7 @@ class CheckCodeControllerTest extends ControllerTestCase
             $crawler->filter('html:contains("2FAS - Two Factor Authentication Service")')->count()
         );
 
-        $this->assertTrue($this->client->getRequest()->cookies->has('TWOFAS_REMEMBERME'));
+        $this->assertTrue($this->client->getRequest()->cookies->has('FUNGIO_REMEMBERME'));
     }
 
     public function testLoginWithExpiredCookie()
@@ -340,7 +340,7 @@ class CheckCodeControllerTest extends ControllerTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
@@ -359,7 +359,7 @@ class CheckCodeControllerTest extends ControllerTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('form.code.remember_me', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 }

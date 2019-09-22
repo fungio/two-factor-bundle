@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use TwoFAS\Api\Exception\Exception as ApiException;
+use Fungio\Api\Exception\Exception as ApiException;
 
 /**
  * Dashboard for Two FAS (2FA status, enabled channels, list of trusted devices).
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class DashboardController extends Controller
 {
@@ -23,11 +23,11 @@ class DashboardController extends Controller
     public function indexAction()
     {
         $configuration   = $this->get('two_fas_two_factor.util.configuration_checker');
-        $user            = $this->getTwoFASUser();
+        $user            = $this->getFungioUser();
 
-        return $this->render('TwoFASTwoFactorBundle:Dashboard:index.html.twig', [
+        return $this->render('FungioTwoFactorBundle:Dashboard:index.html.twig', [
             'integration_user' => $user->getIntegrationUser(),
-            'status'           => $configuration->isTwoFASEnabled(),
+            'status'           => $configuration->isFungioEnabled(),
             'channels'         => $user->getChannels(),
             'trusted_devices'  => $this->getTrustedDevices()
         ]);
@@ -40,7 +40,7 @@ class DashboardController extends Controller
      */
     public function removeDeviceAction(Request $request)
     {
-        $response   = $this->forward('TwoFASTwoFactorBundle:TrustedDevice:remove', [], [
+        $response   = $this->forward('FungioTwoFactorBundle:TrustedDevice:remove', [], [
             'id'     => $request->get('id'),
             '_token' => $request->get('_token')
         ]);
@@ -51,6 +51,6 @@ class DashboardController extends Controller
             $this->addFlash('danger', $this->trans('trusted_devices.remove.error'));
         }
 
-        return $this->redirectToRoute('twofas_index');
+        return $this->redirectToRoute('fungio_index');
     }
 }

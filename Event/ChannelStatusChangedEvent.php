@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Event;
+namespace Fungio\TwoFactorBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 
 /**
  * Event fires when channel status has been changed.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Event
+ * @package Fungio\TwoFactorBundle\Event
  */
 class ChannelStatusChangedEvent extends Event
 {

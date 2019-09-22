@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Proxy;
+namespace Fungio\TwoFactorBundle\Proxy;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\Code\Code;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\Api\Code\Code;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 
 /**
  * Contract for methods for make authentication, check code etc.
  * Can use for local implementations without remote API.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Proxy
+ * @package Fungio\TwoFactorBundle\Proxy
  */
 interface ApiProviderInterface
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
 use Symfony\Component\Console\Helper\QuestionHelper;
-use TwoFAS\TwoFactorBundle\Command\ResetPasswordCommand;
-use TwoFAS\Account\Exception\NotFoundException;
-use TwoFAS\Account\Exception\PasswordResetAttemptsRemainingIsReachedException;
-use TwoFAS\Account\TwoFAS;
+use Fungio\TwoFactorBundle\Command\ResetPasswordCommand;
+use Fungio\Account\Exception\NotFoundException;
+use Fungio\Account\Exception\PasswordResetAttemptsRemainingIsReachedException;
+use Fungio\Account\Fungio;
 use Exception;
 
 class ResetPasswordCommandTest extends CommandTestCase
@@ -17,7 +17,7 @@ class ResetPasswordCommandTest extends CommandTestCase
     private $questionHelper;
 
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     private $sdk;
 
@@ -27,10 +27,10 @@ class ResetPasswordCommandTest extends CommandTestCase
 
         parent::setUp();
 
-        $command              = $this->application->find('twofas:account:create');
+        $command              = $this->application->find('fungio:account:create');
         $this->questionHelper = $this->getMockBuilder(QuestionHelper::class)->setMethods(['ask'])->getMock();
         $this->sdk            = $this
-            ->getMockBuilder(TwoFAS::class)
+            ->getMockBuilder(Fungio::class)
             ->disableOriginalConstructor()
             ->setMethods(['resetPassword'])
             ->getMock();

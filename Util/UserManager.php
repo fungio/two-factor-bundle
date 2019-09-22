@@ -1,16 +1,16 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface as TwoFASUserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface as FungioUserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
 
 /**
- * Class for manages TwoFAS Users.
+ * Class for manages Fungio Users.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class UserManager
 {
@@ -32,11 +32,11 @@ class UserManager
     /**
      * @param int $id
      *
-     * @return TwoFASUserInterface|null
+     * @return FungioUserInterface|null
      */
     public function findById($id)
     {
-        /** @var TwoFASUserInterface|null $user */
+        /** @var FungioUserInterface|null $user */
         $user = $this->userPersister->getRepository()->find($id);
 
         return $user;
@@ -45,11 +45,11 @@ class UserManager
     /**
      * @param string $username
      *
-     * @return TwoFASUserInterface|null
+     * @return FungioUserInterface|null
      */
     public function findByUserName($username)
     {
-        /** @var TwoFASUserInterface|null $user */
+        /** @var FungioUserInterface|null $user */
         $user = $this->userPersister->getRepository()->findOneBy(['username' => $username]);
 
         return $user;
@@ -58,11 +58,11 @@ class UserManager
     /**
      * @param UserInterface $loggedUser
      *
-     * @return TwoFASUserInterface
+     * @return FungioUserInterface
      */
     public function createUser(UserInterface $loggedUser)
     {
-        /** @var TwoFASUserInterface $user */
+        /** @var FungioUserInterface $user */
         $user = $this->userPersister->getEntity();
         $user->setUsername($loggedUser->getUsername());
         $this->updateUser($user);
@@ -71,9 +71,9 @@ class UserManager
     }
 
     /**
-     * @param TwoFASUserInterface $user
+     * @param FungioUserInterface $user
      */
-    public function updateUser(TwoFASUserInterface $user)
+    public function updateUser(FungioUserInterface $user)
     {
         $this->userPersister->saveEntity($user);
     }

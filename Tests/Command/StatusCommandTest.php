@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
-use TwoFAS\TwoFactorBundle\Command\StatusCommand;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Command\StatusCommand;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 
 class StatusCommandTest extends CommandTestCase
 {

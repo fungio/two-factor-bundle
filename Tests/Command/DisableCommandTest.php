@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
-use TwoFAS\TwoFactorBundle\Command\DisableCommand;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Command\DisableCommand;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 
 class DisableCommandTest extends CommandTestCase
 {
@@ -19,7 +19,7 @@ class DisableCommandTest extends CommandTestCase
         $this->applicationTester->run([$this->command->getName()]);
 
         $output = $this->applicationTester->getDisplay();
-        $this->assertContains('TwoFAS Login has not been set.', $output);
+        $this->assertContains('Fungio Login has not been set.', $output);
     }
 
     public function testEnableWhenOptionNotExists()

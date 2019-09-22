@@ -1,24 +1,24 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Proxy;
+namespace Fungio\TwoFactorBundle\Tests\Proxy;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\Encryption\DummyKeyStorage;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Proxy\ApiProvider;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Fungio;
+use Fungio\Encryption\DummyKeyStorage;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication;
+use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Proxy\ApiProvider;
 
 class ApiProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     private $api;
 
@@ -34,7 +34,7 @@ class ApiProviderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->api = $this->getMockBuilder(TwoFAS::class)->disableOriginalConstructor()->getMock();
+        $this->api = $this->getMockBuilder(Fungio::class)->disableOriginalConstructor()->getMock();
 
         $this->authenticationRepository = new InMemoryRepository(Authentication::class, 'id');
         $authenticationPersister        = new InMemoryObjectPersister($this->authenticationRepository);
@@ -44,16 +44,16 @@ class ApiProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testRequestAuthViaTotp()
     {
-        $twoFASAuthentication = new \TwoFAS\Api\Authentication('13', new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
+        $fungioAuthentication = new \Fungio\Api\Authentication('13', new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
         $user                 = new User();
-        $this->api->method('requestAuthViaTotp')->willReturn($twoFASAuthentication);
+        $this->api->method('requestAuthViaTotp')->willReturn($fungioAuthentication);
 
         $authentication = $this->proxy->requestAuthViaTotp($user, 1);
 
         $this->assertInstanceOf(AuthenticationInterface::class, $authentication);
-        $this->assertEquals($twoFASAuthentication->id(), $authentication->getId());
-        $this->assertEquals($twoFASAuthentication->createdAt(), $authentication->getCreatedAt());
-        $this->assertEquals($twoFASAuthentication->validTo(), $authentication->getValidTo());
+        $this->assertEquals($fungioAuthentication->id(), $authentication->getId());
+        $this->assertEquals($fungioAuthentication->createdAt(), $authentication->getCreatedAt());
+        $this->assertEquals($fungioAuthentication->validTo(), $authentication->getValidTo());
         $this->assertEquals($user, $authentication->getUser());
     }
 

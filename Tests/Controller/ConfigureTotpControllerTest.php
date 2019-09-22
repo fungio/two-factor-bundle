@@ -1,13 +1,13 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use TwoFAS\Api\Exception\AuthorizationException;
-use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\Methods;
-use TwoFAS\ValidationRules\ValidationRules;
-use TwoFAS\TwoFactorBundle\EventListener\TrustedDeviceListener;
+use Fungio\Api\Exception\AuthorizationException;
+use Fungio\Api\Exception\ValidationException;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Methods;
+use Fungio\ValidationRules\ValidationRules;
+use Fungio\TwoFactorBundle\EventListener\TrustedDeviceListener;
 
 class ConfigureTotpControllerTest extends ControllerTestCase
 {
@@ -25,8 +25,8 @@ class ConfigureTotpControllerTest extends ControllerTestCase
     {
         parent::setUp();
 
-        $this->submitButton = $this->translator->trans('form.code.enable_button', [], 'TwoFASTwoFactorBundle');
-        $this->twoFASStatus->setValue(false);
+        $this->submitButton = $this->translator->trans('form.code.enable_button', [], 'FungioTwoFactorBundle');
+        $this->fungioStatus->setValue(false);
 
         $this->mockTrustedDeviceListener();
     }
@@ -54,7 +54,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
     public function testCreateUserWhenNotExists()
     {
         $this->login();
-        $this->userRepository->remove($this->twoFASUser);
+        $this->userRepository->remove($this->fungioUser);
         $this->integrationUserManager->method('findByExternalId')->willReturn(null);
         $this->integrationUserManager->method('createUser')->willReturn(new IntegrationUser());
 
@@ -72,7 +72,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
     public function testCreateIntegrationUserWhenNotExists()
     {
         $this->login();
-        $this->userRepository->remove($this->twoFASUser);
+        $this->userRepository->remove($this->fungioUser);
         $this->integrationUserManager->method('findByExternalId')->willReturn(null);
         $this->integrationUserManager->method('createUser')->willReturn(new IntegrationUser());
         $this->integrationUserManager->expects($this->once())->method('createUser');
@@ -226,7 +226,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
         $form    = $crawler->selectButton($this->submitButton)->form();
 
         $authentication = $this->getAuthentication(Methods::TOTP);
-        $authentication->setUser($this->twoFASUser);
+        $authentication->setUser($this->fungioUser);
 
         $this->openTotpAuthentication();
         $this->checkCodeRejectedCanRetry();
@@ -283,7 +283,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.status', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.status', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
@@ -323,7 +323,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
         $this->integrationUser->setExternalId(1);
         $this->generateRememberMeToken($series, $tokenValue, $lastUsed);
         $authentication = $this->getAuthentication(Methods::TOTP);
-        $authentication->setUser($this->twoFASUser);
+        $authentication->setUser($this->fungioUser);
 
         $crawler = $this->client->request('GET', '/2fas/index');
 
@@ -346,7 +346,7 @@ class ConfigureTotpControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 

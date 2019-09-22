@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
-use TwoFAS\Api\Exception\Exception as ApiException;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\Api\Exception\Exception as ApiException;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
 
 /**
- * Base Controller for all TwoFAS Controllers.
+ * Base Controller for all Fungio Controllers.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class Controller extends BaseController
 {
@@ -29,7 +29,7 @@ class Controller extends BaseController
     /**
      * @return UserInterface
      */
-    protected function getTwoFASUser()
+    protected function getFungioUser()
     {
         $userStorage = $this->get('two_fas_two_factor.storage.user_session_storage');
         $user        = $userStorage->getUser();
@@ -48,7 +48,7 @@ class Controller extends BaseController
      */
     protected function getIntegrationUser()
     {
-        return $this->getTwoFASUser()->getIntegrationUser();
+        return $this->getFungioUser()->getIntegrationUser();
     }
 
     /**
@@ -58,7 +58,7 @@ class Controller extends BaseController
     {
         /** @var ObjectPersisterInterface $tokenPersister */
         $tokenPersister = $this->get('two_fas_two_factor.remember_me_persister');
-        $tokens         = $tokenPersister->getRepository()->findBy(['user' => $this->getTwoFASUser()]);
+        $tokens         = $tokenPersister->getRepository()->findBy(['user' => $this->getFungioUser()]);
 
         return $tokens;
     }

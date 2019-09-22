@@ -1,23 +1,23 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Util;
+namespace Fungio\TwoFactorBundle\Tests\Util;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use TwoFAS\Api\Authentication as TwoFASAuthentication;
-use TwoFAS\Api\Methods;
-use TwoFAS\Api\TotpSecretGenerator;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Proxy\ApiProvider;
-use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
-use TwoFAS\TwoFactorBundle\Util\AuthenticationManager;
+use Fungio\Api\Authentication as FungioAuthentication;
+use Fungio\Api\Methods;
+use Fungio\Api\TotpSecretGenerator;
+use Fungio\Api\Fungio;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication;
+use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Proxy\ApiProvider;
+use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
+use Fungio\TwoFactorBundle\Util\AuthenticationManager;
 
 class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +32,7 @@ class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
     private $objectManager;
 
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     private $api;
 
@@ -54,7 +54,7 @@ class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
 
         $this->api = $this
-            ->getMockBuilder(TwoFAS::class)
+            ->getMockBuilder(Fungio::class)
             ->disableOriginalConstructor()
             ->setMethods(['requestAuth', 'requestAuthViaTotp'])
             ->getMock();
@@ -197,7 +197,7 @@ class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
     {
         $authentication = $this->getAuthentication();
         $authentication->setId(1);
-        $this->api->method('requestAuthViaTotp')->willReturn($this->getTwoFASAuthentication());
+        $this->api->method('requestAuthViaTotp')->willReturn($this->getFungioAuthentication());
         $this->authenticationRepository->add($authentication);
         $authentication = $this->authenticationManager->openTotpAuthentication($this->getUser(), TotpSecretGenerator::generate());
 
@@ -267,10 +267,10 @@ class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return TwoFASAuthentication
+     * @return FungioAuthentication
      */
-    protected function getTwoFASAuthentication()
+    protected function getFungioAuthentication()
     {
-        return new TwoFASAuthentication(1, new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
+        return new FungioAuthentication(1, new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
     }
 }

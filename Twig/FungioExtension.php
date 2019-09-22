@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Twig;
+namespace Fungio\TwoFactorBundle\Twig;
 
 use InvalidArgumentException;
 use SplFileInfo;
@@ -8,15 +8,15 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig_Extension;
 use Twig_SimpleFilter;
 use Twig_SimpleFunction;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
 /**
  * Methods in this extension may be used in twig files.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Twig
+ * @package Fungio\TwoFactorBundle\Twig
  */
-class TwoFASExtension extends Twig_Extension
+class FungioExtension extends Twig_Extension
 {
     /**
      * @var ConfigurationChecker
@@ -34,7 +34,7 @@ class TwoFASExtension extends Twig_Extension
     private $rootDir;
 
     /**
-     * TwoFASExtension constructor.
+     * FungioExtension constructor.
      *
      * @param ConfigurationChecker          $configurationChecker
      * @param AuthorizationCheckerInterface $authorizationChecker
@@ -56,7 +56,7 @@ class TwoFASExtension extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('canRenderTwoFAS', [$this, 'canRenderTwoFAS'])
+            new Twig_SimpleFunction('canRenderFungio', [$this, 'canRenderFungio'])
         ];
     }
 
@@ -77,7 +77,7 @@ class TwoFASExtension extends Twig_Extension
      *
      * @return bool
      */
-    public function canRenderTwoFAS($role)
+    public function canRenderFungio($role)
     {
         return ($this->isRemembered($role) || $this->isNotConfigured($role) || $this->isDisabled($role));
     }
@@ -125,6 +125,6 @@ class TwoFASExtension extends Twig_Extension
      */
     private function isDisabled($role)
     {
-        return $this->authorizationChecker->isGranted($role) && !$this->configurationChecker->isTwoFASEnabled();
+        return $this->authorizationChecker->isGranted($role) && !$this->configurationChecker->isFungioEnabled();
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Translation\TranslatorInterface;
-use TwoFAS\Api\Exception\AuthorizationException;
-use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\ValidationRules\ValidationRules;
+use Fungio\Api\Exception\AuthorizationException;
+use Fungio\Api\Exception\ValidationException;
+use Fungio\ValidationRules\ValidationRules;
 
 /**
- * Listen for TwoFAS Api Exceptions, add flash, etc.
+ * Listen for Fungio Api Exceptions, add flash, etc.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class ApiExceptionListener
 {

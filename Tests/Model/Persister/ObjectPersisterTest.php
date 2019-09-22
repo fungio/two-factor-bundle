@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Persister;
+namespace Fungio\TwoFactorBundle\Tests\Model\Persister;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersister;
-use TwoFAS\TwoFactorBundle\Tests\DummyEntity;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersister;
+use Fungio\TwoFactorBundle\Tests\DummyEntity;
 
 class ObjectPersisterTest extends \PHPUnit_Framework_TestCase
 {

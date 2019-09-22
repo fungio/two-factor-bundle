@@ -37,31 +37,31 @@ body {
     outline: none;
 }
 
-/* TWOFAS */
-.twofas {
+/* FUNGIO */
+.fungio {
     height: 100%;
 }
 
-.twofas > form {
+.fungio > form {
     height: 100%;
 }
 
-.twofas-wrapper {
+.fungio-wrapper {
     padding: 20px 0;
 }
 
-.twofas-wrapper.container-fluid {
+.fungio-wrapper.container-fluid {
     padding: 0;
 }
 
-.twofas-container h3 {
+.fungio-container h3 {
     margin: 0;
     padding: 0;
     font-size: 18px;
     line-height: 26px;
 }
 
-.twofas-center {
+.fungio-center {
     text-align: center;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 .login-box-header h3,
-.twofas-channel-header h4 {
+.fungio-channel-header h4 {
     display: inline-block;
     font-size: 13px;
     line-height: 35px;
@@ -135,14 +135,14 @@ body {
     margin-top: 15px;
 }
 
-.twofas-logo {
+.fungio-logo {
     position: fixed;
     bottom: 10px;
     right: 15px;
     height: auto;
 }
 
-.twofas-label {
+.fungio-label {
     display: block;
     text-align: center;
     font-size: 12px;
@@ -151,24 +151,24 @@ body {
 }
 
 /* CHANNELS */
-.twofas-channels {
+.fungio-channels {
     margin-top: 20px;
 }
 
-.twofas-channels h4 {
+.fungio-channels h4 {
     margin: 0 0 10px 0;
     padding: 0;
 }
 
-.twofas-free-channels,
-.twofas-premium-channels {
+.fungio-free-channels,
+.fungio-premium-channels {
     width: 100%;
     height: auto;
     overflow: hidden;
     margin-bottom: 25px;
 }
 
-.twofas-channel {
+.fungio-channel {
     background: #fff;
     width: 30%;
     float: left;
@@ -176,7 +176,7 @@ body {
     min-height: 155px;
 }
 
-.twofas-channel-header {
+.fungio-channel-header {
     color: #fff;
     background-color: #363b41;
     text-align: left;
@@ -185,25 +185,25 @@ body {
     padding: 0 20px;
 }
 
-.twofas-channel-body {
+.fungio-channel-body {
     position: relative;
     padding: 15px 20px 50px 20px;
 }
 
-.twofas-channel-status {
+.fungio-channel-status {
     float: right;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
 }
 
-.twofas-channel-content {
+.fungio-channel-content {
     margin: 0;
     padding: 0;
     height: 75px;
 }
 
-.twofas-channel-content p {
+.fungio-channel-content p {
     font-size: 14px;
     line-height: 16px;
     font-weight: 400;
@@ -211,11 +211,11 @@ body {
     padding: 0;
 }
 
-.twofas-channel-content p:first-of-type {
+.fungio-channel-content p:first-of-type {
     margin-top: 0;
 }
 
-.twofas-channel-configure {
+.fungio-channel-configure {
     position: absolute;
     left: 0;
     bottom: 15px;
@@ -224,22 +224,22 @@ body {
     width: 100%;
 }
 
-.twofas-channel-configure form {
+.fungio-channel-configure form {
     display: table-cell;
     width: 50%;
     padding-right: 5px;
 }
 
-.twofas-channel-configure form:last-of-type {
+.fungio-channel-configure form:last-of-type {
     padding-right: 0;
     padding-left: 5px;
 }
 
-.twofas-channel-configure form button {
+.fungio-channel-configure form button {
     width: 100%;
 }
 
-.twofas-channel-configure h6 {
+.fungio-channel-configure h6 {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
@@ -249,7 +249,7 @@ body {
 }
 
 /* STEP */
-.twofas-step {
+.fungio-step {
     background: #fff;
     width: 75%;
     height: auto;
@@ -260,51 +260,51 @@ body {
     margin: 20px auto 0;
 }
 
-.twofas-step-desc p {
+.fungio-step-desc p {
     font-size: 14px;
     line-height: 20px;
     margin: 10px 0 0 0;
     padding: 0;
 }
 
-.twofas-step-desc p:last-of-type {
+.fungio-step-desc p:last-of-type {
     margin-top: 0;
 }
 
-.twofas-totp-apps {
+.fungio-totp-apps {
     margin-top: 20px;
     text-align: center;
 }
 
-.twofas-totp-apps h4 {
+.fungio-totp-apps h4 {
     margin: 0 0 5px;
     padding: 0;
 }
 
-.twofas-totp-app {
+.fungio-totp-app {
     display: inline-block;
     margin-right: 10px;
 }
 
-.twofas-totp-qrcode {
+.fungio-totp-qrcode {
     width: 100%;
     text-align: center;
 }
 
-.twofas-totp-qrcode img {
+.fungio-totp-qrcode img {
     display: inline-block;
     max-width: 100%;
     height: auto;
 }
 
-.twofas-totp-qrcode-buttons {
+.fungio-totp-qrcode-buttons {
     width: 100%;
     height: auto;
     overflow: hidden;
     text-align: center;
 }
 
-.twofas-totp-qrcode-buttons button:first-of-type {
+.fungio-totp-qrcode-buttons button:first-of-type {
     margin-right: 10px;
 }
 
@@ -350,13 +350,13 @@ body {
 
 /* TITLE */
 
-.twofas-title {
+.fungio-title {
     margin-top: 200px;
     text-align: center;
     width: 100%;
 }
 
-.twofas-title h3 {
+.fungio-title h3 {
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -662,12 +662,12 @@ td .td-content.empty {
 
 /* MEDIA */
 @media all and (max-width: 991px) {
-    .twofas-channel {
+    .fungio-channel {
         width: 48%;
         margin-right: 4%;
     }
 
-    .twofas-channel:last-of-type {
+    .fungio-channel:last-of-type {
         margin-right: 0;
     }
 }
@@ -745,25 +745,25 @@ td .td-content.empty {
         font-size: 20px;
     }
 
-    .twofas-channel {
+    .fungio-channel {
         width: 100%;
         margin-right: 0;
         margin-bottom: 20px;
     }
 
-    .twofas-channel:last-of-type {
+    .fungio-channel:last-of-type {
         margin-bottom: 0;
     }
 
-    .twofas-channel-body {
+    .fungio-channel-body {
         padding-bottom: 15px;
     }
 
-    .twofas-channel-content {
+    .fungio-channel-content {
         height: auto;
     }
 
-    .twofas-channel-configure {
+    .fungio-channel-configure {
         position: static;
         left: auto;
         bottom: auto;
@@ -776,19 +776,19 @@ td .td-content.empty {
         text-overflow: ellipsis;
     }
 
-    .twofas-step {
+    .fungio-step {
         width: 100%;
     }
 }
 
 @media all and (max-width: 500px) {
-    .twofas-totp-qrcode-buttons button {
+    .fungio-totp-qrcode-buttons button {
         margin-right: 0;
         margin-bottom: 10px;
         width: 100%;
     }
 
-    .twofas-totp-qrcode-buttons button:last-of-type {
+    .fungio-totp-qrcode-buttons button:last-of-type {
         margin-bottom: 0;
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Util;
+namespace Fungio\TwoFactorBundle\Tests\Util;
 
-use TwoFAS\Api\Methods;
-use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\Api\Methods;
+use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
 class ConfigurationCheckerTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,12 +41,12 @@ class ConfigurationCheckerTest extends \PHPUnit_Framework_TestCase
         $this->checker = new ConfigurationChecker($optionPersister, $this->userStorage, new EmptyCacheStorage());
     }
 
-    public function testTwoFASDisabledWhenNotConfigured()
+    public function testFungioDisabledWhenNotConfigured()
     {
-        $this->assertFalse($this->checker->isTwoFASEnabled());
+        $this->assertFalse($this->checker->isFungioEnabled());
     }
 
-    public function testTwoFASDisabled()
+    public function testFungioDisabled()
     {
         $option = $this->getOption();
         $option
@@ -55,10 +55,10 @@ class ConfigurationCheckerTest extends \PHPUnit_Framework_TestCase
 
         $this->optionRepository->add($option);
 
-        $this->assertFalse($this->checker->isTwoFASEnabled());
+        $this->assertFalse($this->checker->isFungioEnabled());
     }
 
-    public function testTwoFASEnabled()
+    public function testFungioEnabled()
     {
         $option = $this->getOption();
         $option
@@ -67,7 +67,7 @@ class ConfigurationCheckerTest extends \PHPUnit_Framework_TestCase
 
         $this->optionRepository->add($option);
 
-        $this->assertTrue($this->checker->isTwoFASEnabled());
+        $this->assertTrue($this->checker->isFungioEnabled());
     }
 
     public function testIntegrationUserNotConfiguredWhenUserNotExists()

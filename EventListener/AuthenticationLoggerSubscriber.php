@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
 
 /**
  * Listen for many events and log them.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class AuthenticationLoggerSubscriber implements EventSubscriberInterface
 {
@@ -42,9 +42,9 @@ class AuthenticationLoggerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            TwoFASEvents::CODE_ACCEPTED              => 'logAuthentication',
-            TwoFASEvents::CODE_REJECTED_CAN_RETRY    => 'logAuthentication',
-            TwoFASEvents::CODE_REJECTED_CANNOT_RETRY => 'logAuthentication'
+            FungioEvents::CODE_ACCEPTED              => 'logAuthentication',
+            FungioEvents::CODE_REJECTED_CAN_RETRY    => 'logAuthentication',
+            FungioEvents::CODE_REJECTED_CANNOT_RETRY => 'logAuthentication'
         ];
     }
 
@@ -54,7 +54,7 @@ class AuthenticationLoggerSubscriber implements EventSubscriberInterface
     public function logAuthentication(CodeCheckEvent $event)
     {
         $message = sprintf(
-            'TwoFAS authentication: %s (%s) from user: %s',
+            'Fungio authentication: %s (%s) from user: %s',
             ($event->getCode()->accepted() ? 'accepted' : 'rejected'),
             ($event->getCode()->canRetry() ? 'can retry' : 'cannot retry'),
             $this->tokenStorage->getToken()->getUsername()

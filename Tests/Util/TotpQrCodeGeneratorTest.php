@@ -1,11 +1,11 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Util;
+namespace Fungio\TwoFactorBundle\Tests\Util;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use TwoFAS\Api\QrCode\EndroidQrClient;
-use TwoFAS\Api\QrCodeGenerator;
-use TwoFAS\TwoFactorBundle\Util\TotpQrCodeGenerator;
+use Fungio\Api\QrCode\EndroidQrClient;
+use Fungio\Api\QrCodeGenerator;
+use Fungio\TwoFactorBundle\Util\TotpQrCodeGenerator;
 
 class TotpQrCodeGeneratorTest extends KernelTestCase
 {

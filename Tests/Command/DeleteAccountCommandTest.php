@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Command;
+namespace Fungio\TwoFactorBundle\Tests\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-use TwoFAS\TwoFactorBundle\Command\DeleteAccountCommand;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
+use Fungio\TwoFactorBundle\Command\DeleteAccountCommand;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
 
 class DeleteAccountCommandTest extends KernelTestCase
 {
@@ -47,7 +47,7 @@ class DeleteAccountCommandTest extends KernelTestCase
         $application->setAutoExit(false);
         $application->add(new DeleteAccountCommand());
 
-        $this->command       = $application->find('twofas:account:delete');
+        $this->command       = $application->find('fungio:account:delete');
         $this->commandTester = new CommandTester($this->command);
 
         $this->optionRepository = new InMemoryRepository(Option::class, 'id');

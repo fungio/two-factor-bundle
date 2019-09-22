@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Cache;
+namespace Fungio\TwoFactorBundle\Cache;
 
 use Traversable;
 use \SplFileObject;
@@ -11,11 +11,11 @@ use Symfony\Component\Filesystem\Filesystem;
  * Save cache data into file under the symfony cache_dir directory
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Cache
+ * @package Fungio\TwoFactorBundle\Cache
  */
 class FileCacheStorage implements CacheInterface
 {
-    const FILE_NAME = 'twofas_two_factor.cache';
+    const FILE_NAME = 'fungio_two_factor.cache';
 
     /**
      * @var string

@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
-use TwoFAS\Api\Methods;
+use Fungio\Api\Methods;
 use Psr\SimpleCache\CacheInterface;
-use TwoFAS\TwoFactorBundle\Cache\CacheKeys;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Cache\CacheKeys;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 /**
  * Checks 2FAS configuration (is enabled, is configured etc.)
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class ConfigurationChecker
 {
@@ -49,7 +49,7 @@ class ConfigurationChecker
     /**
      * @return bool
      */
-    public function isTwoFASConfigured()
+    public function isFungioConfigured()
     {
         if ($this->cache->has(CacheKeys::CONFIGURED)) {
             return $this->cache->get(CacheKeys::CONFIGURED);
@@ -65,7 +65,7 @@ class ConfigurationChecker
     /**
      * @return bool
      */
-    public function isTwoFASEnabled()
+    public function isFungioEnabled()
     {
         if ($this->cache->has(CacheKeys::ENABLED)) {
             return $this->cache->get(CacheKeys::ENABLED);
@@ -86,12 +86,12 @@ class ConfigurationChecker
      */
     public function isSecondFactorEnabledForUser()
     {
-        $twoFASUser = $this->userStorage->getUser();
+        $fungioUser = $this->userStorage->getUser();
 
-        if (null === $twoFASUser) {
+        if (null === $fungioUser) {
             return false;
         }
 
-        return $twoFASUser->isChannelEnabled(Methods::TOTP);
+        return $fungioUser->isChannelEnabled(Methods::TOTP);
     }
 }

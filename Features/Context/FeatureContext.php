@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Features\Context;
+namespace Fungio\TwoFactorBundle\Features\Context;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
@@ -10,7 +10,7 @@ use PHPUnit_Framework_Assert;
  * Context for all features.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Features\Context
+ * @package Fungio\TwoFactorBundle\Features\Context
  */
 class FeatureContext extends MinkContext
 {
@@ -56,7 +56,7 @@ class FeatureContext extends MinkContext
     public function iShouldSeeTotpSecret()
     {
         $page       = $this->getSession()->getPage();
-        $totpSecret = $page->find('css', '#twofas-totp-secret');
+        $totpSecret = $page->find('css', '#fungio-totp-secret');
 
         if (null === $totpSecret) {
             throw new \LogicException('Could not find Totp secret');
@@ -87,7 +87,7 @@ class FeatureContext extends MinkContext
     private function getQrCodeImage()
     {
         $page   = $this->getSession()->getPage();
-        $qrCode = $page->find('css', 'div.twofas-totp-qrcode > img');
+        $qrCode = $page->find('css', 'div.fungio-totp-qrcode > img');
 
         if (null === $qrCode) {
             throw new \LogicException('Could not find Qr code');
@@ -152,7 +152,7 @@ class FeatureContext extends MinkContext
     public function iShouldSeeNewTrustedDeviceInList()
     {
         $page  = $this->getSession()->getPage();
-        $table = $page->find('css', '.twofas-table');
+        $table = $page->find('css', '.fungio-table');
         $rows  = $table->findAll('css', 'tr');
 
         PHPUnit_Framework_Assert::assertCount(2, $rows);
@@ -170,7 +170,7 @@ class FeatureContext extends MinkContext
     public function iShouldSeeThatAllChannelsAreDisabled()
     {
         $page  = $this->getSession()->getPage();
-        $nodes = $page->findAll('css', '.twofas-channel-active');
+        $nodes = $page->findAll('css', '.fungio-channel-active');
 
         PHPUnit_Framework_Assert::assertCount(3, $nodes);
 
@@ -187,10 +187,10 @@ class FeatureContext extends MinkContext
         $name = strtoupper($name);
         $status = ucfirst(strtolower($status));
         $page  = $this->getSession()->getPage();
-        $nodes = $page->findAll('css', '.twofas-channel');
+        $nodes = $page->findAll('css', '.fungio-channel');
 
         $matchingStatuses = array_map(function(NodeElement $node) use ($name, $status) {
-            $currentStatus = $node->find('css', '.twofas-channel-active')->getText();
+            $currentStatus = $node->find('css', '.fungio-channel-active')->getText();
             $channel       = $node->find('css', 'h4')->getText();
 
             if ($channel == $name) {

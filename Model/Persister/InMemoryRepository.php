@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Persister;
+namespace Fungio\TwoFactorBundle\Model\Persister;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Criteria;
  * InMemoryRepository for tests only.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model\Persister
+ * @package Fungio\TwoFactorBundle\Model\Persister
  */
 class InMemoryRepository implements InMemoryRepositoryInterface
 {

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-    <route id="twofas_index" path="/index" methods="GET">
-        <default key="_controller">TwoFASTwoFactorBundle:Dashboard:index</default>
+    <route id="fungio_index" path="/index" methods="GET">
+        <default key="_controller">FungioTwoFactorBundle:Dashboard:index</default>
     </route>
-    <route id="twofas_check" path="/check/{channel}" methods="GET,POST">
-        <default key="_controller">TwoFASTwoFactorBundle:CheckCode:check</default>
+    <route id="fungio_check" path="/check/{channel}" methods="GET,POST">
+        <default key="_controller">FungioTwoFactorBundle:CheckCode:check</default>
         <default key="channel">totp</default>
         <requirement key="channel">totp|sms|call|email</requirement>
     </route>
-    <route id="twofas_configure_totp" path="/configure/totp" methods="GET,POST">
-        <default key="_controller">TwoFASTwoFactorBundle:ConfigureTotp:configure</default>
+    <route id="fungio_configure_totp" path="/configure/totp" methods="GET,POST">
+        <default key="_controller">FungioTwoFactorBundle:ConfigureTotp:configure</default>
     </route>
-    <route id="twofas_reload_totp" path="/reload/totp" methods="GET">
-        <default key="_controller">TwoFASTwoFactorBundle:ConfigureTotp:reload</default>
+    <route id="fungio_reload_totp" path="/reload/totp" methods="GET">
+        <default key="_controller">FungioTwoFactorBundle:ConfigureTotp:reload</default>
         <option key="expose">true</option>
     </route>
-    <route id="twofas_remove_device" path="/device/remove" methods="POST">
-        <default key="_controller">TwoFASTwoFactorBundle:Dashboard:removeDevice</default>
+    <route id="fungio_remove_device" path="/device/remove" methods="POST">
+        <default key="_controller">FungioTwoFactorBundle:Dashboard:removeDevice</default>
     </route>
-    <route id="twofas_channel_enable" path="/channel/enable" methods="POST">
-        <default key="_controller">TwoFASTwoFactorBundle:Channel:enable</default>
+    <route id="fungio_channel_enable" path="/channel/enable" methods="POST">
+        <default key="_controller">FungioTwoFactorBundle:Channel:enable</default>
     </route>
-    <route id="twofas_channel_disable" path="/channel/disable" methods="POST">
-        <default key="_controller">TwoFASTwoFactorBundle:Channel:disable</default>
+    <route id="fungio_channel_disable" path="/channel/disable" methods="POST">
+        <default key="_controller">FungioTwoFactorBundle:Channel:disable</default>
     </route>
 </routes>

@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use TwoFAS\Encryption\AESGeneratedKey;
+use Fungio\Encryption\AESGeneratedKey;
 
 /**
  * Creates encryption key for encrypt Two FAS Data (Login and Token)
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 class CreateEncryptionKeyCommand extends ContainerAwareCommand
 {
@@ -21,7 +21,7 @@ class CreateEncryptionKeyCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('twofas:encryption-key:create')
+            ->setName('fungio:encryption-key:create')
             ->setDescription('Create encryption key for Two FAS Data');
     }
 

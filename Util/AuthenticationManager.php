@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
 use DateInterval;
 use DateTime;
@@ -8,23 +8,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use TwoFAS\Api\Code\Code;
+use Fungio\Api\Code\Code;
 use InvalidArgumentException;
-use TwoFAS\Api\Exception\Exception as ApiException;
-use TwoFAS\Api\Exception\IntegrationUserHasNoActiveMethodException;
-use TwoFAS\Api\Methods;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\Proxy\ApiProviderInterface;
+use Fungio\Api\Exception\Exception as ApiException;
+use Fungio\Api\Exception\IntegrationUserHasNoActiveMethodException;
+use Fungio\Api\Methods;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Proxy\ApiProviderInterface;
 
 /**
  * Facade class between application and 2FAS api - manages Authentications
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class AuthenticationManager
 {
@@ -193,13 +193,13 @@ class AuthenticationManager
     private function getEventType(Code $code)
     {
         if ($code->accepted()) {
-            return TwoFASEvents::CODE_ACCEPTED;
+            return FungioEvents::CODE_ACCEPTED;
         }
 
         if ($code->canRetry()) {
-            return TwoFASEvents::CODE_REJECTED_CAN_RETRY;
+            return FungioEvents::CODE_REJECTED_CAN_RETRY;
         }
 
-        return TwoFASEvents::CODE_REJECTED_CANNOT_RETRY;
+        return FungioEvents::CODE_REJECTED_CANNOT_RETRY;
     }
 }

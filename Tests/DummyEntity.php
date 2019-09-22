@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests;
+namespace Fungio\TwoFactorBundle\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * DummyEntity for tests.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Tests
+ * @package Fungio\TwoFactorBundle\Tests
  */
 class DummyEntity
 {

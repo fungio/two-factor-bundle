@@ -1,21 +1,21 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Factory;
 
 use LogicException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Authentication\RememberMe\TokenProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use TwoFAS\TwoFactorBundle\Security\RememberMe\PersistentTokenBasedRememberMeServices;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Security\RememberMe\PersistentTokenBasedRememberMeServices;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 /**
  * Factory for Two FAS Remember Me Services.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Factory
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Factory
  */
 class PersistentRememberMeServicesFactory implements RememberMeServicesFactoryInterface
 {
@@ -53,7 +53,7 @@ class PersistentRememberMeServicesFactory implements RememberMeServicesFactoryIn
      * @var array
      */
     private $options = [
-        'name'                  => 'TWOFAS_REMEMBERME',
+        'name'                  => 'FUNGIO_REMEMBERME',
         'path'                  => '/',
         'domain'                => null,
         'secure'                => false,

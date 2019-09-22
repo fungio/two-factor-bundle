@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Compiler;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * Compile services used for Two FAS Remember Me functionality based on original from Symfony.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Compiler
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Compiler
  */
 class RememberMePass implements CompilerPassInterface
 {

@@ -23,10 +23,10 @@ following command:
 
 ```bash
 # Symfony 2.8
-$ php app/console twofas:encryption-key:create
+$ php app/console fungio:encryption-key:create
 
 # Symfony 3.x
-$ php bin/console twofas:encryption-key:create
+$ php bin/console fungio:encryption-key:create
 ```
 
 Command the print encryption key in the console so you have to copy it and paste in your config.yml under the *two_fas_two_factor.encryption_key*
@@ -39,10 +39,10 @@ To create [2FAS](https://2fas.com) account run the following command and follow 
 
 ```bash
 # Symfony 2.8
-$ php app/console twofas:create-account
+$ php app/console fungio:create-account
 
 # Symfony 3.x
-$ php bin/console twofas:create-account
+$ php bin/console fungio:create-account
 ```
 
 > **Note**
@@ -64,10 +64,10 @@ In order to enable the second factor go to console and run command:
 
 ```bash
 # Symfony 2.8
-$ php app/console twofas:enable
+$ php app/console fungio:enable
 
 # Symfony 3.x
-$ php bin/console twofas:enable
+$ php bin/console fungio:enable
 ```
 
 That's it! You can log out now and try to log in again.
@@ -76,6 +76,6 @@ After typing in login and password you have to see the second login form where y
 
 > **Note**
 >
-> If you have trouble you can enable/disable the second factor at any time by console `twofas:enable/twofas:disable` command.
+> If you have trouble you can enable/disable the second factor at any time by console `fungio:enable/fungio:disable` command.
 
 [**<< Installation**](installation.md) | [**Index**](index.md) | [**Overriding templates >>**](templates.md)

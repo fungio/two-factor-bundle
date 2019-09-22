@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Security\Voter;
+namespace Fungio\TwoFactorBundle\Security\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
 
 /**
  * Voter check that user has IS_AUTHENTICATED_TWO_FACTOR_FULLY role.
  * If user has "remembered" role, he has IS_AUTHENTICATED_TWO_FACTOR_FULLY role too.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Security\Voter
+ * @package Fungio\TwoFactorBundle\Security\Voter
  */
 class TwoFactorAuthenticatedVoter extends Voter
 {

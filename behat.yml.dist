@@ -2,15 +2,15 @@ default:
     suites:
         two_factor:
             type: symfony_bundle
-            bundle: TwoFASTwoFactorBundle
+            bundle: FungioTwoFactorBundle
             mink_session: symfony2
             contexts:
-                - TwoFAS\TwoFactorBundle\Features\Context\MainContext
-                - TwoFAS\TwoFactorBundle\Features\Context\FeatureContext
+                - Fungio\TwoFactorBundle\Features\Context\MainContext
+                - Fungio\TwoFactorBundle\Features\Context\FeatureContext
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
-            base_url:  http://twofas-twofactor-bundle.app/app_test.php
+            base_url:  http://fungio-twofactor-bundle.app/app_test.php
             browser_name: chrome
             symfony2: ~
             goutte: ~

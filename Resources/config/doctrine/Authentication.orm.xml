@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="TwoFAS\TwoFactorBundle\Entity\Authentication" table="two_fas_authentication">
+    <entity name="Fungio\TwoFactorBundle\Entity\Authentication" table="two_fas_authentication">
         <id name="id" type="string" column="id">
             <generator strategy="NONE"/>
         </id>
@@ -11,7 +11,7 @@
         <field name="blocked" type="boolean" column="blocked"/>
         <field name="createdAt" type="datetime" column="created_at"/>
         <field name="validTo" type="datetime" column="valid_to"/>
-        <many-to-one field="user" target-entity="TwoFAS\TwoFactorBundle\Entity\User" inversed-by="authentications">
+        <many-to-one field="user" target-entity="Fungio\TwoFactorBundle\Entity\User" inversed-by="authentications">
             <join-column name="user_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
     </entity>

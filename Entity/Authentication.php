@@ -1,13 +1,13 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Entity;
+namespace Fungio\TwoFactorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication as BaseAuthentication;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication as BaseAuthentication;
 
 /**
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Entity
+ * @package Fungio\TwoFactorBundle\Entity
  */
 class Authentication extends BaseAuthentication
 {

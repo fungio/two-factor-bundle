@@ -1,18 +1,18 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
-use TwoFAS\TwoFactorBundle\Util\TotpQrCodeGeneratorInterface;
+use Fungio\TwoFactorBundle\Util\TotpQrCodeGeneratorInterface;
 
 /**
  * Generate QR Code includes TOTP and Mobile Secret.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class GenerateQrCodeController extends Controller
 {
@@ -27,7 +27,7 @@ class GenerateQrCodeController extends Controller
     {
         $qrCode = $this->getQrCode($request, $totpSecret, $mobileSecret);
 
-        return $this->render('TwoFASTwoFactorBundle:GenerateQrCode:generate.html.twig', [
+        return $this->render('FungioTwoFactorBundle:GenerateQrCode:generate.html.twig', [
             'qr_code'     => $qrCode,
             'totp_secret' => $totpSecret
         ]);

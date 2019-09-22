@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Command;
+namespace Fungio\TwoFactorBundle\Command;
 
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -12,22 +12,22 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\Account\Exception\Exception as AccountException;
-use TwoFAS\Account\TwoFAS;
+use Fungio\Encryption\Cryptographer;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\Account\Exception\Exception as AccountException;
+use Fungio\Account\Fungio;
 
 /**
  * Creates Two Factor Authentication Service Account.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Command
+ * @package Fungio\TwoFactorBundle\Command
  */
 class CreateAccountCommand extends ContainerAwareCommand
 {
     /**
-     * @var TwoFAS
+     * @var Fungio
      */
     protected $sdk;
 
@@ -37,7 +37,7 @@ class CreateAccountCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('twofas:account:create')
+            ->setName('fungio:account:create')
             ->setDescription('Create new 2FAS Account');
     }
 
@@ -88,11 +88,11 @@ class CreateAccountCommand extends ContainerAwareCommand
         $optionPersister = $this->getOptionPersister();
 
         if (is_null($this->getEncryptionKey())) {
-            throw new \Exception('Two FAS Encryption Key is not set! Run "twofas:encryption-key:create first."');
+            throw new \Exception('Two FAS Encryption Key is not set! Run "fungio:encryption-key:create first."');
         }
 
         if (count($optionPersister->getRepository()->findAll()) > 0) {
-            throw new \Exception('Previous configuration has detected! Run "twofas:account:delete first if you want create new account or use another credentials."');
+            throw new \Exception('Previous configuration has detected! Run "fungio:account:delete first if you want create new account or use another credentials."');
         }
     }
 
@@ -251,7 +251,7 @@ class CreateAccountCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return TwoFAS
+     * @return Fungio
      */
     private function getSdk()
     {

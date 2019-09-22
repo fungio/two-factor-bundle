@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as BaseTokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\Api\Code\RejectedCodeCanRetry;
-use TwoFAS\TwoFactorBundle\Event\CodeCheckEvent;
-use TwoFAS\TwoFactorBundle\EventListener\TokenListener;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\Api\Code\RejectedCodeCanRetry;
+use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
+use Fungio\TwoFactorBundle\EventListener\TokenListener;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
 
 class TokenListenerTest extends \PHPUnit_Framework_TestCase
 {

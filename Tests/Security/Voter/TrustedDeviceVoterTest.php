@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Security\Voter;
+namespace Fungio\TwoFactorBundle\Tests\Security\Voter;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\User as TwoFASUser;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Security\Voter\TrustedDeviceVoter;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\User as FungioUser;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Security\Voter\TrustedDeviceVoter;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 class TrustedDeviceVoterTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +41,7 @@ class TrustedDeviceVoterTest extends \PHPUnit_Framework_TestCase
         $token->method('getUser')->willReturn($this->getMockBuilder(UserInterface::class)->disableOriginalConstructor()->getMockForAbstractClass());
 
         $rememberMeToken = new RememberMeToken();
-        $user            = new TwoFASUser();
+        $user            = new FungioUser();
 
         $user->addToken($rememberMeToken);
         $rememberMeToken->setUser($user);
@@ -78,7 +78,7 @@ class TrustedDeviceVoterTest extends \PHPUnit_Framework_TestCase
         $token->method('getUser')->willReturn(null);
 
         $rememberMeToken = new RememberMeToken();
-        $user            = new TwoFASUser();
+        $user            = new FungioUser();
 
         $user->addToken($rememberMeToken);
         $rememberMeToken->setUser($user);
@@ -109,10 +109,10 @@ class TrustedDeviceVoterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return TwoFASUser
+     * @return FungioUser
      */
     private function getUser()
     {
-        return new TwoFASUser();
+        return new FungioUser();
     }
 }

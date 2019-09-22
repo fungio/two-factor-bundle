@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use TwoFAS\Api\Methods;
-use TwoFAS\Api\TotpSecretGenerator;
+use Fungio\Api\Methods;
+use Fungio\Api\TotpSecretGenerator;
 
 class ChannelControllerTest extends ControllerTestCase
 {
@@ -11,12 +11,12 @@ class ChannelControllerTest extends ControllerTestCase
     {
         parent::setUp();
 
-        $this->loginWithTwoFAS();
+        $this->loginWithFungio();
     }
 
     public function testEnableChannel()
     {
-        $this->twoFASUser->disableChannel(Methods::TOTP);
+        $this->fungioUser->disableChannel(Methods::TOTP);
         $this->integrationUser->setTotpSecret(TotpSecretGenerator::generate());
 
         $crawler = $this->client->request('POST', '/2fas/channel/enable', [
@@ -29,7 +29,7 @@ class ChannelControllerTest extends ControllerTestCase
             $crawler->filter('html:contains("' . $this->translator->trans('channel.success_enabled', []) . '")')->count()
         );
 
-        $this->assertTrue($this->twoFASUser->isChannelEnabled(Methods::TOTP));
+        $this->assertTrue($this->fungioUser->isChannelEnabled(Methods::TOTP));
     }
 
     public function testCannotEnableChannelWhenNotConfigured()
@@ -44,12 +44,12 @@ class ChannelControllerTest extends ControllerTestCase
             $crawler->filter('html:contains("' . $this->translator->trans('channel.cannot_enable', []) . '")')->count()
         );
 
-        $this->assertFalse($this->twoFASUser->isChannelEnabled(Methods::TOTP));
+        $this->assertFalse($this->fungioUser->isChannelEnabled(Methods::TOTP));
     }
 
     public function testDisableChannel()
     {
-        $this->twoFASUser->enableChannel(Methods::TOTP);
+        $this->fungioUser->enableChannel(Methods::TOTP);
         $this->integrationUser->setTotpSecret(TotpSecretGenerator::generate());
 
         $crawler = $this->client->request('POST', '/2fas/channel/disable', [
@@ -62,6 +62,6 @@ class ChannelControllerTest extends ControllerTestCase
             $crawler->filter('html:contains("' . $this->translator->trans('channel.success_disabled', []) . '")')->count()
         );
 
-        $this->assertFalse($this->twoFASUser->isChannelEnabled(Methods::TOTP));
+        $this->assertFalse($this->fungioUser->isChannelEnabled(Methods::TOTP));
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Util;
+namespace Fungio\TwoFactorBundle\Tests\Util;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\Util\UserManager;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Util\UserManager;
 
 class UserManagerTest extends KernelTestCase
 {

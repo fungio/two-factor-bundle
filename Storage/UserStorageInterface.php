@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 
 /**
  * Contract for user storages.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage
+ * @package Fungio\TwoFactorBundle\Storage
  */
 interface UserStorageInterface
 {

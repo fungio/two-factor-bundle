@@ -1,8 +1,8 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use TwoFAS\Api\Methods;
+use Fungio\Api\Methods;
 
 class DashboardControllerTest extends ControllerTestCase
 {
@@ -20,9 +20,9 @@ class DashboardControllerTest extends ControllerTestCase
     {
         parent::setUp();
 
-        $this->removeButton = $this->translator->trans('dashboard.trusted_devices.remove_button', [], 'TwoFASTwoFactorBundle');
+        $this->removeButton = $this->translator->trans('dashboard.trusted_devices.remove_button', [], 'FungioTwoFactorBundle');
 
-        $this->loginWithTwoFAS();
+        $this->loginWithFungio();
 
         $this->mockTrustedDeviceVoter();
     }
@@ -38,41 +38,41 @@ class DashboardControllerTest extends ControllerTestCase
         );
     }
 
-    public function testTwoFASEnabled()
+    public function testFungioEnabled()
     {
         $crawler = $this->client->request('GET', $this->uri);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.enabled', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.enabled', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
-    public function testTwoFASDisabled()
+    public function testFungioDisabled()
     {
-        $this->twoFASStatus->setValue(false);
+        $this->fungioStatus->setValue(false);
 
         $crawler = $this->client->request('GET', $this->uri);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.disabled', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.two_factor.disabled', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
     public function testChannelTotpActive()
     {
-        $this->twoFASUser->enableChannel(Methods::TOTP);
+        $this->fungioUser->enableChannel(Methods::TOTP);
 
         $crawler = $this->client->request('GET', $this->uri);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertEquals(
-            $this->translator->trans('dashboard.two_factor.enabled', [], 'TwoFASTwoFactorBundle'),
-            $crawler->filter('span.twofas-channel-active')->text()
+            $this->translator->trans('dashboard.two_factor.enabled', [], 'FungioTwoFactorBundle'),
+            $crawler->filter('span.fungio-channel-active')->text()
         );
     }
 
@@ -84,7 +84,7 @@ class DashboardControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
@@ -125,7 +125,7 @@ class DashboardControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 
@@ -153,7 +153,7 @@ class DashboardControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
-            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'TwoFASTwoFactorBundle') . '")')->count()
+            $crawler->filter('html:contains("' . $this->translator->trans('dashboard.trusted_devices.empty', [], 'FungioTwoFactorBundle') . '")')->count()
         );
     }
 }

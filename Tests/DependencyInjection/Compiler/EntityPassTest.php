@@ -1,13 +1,13 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Compiler;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Compiler\EntityPass;
-use TwoFAS\TwoFactorBundle\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Entity\Option;
-use TwoFAS\TwoFactorBundle\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Entity\User;
+use Fungio\TwoFactorBundle\DependencyInjection\Compiler\EntityPass;
+use Fungio\TwoFactorBundle\Entity\Authentication;
+use Fungio\TwoFactorBundle\Entity\Option;
+use Fungio\TwoFactorBundle\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Entity\User;
 
 class EntityPassTest extends \PHPUnit_Framework_TestCase
 {
@@ -65,10 +65,10 @@ class EntityPassTest extends \PHPUnit_Framework_TestCase
         $authentication = $this->containerBuilder->getParameter(EntityPass::AUTHENTICATION_CLASS);
         $rememberMe     = $this->containerBuilder->getParameter(EntityPass::REMEMBER_ME_CLASS);
 
-        $this->assertEquals(\TwoFAS\TwoFactorBundle\Model\Entity\Option::class, $option);
-        $this->assertEquals(\TwoFAS\TwoFactorBundle\Model\Entity\User::class, $user);
-        $this->assertEquals(\TwoFAS\TwoFactorBundle\Model\Entity\Authentication::class, $authentication);
-        $this->assertEquals(\TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken::class, $rememberMe);
+        $this->assertEquals(\Fungio\TwoFactorBundle\Model\Entity\Option::class, $option);
+        $this->assertEquals(\Fungio\TwoFactorBundle\Model\Entity\User::class, $user);
+        $this->assertEquals(\Fungio\TwoFactorBundle\Model\Entity\Authentication::class, $authentication);
+        $this->assertEquals(\Fungio\TwoFactorBundle\Model\Entity\RememberMeToken::class, $rememberMe);
     }
 
     public function testNotSupportedDriver()

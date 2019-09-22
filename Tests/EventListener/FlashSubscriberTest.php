@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -8,8 +8,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Translation\TranslatorInterface;
-use TwoFAS\TwoFactorBundle\Event\TwoFASEvents;
-use TwoFAS\TwoFactorBundle\EventListener\FlashSubscriber;
+use Fungio\TwoFactorBundle\Event\FungioEvents;
+use Fungio\TwoFactorBundle\EventListener\FlashSubscriber;
 
 class FlashSubscriberTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,7 +47,7 @@ class FlashSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testFlashSuccess()
     {
         $this->translator->method('trans')->willReturn('configure.totp.success');
-        $this->dispatcher->dispatch(TwoFASEvents::INTEGRATION_USER_CONFIGURATION_COMPLETE_TOTP, new Event());
+        $this->dispatcher->dispatch(FungioEvents::INTEGRATION_USER_CONFIGURATION_COMPLETE_TOTP, new Event());
 
         $this->assertTrue($this->session->getFlashBag()->has('success'));
         $this->assertContains('configure.totp.success', $this->session->getFlashBag()->get('success'));
@@ -56,7 +56,7 @@ class FlashSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testFlashWarning()
     {
         $this->translator->method('trans')->willReturn('configure.totp.info');
-        $this->dispatcher->dispatch(TwoFASEvents::CODE_REJECTED_CAN_RETRY, new Event());
+        $this->dispatcher->dispatch(FungioEvents::CODE_REJECTED_CAN_RETRY, new Event());
 
         $this->assertTrue($this->session->getFlashBag()->has('info'));
         $this->assertContains('configure.totp.info', $this->session->getFlashBag()->get('info'));
@@ -65,7 +65,7 @@ class FlashSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testFlashInfo()
     {
         $this->translator->method('trans')->willReturn('configure.totp.warning');
-        $this->dispatcher->dispatch(TwoFASEvents::CODE_REJECTED_CANNOT_RETRY, new Event());
+        $this->dispatcher->dispatch(FungioEvents::CODE_REJECTED_CANNOT_RETRY, new Event());
 
         $this->assertTrue($this->session->getFlashBag()->has('warning'));
         $this->assertContains('configure.totp.warning', $this->session->getFlashBag()->get('warning'));

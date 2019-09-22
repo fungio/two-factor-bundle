@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Event\ChannelStatusChangedEvent;
-use TwoFAS\TwoFactorBundle\EventListener\ChannelListener;
+use Fungio\TwoFactorBundle\Event\ChannelStatusChangedEvent;
+use Fungio\TwoFactorBundle\EventListener\ChannelListener;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as BaseTokenStorage;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
 
 class ChannelListenerTest extends \PHPUnit_Framework_TestCase
 {

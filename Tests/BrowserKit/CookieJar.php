@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\BrowserKit;
+namespace Fungio\TwoFactorBundle\Tests\BrowserKit;
 
 use Symfony\Component\BrowserKit\CookieJar as BaseCookieJar;
 
@@ -9,13 +9,13 @@ use Symfony\Component\BrowserKit\CookieJar as BaseCookieJar;
  *
  * Result in http foundation request:
  * [
- *      TWOFAS_REMEMBERME => [1 => 'foo']
+ *      FUNGIO_REMEMBERME => [1 => 'foo']
  * ]
  *
  * Result in browser kit request:
  *
  * [
- *      TWOFAS_REMEMBERME[1] => 'foo'
+ *      FUNGIO_REMEMBERME[1] => 'foo'
  * ]
  *
  * This is only workaround!

@@ -1,22 +1,22 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Util;
+namespace Fungio\TwoFactorBundle\Tests\Util;
 
-use TwoFAS\Api\Exception\IntegrationUserNotFoundException;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Proxy\ApiProvider;
-use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
-use TwoFAS\TwoFactorBundle\Tests\DummyEntity;
-use TwoFAS\TwoFactorBundle\Util\IntegrationUserManager;
+use Fungio\Api\Exception\IntegrationUserNotFoundException;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Fungio;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Proxy\ApiProvider;
+use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
+use Fungio\TwoFactorBundle\Tests\DummyEntity;
+use Fungio\TwoFactorBundle\Util\IntegrationUserManager;
 
 class IntegrationUserManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     private $api;
 
@@ -33,7 +33,7 @@ class IntegrationUserManagerTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
 
         $this->api = $this
-            ->getMockBuilder(TwoFAS::class)
+            ->getMockBuilder(Fungio::class)
             ->disableOriginalConstructor()
             ->setMethods(['getIntegrationUserByExternalId', 'addIntegrationUser', 'updateIntegrationUser'])
             ->getMock();

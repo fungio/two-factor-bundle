@@ -62,7 +62,7 @@ This is a simple dashboard to show and manage your settings:
 
 9. Go to console and enable the second factor:
 
-![TwoFAS Enable](../images/twofas_enable.png)
+![Fungio Enable](../images/fungio_enable.png)
 
 10. Now you will be protected by 2FAS, next time you login, after your login form you will see the second factor form:
 

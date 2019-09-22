@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Entity;
+namespace Fungio\TwoFactorBundle\Tests\Model\Entity;
 
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 
 class OptionTest extends \PHPUnit_Framework_TestCase
 {

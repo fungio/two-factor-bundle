@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use TwoFAS\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 /**
  * Listen for TOTP Secret changed (in configuration totp controller action)
  * and remove trusted devices.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class TrustedDeviceListener
 {

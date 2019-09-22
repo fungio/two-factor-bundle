@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use TwoFAS\TwoFactorBundle\EventListener\ConsoleExceptionListener;
-use TwoFAS\Account\Exception\AuthorizationException;
-use TwoFAS\Account\Exception\Exception;
-use TwoFAS\Account\Exception\ValidationException;
-use TwoFAS\ValidationRules\ValidationRules;
+use Fungio\TwoFactorBundle\EventListener\ConsoleExceptionListener;
+use Fungio\Account\Exception\AuthorizationException;
+use Fungio\Account\Exception\Exception;
+use Fungio\Account\Exception\ValidationException;
+use Fungio\ValidationRules\ValidationRules;
 
 class ConsoleExceptionListenerTest extends \PHPUnit_Framework_TestCase
 {

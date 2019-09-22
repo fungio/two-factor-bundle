@@ -1,11 +1,11 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Validator;
+namespace Fungio\TwoFactorBundle\Tests\Validator;
 
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\Code;
-use TwoFAS\TwoFactorBundle\Validator\Constraints\CodeValidator;
+use Fungio\TwoFactorBundle\Validator\Constraints\Code;
+use Fungio\TwoFactorBundle\Validator\Constraints\CodeValidator;
 
 class CodeValidatorTest extends \PHPUnit_Framework_TestCase
 {

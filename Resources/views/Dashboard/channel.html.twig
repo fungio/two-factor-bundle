@@ -1,41 +1,41 @@
-{% trans_default_domain 'TwoFASTwoFactorBundle' %}
+{% trans_default_domain 'FungioTwoFactorBundle' %}
 
-<div class="twofas-channel">
-    <div class="twofas-channel-header">
+<div class="fungio-channel">
+    <div class="fungio-channel-header">
         <h4>{{ ('dashboard.two_factor.available_channels.'~channel)|trans }}</h4>
-        <div class="twofas-channel-status">
+        <div class="fungio-channel-status">
             {% if status == true %}
-                <span class="twofas-channel-active label success">{{ 'dashboard.two_factor.enabled'|trans }}</span>
+                <span class="fungio-channel-active label success">{{ 'dashboard.two_factor.enabled'|trans }}</span>
             {% else %}
-                <span class="twofas-channel-active label danger">{{ 'dashboard.two_factor.disabled'|trans }}</span>
+                <span class="fungio-channel-active label danger">{{ 'dashboard.two_factor.disabled'|trans }}</span>
             {% endif %}
         </div>
     </div>
 
-    <div class="twofas-channel-body">
-        <div class="twofas-channel-content">
+    <div class="fungio-channel-body">
+        <div class="fungio-channel-content">
             <p>{{ ('dashboard.two_factor.content.'~channel)|trans }}</p>
         </div>
-        <div class="twofas-channel-configure">
+        <div class="fungio-channel-configure">
             {% if configured == true %}
                 {% if status == true %}
-                    <form action="{{ path('twofas_channel_disable') }}" method="post">
+                    <form action="{{ path('fungio_channel_disable') }}" method="post">
                         <input type="hidden" name="channel" value="{{ channel }}" />
-                        <button type="submit" class="twofas-button btn btn-danger" title="Disable {{ channel }}">
+                        <button type="submit" class="fungio-button btn btn-danger" title="Disable {{ channel }}">
                             <span>{{ 'dashboard.two_factor.disable'|trans }}</span>
                         </button>
                     </form>
                 {% else %}
-                    <form action="{{ path('twofas_channel_enable') }}" method="post">
+                    <form action="{{ path('fungio_channel_enable') }}" method="post">
                         <input type="hidden" name="channel" value="{{ channel }}" />
-                        <button type="submit" class="twofas-button btn btn-success" title="Enable {{ channel }}">
+                        <button type="submit" class="fungio-button btn btn-success" title="Enable {{ channel }}">
                             <span>{{ 'dashboard.two_factor.enable'|trans }}</span>
                         </button>
                     </form>
                 {% endif %}
             {% endif %}
-            <form action="{{ path('twofas_configure_'~channel) }}" method="get">
-                <button type="submit" class="twofas-button btn btn-default" title="Configure {{ channel }}">
+            <form action="{{ path('fungio_configure_'~channel) }}" method="get">
+                <button type="submit" class="fungio-button btn btn-default" title="Configure {{ channel }}">
                     <span>{{ 'dashboard.two_factor.configure_button'|trans }}</span>
                 </button>
             </form>

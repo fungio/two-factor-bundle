@@ -1,10 +1,10 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Entity;
+namespace Fungio\TwoFactorBundle\Tests\Model\Entity;
 
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Tests\DummyEntity;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Tests\DummyEntity;
 
 class RememberMeTokenTest extends \PHPUnit_Framework_TestCase
 {

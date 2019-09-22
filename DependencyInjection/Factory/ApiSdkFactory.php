@@ -1,24 +1,24 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Factory;
 
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\TwoFactorBundle\Cache\CacheKeys;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use TwoFAS\TwoFactorBundle\TwoFASTwoFactorBundle;
+use Fungio\Api\Fungio;
+use Fungio\Encryption\Cryptographer;
+use Fungio\TwoFactorBundle\Cache\CacheKeys;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
+use Fungio\TwoFactorBundle\FungioTwoFactorBundle;
 
 /**
  * Factory for API SDK.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Factory
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Factory
  */
 class ApiSdkFactory
 {
@@ -53,7 +53,7 @@ class ApiSdkFactory
     private $baseUrl;
 
     /**
-     * TwoFASFactory constructor.
+     * FungioFactory constructor.
      *
      * @param ObjectPersisterInterface $optionPersister
      * @param Cryptographer            $cryptographer
@@ -79,25 +79,25 @@ class ApiSdkFactory
     }
 
     /**
-     * @return TwoFAS
+     * @return Fungio
      */
     public function createInstance()
     {
         $headers = [
-            'Plugin-Version' => TwoFASTwoFactorBundle::VERSION,
+            'Plugin-Version' => FungioTwoFactorBundle::VERSION,
             'Php-Version'    => phpversion(),
             'App-Version'    => Kernel::VERSION,
             'App-Name'       => $this->appName,
             'App-Url'        => $this->getUrl()
         ];
 
-        $twoFAS = new TwoFAS($this->getLogin(), $this->getToken(), $headers);
+        $fungio = new Fungio($this->getLogin(), $this->getToken(), $headers);
 
         if (!is_null($this->baseUrl)) {
-            $twoFAS->setBaseUrl($this->baseUrl);
+            $fungio->setBaseUrl($this->baseUrl);
         }
 
-        return $twoFAS;
+        return $fungio;
     }
 
     /**
@@ -153,7 +153,7 @@ class ApiSdkFactory
 
         } catch (TableNotFoundException $e) {
             //do nothing (eq. schema not exists)
-            //so TwoFAS must be empty
+            //so Fungio must be empty
         }
 
         return null;

@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
  * Wrapper for TokenStorage - add validation method.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage
+ * @package Fungio\TwoFactorBundle\Storage
  */
 class TokenStorage implements TokenStorageInterface
 {

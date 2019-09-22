@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener as BaseTestSessionListener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
  * @link https://github.com/symfony/symfony/issues/13450
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Tests\EventListener
+ * @package Fungio\TwoFactorBundle\Tests\EventListener
  */
 class TestSessionListener extends BaseTestSessionListener
 {

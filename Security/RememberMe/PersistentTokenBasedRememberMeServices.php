@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Security\RememberMe;
+namespace Fungio\TwoFactorBundle\Security\RememberMe;
 
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -21,13 +21,13 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
 use Symfony\Component\Security\Http\ParameterBagUtils;
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 /**
- * Overwritten class to handle multiple twofas_rememberme cookies (for multiple users).
+ * Overwritten class to handle multiple fungio_rememberme cookies (for multiple users).
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Security\RememberMe
+ * @package Fungio\TwoFactorBundle\Security\RememberMe
  */
 class PersistentTokenBasedRememberMeServices implements RememberMeServicesInterface, LogoutHandlerInterface
 {

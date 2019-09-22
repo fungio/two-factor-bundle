@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
-use TwoFAS\Encryption\AESKey;
-use TwoFAS\Encryption\Interfaces\ReadKey;
+use Fungio\Encryption\AESKey;
+use Fungio\Encryption\Interfaces\ReadKey;
 
 /**
- * Store encryption key for TwoFAS Data.
+ * Store encryption key for Fungio Data.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage\Encryption
+ * @package Fungio\TwoFactorBundle\Storage\Encryption
  */
 class EncryptionStorage implements ReadKey
 {

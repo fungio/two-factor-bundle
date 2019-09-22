@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Storage;
+namespace Fungio\TwoFactorBundle\Tests\Storage;
 
-use TwoFAS\Encryption\AESKey;
-use TwoFAS\TwoFactorBundle\Storage\EncryptionStorage;
+use Fungio\Encryption\AESKey;
+use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
 
 class EncryptionStorageTest extends \PHPUnit_Framework_TestCase
 {

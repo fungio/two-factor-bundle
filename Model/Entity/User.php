@@ -1,16 +1,16 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Model\Entity;
+namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\Methods;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Methods;
 
 /**
- * Model class for TwoFAS User.
+ * Model class for Fungio User.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Model
+ * @package Fungio\TwoFactorBundle\Model
  */
 class User implements UserInterface
 {

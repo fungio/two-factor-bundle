@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\EventListener;
+namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,10 +16,10 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\RememberMeServicesFactoryInterface;
-use TwoFAS\TwoFactorBundle\EventListener\SecondFactorListener;
-use TwoFAS\TwoFactorBundle\Storage\TokenStorage;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\RememberMeServicesFactoryInterface;
+use Fungio\TwoFactorBundle\EventListener\SecondFactorListener;
+use Fungio\TwoFactorBundle\Storage\TokenStorage;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
 
 class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
 {
@@ -123,7 +123,7 @@ class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->event->getResponse());
     }
 
-    public function testTwoFASNotSupportFirewall()
+    public function testFungioNotSupportFirewall()
     {
         $this->authorizationChecker->expects($this->never())->method('isGranted');
         $token = new UsernamePasswordToken('admin', 'adminpass', 'fake_firewall');
@@ -144,7 +144,7 @@ class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
     public function testIsRemembered()
     {
         $this->passGranted();
-        $this->configurationChecker->expects($this->never())->method('isTwoFASEnabled');
+        $this->configurationChecker->expects($this->never())->method('isFungioEnabled');
         $user = $this->getMockForAbstractClass(UserInterface::class);
         $user->method('getRoles')->willReturn([]);
         $token             = new RememberMeToken($user, 'main', 'foo');
@@ -157,18 +157,18 @@ class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->event->getResponse());
     }
 
-    public function testTwoFASEnabled()
+    public function testFungioEnabled()
     {
         $this->passRemembered();
         $this->configurationChecker->expects($this->never())->method('isSecondFactorEnabledForUser');
-        $this->configurationChecker->method('isTwoFASEnabled')->willReturn(false);
+        $this->configurationChecker->method('isFungioEnabled')->willReturn(false);
         $this->listener->onKernelRequest($this->event);
         $this->assertNull($this->event->getResponse());
     }
 
     public function testSecondFactorEnabledForUser()
     {
-        $this->passTwoFASEnabled();
+        $this->passFungioEnabled();
         $this->router->expects($this->never())->method('generate');
         $this->configurationChecker->method('isSecondFactorEnabledForUser')->willReturn(false);
 
@@ -176,7 +176,7 @@ class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->event->getResponse());
     }
 
-    public function testTwoFASCheckRoute()
+    public function testFungioCheckRoute()
     {
         $this->passUserConfigured();
         $this->router->method('generate')->willReturn('/2fas/check');
@@ -232,15 +232,15 @@ class SecondFactorListenerTest extends \PHPUnit_Framework_TestCase
         $this->rememberMeFactory->method('createInstance')->willReturn($rememberMeService);
     }
 
-    private function passTwoFASEnabled()
+    private function passFungioEnabled()
     {
         $this->passRemembered();
-        $this->configurationChecker->method('isTwoFASEnabled')->willReturn(true);
+        $this->configurationChecker->method('isFungioEnabled')->willReturn(true);
     }
 
     private function passUserConfigured()
     {
-        $this->passTwoFASEnabled();
+        $this->passFungioEnabled();
         $user = $this->getMockForAbstractClass(UserInterface::class);
         $user->method('getRoles')->willReturn([]);
         $this->tokenStorage->getToken()->setUser($user);

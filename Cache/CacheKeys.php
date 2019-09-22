@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Cache;
+namespace Fungio\TwoFactorBundle\Cache;
 
 use \ReflectionClass;
 
@@ -8,7 +8,7 @@ use \ReflectionClass;
  * Keys used to cache some of TwoFactorBundle data
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Event
+ * @package Fungio\TwoFactorBundle\Event
  */
 final class CacheKeys
 {

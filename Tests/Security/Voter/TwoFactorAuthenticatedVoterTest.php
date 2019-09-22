@@ -1,12 +1,12 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Security\Voter;
+namespace Fungio\TwoFactorBundle\Tests\Security\Voter;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Security\Voter\TwoFactorAuthenticatedVoter;
 
 class TwoFactorAuthenticatedVoterTest extends \PHPUnit_Framework_TestCase
 {

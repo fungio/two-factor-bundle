@@ -1,10 +1,10 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Model\Entity;
+namespace Fungio\TwoFactorBundle\Tests\Model\Entity;
 
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication;
+use Fungio\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 
 class AuthenticationTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,27 +1,27 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Storage;
+namespace Fungio\TwoFactorBundle\Storage;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface as TwoFASUserInterface;
-use TwoFAS\TwoFactorBundle\Util\IntegrationUserManager;
-use TwoFAS\TwoFactorBundle\Util\UserManager;
+use Fungio\Api\IntegrationUser;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface as FungioUserInterface;
+use Fungio\TwoFactorBundle\Util\IntegrationUserManager;
+use Fungio\TwoFactorBundle\Util\UserManager;
 use \LogicException;
 
 /**
- * Store TwoFAS User, and Integration User in session.
+ * Store Fungio User, and Integration User in session.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Storage
+ * @package Fungio\TwoFactorBundle\Storage
  */
 class UserSessionStorage implements UserStorageInterface
 {
-    const USER_KEY             = 'twofas_two_factor.session.user';
-    const INTEGRATION_USER_KEY = 'twofas_two_factor.session.integration_user';
+    const USER_KEY             = 'fungio_two_factor.session.user';
+    const INTEGRATION_USER_KEY = 'fungio_two_factor.session.integration_user';
 
     /**
      * @var SessionInterface
@@ -104,7 +104,7 @@ class UserSessionStorage implements UserStorageInterface
         $loggedUser = $this->getLoggedUser();
 
         if (null === $loggedUser) {
-            throw new LogicException('Can\'t store TwoFAS User when not logged in.');
+            throw new LogicException('Can\'t store Fungio User when not logged in.');
         }
 
         $user            = $this->userManager->createUser($loggedUser);
@@ -119,7 +119,7 @@ class UserSessionStorage implements UserStorageInterface
     /**
      * @inheritDoc
      */
-    public function updateUser(TwoFASUserInterface $user)
+    public function updateUser(FungioUserInterface $user)
     {
         $this->userManager->updateUser($user);
         $this->session->set(self::USER_KEY, $user);
@@ -130,7 +130,7 @@ class UserSessionStorage implements UserStorageInterface
     /**
      * @inheritdoc
      */
-    public function storeIntegrationUser(TwoFASUserInterface $user)
+    public function storeIntegrationUser(FungioUserInterface $user)
     {
         $integrationUser = $this->integrationUserManager->createUser($user);
 

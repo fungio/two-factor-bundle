@@ -1,26 +1,26 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Controller;
+namespace Fungio\TwoFactorBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use TwoFAS\Api\Exception\AuthorizationException;
-use TwoFAS\Api\Exception\ChannelNotActiveException;
-use TwoFAS\Api\Exception\Exception as ApiException;
-use TwoFAS\Api\Exception\ValidationException;
-use TwoFAS\TwoFactorBundle\Form\CodeForm;
-use TwoFAS\TwoFactorBundle\Model\Entity\AuthenticationInterface;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Storage\InvalidTokenException;
+use Fungio\Api\Exception\AuthorizationException;
+use Fungio\Api\Exception\ChannelNotActiveException;
+use Fungio\Api\Exception\Exception as ApiException;
+use Fungio\Api\Exception\ValidationException;
+use Fungio\TwoFactorBundle\Form\CodeForm;
+use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Storage\InvalidTokenException;
 
 /**
  * Second factor authentication form and check authentication in 2FAS.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Controller
+ * @package Fungio\TwoFactorBundle\Controller
  */
 class CheckCodeController extends Controller
 {
@@ -41,7 +41,7 @@ class CheckCodeController extends Controller
             throw new AccessDeniedHttpException('This path is only available through login process.');
         }
 
-        $user = $this->getTwoFASUser();
+        $user = $this->getFungioUser();
 
         if (!$user->isChannelEnabled($channel)) {
             throw new ChannelNotActiveException('No channel is enabled.');
@@ -67,7 +67,7 @@ class CheckCodeController extends Controller
             }
         }
 
-        return $this->render('TwoFASTwoFactorBundle:CheckCode:check.html.twig', [
+        return $this->render('FungioTwoFactorBundle:CheckCode:check.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -84,7 +84,7 @@ class CheckCodeController extends Controller
         try {
             $userStorage           = $this->get('two_fas_two_factor.storage.user_session_storage');
             $authenticationManager = $this->get('two_fas_two_factor.util.authentication_manager');
-            $user                  = $this->getTwoFASUser();
+            $user                  = $this->getFungioUser();
             $authentications       = $authenticationManager->getOpenAuthentications($user, $channel);
 
             if (0 === $authentications->count()) {

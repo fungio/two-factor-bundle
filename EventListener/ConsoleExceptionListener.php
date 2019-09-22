@@ -1,19 +1,19 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\EventListener;
+namespace Fungio\TwoFactorBundle\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
-use TwoFAS\Account\Exception\AuthorizationException;
-use TwoFAS\Account\Exception\Exception as AccountException;
-use TwoFAS\Account\Exception\ValidationException;
-use TwoFAS\ValidationRules\ValidationRules;
+use Fungio\Account\Exception\AuthorizationException;
+use Fungio\Account\Exception\Exception as AccountException;
+use Fungio\Account\Exception\ValidationException;
+use Fungio\ValidationRules\ValidationRules;
 
 /**
- * Class for handle exceptions from TwoFAS Console Commands.
+ * Class for handle exceptions from Fungio Console Commands.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\EventListener
+ * @package Fungio\TwoFactorBundle\EventListener
  */
 class ConsoleExceptionListener
 {
@@ -34,7 +34,7 @@ class ConsoleExceptionListener
             ValidationRules::REQUIRED => 'Password is required',
             ValidationRules::MIN      => 'Password should have at least 6 characters'
         ],
-        ValidationRules::UNSUPPORTED => 'Unknown TwoFAS Exception'
+        ValidationRules::UNSUPPORTED => 'Unknown Fungio Exception'
     ];
 
     /**

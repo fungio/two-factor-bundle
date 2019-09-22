@@ -1,15 +1,15 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Event;
+namespace Fungio\TwoFactorBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use TwoFAS\Api\Code\Code;
+use Fungio\Api\Code\Code;
 
 /**
  * Event fires when 2FAS Code is used (check code).
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Event
+ * @package Fungio\TwoFactorBundle\Event
  */
 class CodeCheckEvent extends Event
 {

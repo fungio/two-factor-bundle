@@ -1,14 +1,14 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests;
+namespace Fungio\TwoFactorBundle\Tests;
 
-use TwoFAS\TwoFactorBundle\Model\Entity\User;
+use Fungio\TwoFactorBundle\Model\Entity\User;
 
 /**
  * User entity for test only.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Tests
+ * @package Fungio\TwoFactorBundle\Tests
  */
 class UserEntity extends User
 {

@@ -1,4 +1,4 @@
-Getting Started With TwoFAS/TwoFactorBundle
+Getting Started With Fungio/TwoFactorBundle
 ===========================================
 
 In this guide you will learn how install and configure the bundle to be used in your Symfony application.
@@ -18,7 +18,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require twofas/two-factor-bundle
+$ composer require fungio/two-factor-bundle
 ```
 
 This command requires you to have Composer installed, as explained
@@ -37,7 +37,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new TwoFAS\TwoFactorBundle\TwoFASTwoFactorBundle(),
+        new Fungio\TwoFactorBundle\FungioTwoFactorBundle(),
         // ...
     );
 }
@@ -57,7 +57,7 @@ Load the routing definition of the bundle in the application (usually in the
 ```yaml
 # app/config/routing.yml
 two_fas_two_factor:
-    resource: "@TwoFASTwoFactorBundle/Resources/config/routing.xml"
+    resource: "@FungioTwoFactorBundle/Resources/config/routing.xml"
     prefix:   /2fas
 ```
 
@@ -65,7 +65,7 @@ two_fas_two_factor:
 
 In order to use this bundle you have to write some configuration.
 
-Below is a minimal example of the configuration necessary to use the TwoFAS/TwoFactorBundle
+Below is a minimal example of the configuration necessary to use the Fungio/TwoFactorBundle
 in your application:
 
 ```yaml
@@ -120,7 +120,7 @@ $ php bin/console doctrine:schema:update --force
 
 We also recommend that you clear your Symfony cache after installation.
  
-Now that you have completed the basic installation and configuration of the TwoFAS/TwoFactorBundle, 
+Now that you have completed the basic installation and configuration of the Fungio/TwoFactorBundle, 
 you need to create an account in 2FAS and configure it with your authentication mobile app.
 
 [**Index**](index.md) | [**Configuration >>**](configuration.md)

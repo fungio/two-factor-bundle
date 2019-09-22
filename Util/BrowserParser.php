@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Util;
+namespace Fungio\TwoFactorBundle\Util;
 
 use WhichBrowser\Parser;
 
@@ -8,7 +8,7 @@ use WhichBrowser\Parser;
  * Extends with get client IP.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Util
+ * @package Fungio\TwoFactorBundle\Util
  */
 class BrowserParser extends Parser
 {

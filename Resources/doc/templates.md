@@ -1,7 +1,7 @@
 Overriding templates
 ====================
 
-TwoFAS/TwoFactorBundle provides a few default basic templates that you probably need to override.
+Fungio/TwoFactorBundle provides a few default basic templates that you probably need to override.
 To do this, Symfony provides a built-in way to [override the templates themselves](https://symfony.com/doc/current/templating/overriding.html).
 All templates (except the main template) have ``css`` classes so you might only need to write styles for them.
 
@@ -20,7 +20,7 @@ Here is the default layout.html.twig provided by the TwoFactorBundle:
     {% endblock %}
     {% block javascripts %}
         {{ parent() }}
-        <script src="{{ asset('bundles/twofastwofactor/js/main.js')|fileMTime }}"></script>
+        <script src="{{ asset('bundles/fungiotwofactor/js/main.js')|fileMTime }}"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js')|fileMTime }}"></script>
         <script src="{{ asset('js/fos_js_routes.js')|fileMTime }}"></script>
     {% endblock %}
@@ -40,7 +40,7 @@ If you are using **AsseticBundle**, you can use *javascripts* block to include f
 We use own filter *fileMTime* to add unix timestamp to the end of the file name to prevent browser cache javascript files,
 if you are using AsseticBundle, we recommend to turn on [versioning](http://symfony.com/doc/current/reference/configuration/framework.html#reference-framework-assets-version).
  
-To override the layout template located at `Resources/views/layout.html.twig` in the TwoFactorBundle directory, you would place your new layout template at `app/Resources/TwoFASTwoFactorBundle/views/layout.html.twig`.
+To override the layout template located at `Resources/views/layout.html.twig` in the TwoFactorBundle directory, you would place your new layout template at `app/Resources/FungioTwoFactorBundle/views/layout.html.twig`.
  
 The pattern for overriding templates in this way is to create a folder with the name of the bundle class in the app/Resources directory.
 Then add your new template to this folder, preserving the directory structure from the original bundle.
@@ -73,11 +73,11 @@ You have to show this menu only for authenticated users or for a specified role.
 To do this you can use our twig function:
 
 ```twig
-{% if canRenderTwoFAS('IS_AUTHENTICATED_REMEMBERED') %}
-    <li><a href="{{ path('twofas_index') }}">2FAS</a></li>
+{% if canRenderFungio('IS_AUTHENTICATED_REMEMBERED') %}
+    <li><a href="{{ path('fungio_index') }}">2FAS</a></li>
 {% endif %}
 ```
 
-Check out our demo application on [Github](https://github.com/twofas/two-factor-demo), you can find there overwritten templates (simple bootstrap example).
+Check out our demo application on [Github](https://github.com/fungio/two-factor-demo), you can find there overwritten templates (simple bootstrap example).
 
 [**<< Configuration**](configuration.md) | [**Index**](index.md) | [**Translations >>**](translations.md)

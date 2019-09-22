@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Controller;
+namespace Fungio\TwoFactorBundle\Tests\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -14,33 +14,33 @@ use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Translation\TranslatorInterface;
-use TwoFAS\Api\Code\AcceptedCode;
-use TwoFAS\Api\Code\RejectedCodeCannotRetry;
-use TwoFAS\Api\Code\RejectedCodeCanRetry;
-use TwoFAS\Api\IntegrationUser;
-use TwoFAS\Api\Methods;
-use TwoFAS\Api\TwoFAS;
-use TwoFAS\TwoFactorBundle\Cache\EmptyCacheStorage;
-use TwoFAS\TwoFactorBundle\Model\Entity\Authentication;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Entity\OptionInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeToken as TwoFASRememberMeToken;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use TwoFAS\TwoFactorBundle\Security\Token\TwoFactorToken;
-use TwoFAS\TwoFactorBundle\Security\Voter\TrustedDeviceVoter;
-use TwoFAS\TwoFactorBundle\Storage\UserSessionStorage;
-use TwoFAS\TwoFactorBundle\Tests\UserEntity;
-use TwoFAS\TwoFactorBundle\Util\AuthenticationManager;
-use TwoFAS\TwoFactorBundle\Util\ConfigurationChecker;
-use TwoFAS\TwoFactorBundle\Util\IntegrationUserManager;
+use Fungio\Api\Code\AcceptedCode;
+use Fungio\Api\Code\RejectedCodeCannotRetry;
+use Fungio\Api\Code\RejectedCodeCanRetry;
+use Fungio\Api\IntegrationUser;
+use Fungio\Api\Methods;
+use Fungio\Api\Fungio;
+use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
+use Fungio\TwoFactorBundle\Model\Entity\Authentication;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken as FungioRememberMeToken;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
+use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
+use Fungio\TwoFactorBundle\Security\Voter\TrustedDeviceVoter;
+use Fungio\TwoFactorBundle\Storage\UserSessionStorage;
+use Fungio\TwoFactorBundle\Tests\UserEntity;
+use Fungio\TwoFactorBundle\Util\AuthenticationManager;
+use Fungio\TwoFactorBundle\Util\ConfigurationChecker;
+use Fungio\TwoFactorBundle\Util\IntegrationUserManager;
 
 abstract class ControllerTestCase extends WebTestCase
 {
     /**
-     * @var TwoFAS|\PHPUnit_Framework_MockObject_MockObject
+     * @var Fungio|\PHPUnit_Framework_MockObject_MockObject
      */
     protected $api;
 
@@ -77,7 +77,7 @@ abstract class ControllerTestCase extends WebTestCase
     /**
      * @var UserEntity
      */
-    protected $twoFASUser;
+    protected $fungioUser;
 
     /**
      * @var InMemoryRepositoryInterface
@@ -97,7 +97,7 @@ abstract class ControllerTestCase extends WebTestCase
     /**
      * @var OptionInterface
      */
-    protected $twoFASStatus;
+    protected $fungioStatus;
 
     /**
      * @var string
@@ -116,9 +116,9 @@ abstract class ControllerTestCase extends WebTestCase
         $this->client->followRedirects();
         $this->container       = $this->client->getContainer();
         $this->translator      = $this->container->get('translator');
-        $this->csrfToken       = $this->container->get('security.csrf.token_manager')->getToken('twofas_csrf_token');
+        $this->csrfToken       = $this->container->get('security.csrf.token_manager')->getToken('fungio_csrf_token');
         $this->integrationUser = new IntegrationUser();
-        $this->twoFASUser      = new UserEntity();
+        $this->fungioUser      = new UserEntity();
 
         $this->mockApi();
         $this->mockObjectManager();
@@ -142,7 +142,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected static function createClient(array $options = array(), array $server = array())
     {
         static::bootKernel($options);
-        $client = static::$kernel->getContainer()->get('twofas.test.client');
+        $client = static::$kernel->getContainer()->get('fungio.test.client');
         $client->setServerParameters($server);
 
         return $client;
@@ -166,7 +166,7 @@ abstract class ControllerTestCase extends WebTestCase
         $this->setAuthenticated($token, $firewall);
     }
 
-    protected function loginWithTwoFAS()
+    protected function loginWithFungio()
     {
         $firewall = '2fas';
         $user     = new User('admin', 'adminpass', ['ROLE_ADMIN']);
@@ -188,12 +188,12 @@ abstract class ControllerTestCase extends WebTestCase
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
 
-        $this->twoFASUser
+        $this->fungioUser
             ->setId('1')
             ->setUsername($token->getUser()->getUsername())
             ->setIntegrationUser($this->integrationUser);
 
-        $this->userRepository->add($this->twoFASUser);
+        $this->userRepository->add($this->fungioUser);
     }
 
     /**
@@ -203,8 +203,8 @@ abstract class ControllerTestCase extends WebTestCase
      */
     protected function generateRememberMeToken($series, $tokenValue, \DateTime $lastUsed)
     {
-        $token = $this->getRememberMeToken($this->twoFASUser, $series, $tokenValue, $lastUsed);
-        $this->twoFASUser->addToken($token);
+        $token = $this->getRememberMeToken($this->fungioUser, $series, $tokenValue, $lastUsed);
+        $this->fungioUser->addToken($token);
         $this->tokenRepository->add($token);
     }
 
@@ -215,7 +215,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function generateCookie($series, $tokenValue)
     {
         $cookie = new Cookie(
-            'TWOFAS_REMEMBERME[' . $this->twoFASUser->getId() . ']',
+            'FUNGIO_REMEMBERME[' . $this->fungioUser->getId() . ']',
             base64_encode(implode(':', [$series, $tokenValue])),
             time(),
             '/',
@@ -230,7 +230,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function mockApi()
     {
         $this->api = $this
-            ->getMockBuilder(TwoFAS::class)
+            ->getMockBuilder(Fungio::class)
             ->disableOriginalConstructor()
             ->setMethods(['requestAuth', 'requestAuthViaTotp', 'checkCode'])
             ->getMock();
@@ -272,12 +272,12 @@ abstract class ControllerTestCase extends WebTestCase
     {
         $this->optionRepository = new InMemoryRepository(Option::class, 'id');
 
-        $this->twoFASStatus = new Option();
-        $this->twoFASStatus
+        $this->fungioStatus = new Option();
+        $this->fungioStatus
             ->setName(OptionInterface::STATUS)
             ->setValue(true);
 
-        $this->optionRepository->add($this->twoFASStatus);
+        $this->optionRepository->add($this->fungioStatus);
 
         $optionPersister = new InMemoryObjectPersister($this->optionRepository);
         $this->container->set('two_fas_two_factor.option_persister', $optionPersister);
@@ -285,7 +285,7 @@ abstract class ControllerTestCase extends WebTestCase
 
     protected function mockTokenRepository()
     {
-        $this->tokenRepository = new InMemoryRepository(TwoFASRememberMeToken::class, 'series');
+        $this->tokenRepository = new InMemoryRepository(FungioRememberMeToken::class, 'series');
         $tokenPersister        = new InMemoryObjectPersister($this->tokenRepository);
         $this->container->set('two_fas_two_factor.remember_me_persister', $tokenPersister);
     }
@@ -316,7 +316,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function mockObjectManager()
     {
         $objectManager = $this->getMockForAbstractClass(ObjectManager::class);
-        $objectManager->method('merge')->willReturn($this->twoFASUser);
+        $objectManager->method('merge')->willReturn($this->fungioUser);
 
         $this->container->set('two_fas_two_factor.object_manager', $objectManager);
     }
@@ -364,11 +364,11 @@ abstract class ControllerTestCase extends WebTestCase
      * @param string        $tokenValue
      * @param \DateTime     $lastUsed
      *
-     * @return TwoFASRememberMeToken
+     * @return FungioRememberMeToken
      */
     protected function getRememberMeToken(UserInterface $user, $series, $tokenValue, \DateTime $lastUsed)
     {
-        $token = new TwoFASRememberMeToken();
+        $token = new FungioRememberMeToken();
         $token
             ->setSeries($series)
             ->setValue($tokenValue)
@@ -386,7 +386,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function openAuthentication($channel)
     {
         $authentication = $this->getAuthentication($channel);
-        $authentication->setUser($this->twoFASUser);
+        $authentication->setUser($this->fungioUser);
 
         $this->authenticationManager->method('getOpenAuthentications')->willReturn(new ArrayCollection([$authentication]));
     }
@@ -394,7 +394,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function openTotpAuthentication()
     {
         $authentication = $this->getAuthentication(Methods::TOTP);
-        $authentication->setUser($this->twoFASUser);
+        $authentication->setUser($this->fungioUser);
 
         $this->authenticationManager->method('openTotpAuthentication')->willReturn($authentication);
     }

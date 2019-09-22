@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Cache;
+namespace Fungio\TwoFactorBundle\Cache;
 
 use Traversable;
 use Psr\SimpleCache\CacheInterface;
@@ -9,7 +9,7 @@ use Psr\SimpleCache\CacheInterface;
  * Used if cache is disabled.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Cache
+ * @package Fungio\TwoFactorBundle\Cache
  */
 class EmptyCacheStorage implements CacheInterface
 {

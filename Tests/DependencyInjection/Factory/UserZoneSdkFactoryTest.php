@@ -1,21 +1,21 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
-use TwoFAS\Encryption\Cryptographer;
-use TwoFAS\Encryption\DummyKeyStorage;
-use TwoFAS\TwoFactorBundle\DependencyInjection\Factory\AccountSdkFactory;
-use TwoFAS\TwoFactorBundle\Model\Entity\Option;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
-use TwoFAS\TwoFactorBundle\Model\Persister\InMemoryRepository;
-use TwoFAS\TwoFactorBundle\Storage\OAuthTokenStorage;
-use TwoFAS\TwoFactorBundle\TwoFASTwoFactorBundle;
-use TwoFAS\Account\OAuth\Interfaces\TokenStorage;
-use TwoFAS\Account\OAuth\TokenType;
-use TwoFAS\Account\TwoFAS;
+use Fungio\Encryption\Cryptographer;
+use Fungio\Encryption\DummyKeyStorage;
+use Fungio\TwoFactorBundle\DependencyInjection\Factory\AccountSdkFactory;
+use Fungio\TwoFactorBundle\Model\Entity\Option;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
+use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
+use Fungio\TwoFactorBundle\Storage\OAuthTokenStorage;
+use Fungio\TwoFactorBundle\FungioTwoFactorBundle;
+use Fungio\Account\OAuth\Interfaces\TokenStorage;
+use Fungio\Account\OAuth\TokenType;
+use Fungio\Account\Fungio;
 
 class AccountSdkFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,11 +52,11 @@ class AccountSdkFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return TwoFAS
+     * @return Fungio
      */
     private function getInstance()
     {
-        $account = new TwoFAS($this->tokenStorage, TokenType::symfony(), $this->getHeaders());
+        $account = new Fungio($this->tokenStorage, TokenType::symfony(), $this->getHeaders());
         $account->setBaseUrl('http://localhost');
 
         return $account;
@@ -68,7 +68,7 @@ class AccountSdkFactoryTest extends \PHPUnit_Framework_TestCase
     private function getHeaders()
     {
         $headers = [
-            'Plugin-Version' => TwoFASTwoFactorBundle::VERSION,
+            'Plugin-Version' => FungioTwoFactorBundle::VERSION,
             'Php-Version'    => phpversion(),
             'App-Version'    => Kernel::VERSION,
             'App-Name'       => 'Symfony-FooBar',

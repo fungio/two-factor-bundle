@@ -1,20 +1,20 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\DependencyInjection\Factory;
+namespace Fungio\TwoFactorBundle\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
-use TwoFAS\TwoFactorBundle\TwoFASTwoFactorBundle;
-use TwoFAS\Account\OAuth\Interfaces\TokenStorage;
-use TwoFAS\Account\OAuth\TokenType;
-use TwoFAS\Account\TwoFAS;
+use Fungio\TwoFactorBundle\FungioTwoFactorBundle;
+use Fungio\Account\OAuth\Interfaces\TokenStorage;
+use Fungio\Account\OAuth\TokenType;
+use Fungio\Account\Fungio;
 
 /**
  * Factory for Account SDK.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\DependencyInjection\Factory
+ * @package Fungio\TwoFactorBundle\DependencyInjection\Factory
  */
 class AccountSdkFactory
 {
@@ -60,19 +60,19 @@ class AccountSdkFactory
     }
 
     /**
-     * @return TwoFAS
+     * @return Fungio
      */
     public function createInstance()
     {
         $headers = [
-            'Plugin-Version' => TwoFASTwoFactorBundle::VERSION,
+            'Plugin-Version' => FungioTwoFactorBundle::VERSION,
             'Php-Version'    => phpversion(),
             'App-Version'    => Kernel::VERSION,
             'App-Name'       => $this->appName,
             'App-Url'        => $this->getUrl()
         ];
 
-        $account = new TwoFAS($this->tokenStorage, $this->tokenType, $headers);
+        $account = new Fungio($this->tokenStorage, $this->tokenType, $headers);
 
         if (!is_null($this->baseUrl)) {
             $account->setBaseUrl($this->baseUrl);

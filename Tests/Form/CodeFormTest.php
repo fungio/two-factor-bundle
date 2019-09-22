@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Tests\Form;
+namespace Fungio\TwoFactorBundle\Tests\Form;
 
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Form;
@@ -8,7 +8,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use TwoFAS\TwoFactorBundle\Form\CodeForm;
+use Fungio\TwoFactorBundle\Form\CodeForm;
 
 class CodeFormTest extends TypeTestCase
 {

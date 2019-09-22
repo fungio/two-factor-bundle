@@ -1,7 +1,7 @@
-TwoFAS/TwoFactorBundle
+Fungio/TwoFactorBundle
 ======================
 
-Welcome to TwoFAS/TwoFactorBundle.
+Welcome to Fungio/TwoFactorBundle.
 
 This documentation will help you to install and configure TwoFactorBundle.
 
@@ -22,4 +22,4 @@ Tutorial
 Demo
 ----
 
-Our demo application is available on [Github](https://github.com/twofas/two-factor-demo) and is a complete Symfony application created to showcase TwoFactoBundle features.
+Our demo application is available on [Github](https://github.com/fungio/two-factor-demo) and is a complete Symfony application created to showcase TwoFactoBundle features.

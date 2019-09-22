@@ -1,20 +1,20 @@
 <?php
 
-namespace TwoFAS\TwoFactorBundle\Security\Voter;
+namespace Fungio\TwoFactorBundle\Security\Voter;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
-use TwoFAS\TwoFactorBundle\Model\Entity\UserInterface as TwoFASUserInterface;
-use TwoFAS\TwoFactorBundle\Storage\UserStorageInterface;
+use Fungio\TwoFactorBundle\Model\Entity\RememberMeTokenInterface;
+use Fungio\TwoFactorBundle\Model\Entity\UserInterface as FungioUserInterface;
+use Fungio\TwoFactorBundle\Storage\UserStorageInterface;
 
 /**
  * Check that logged user can remove only own devices.
  *
  * @author Krystian Dąbek <k.dabek@2fas.com>
- * @package TwoFAS\TwoFactorBundle\Security\Voter
+ * @package Fungio\TwoFactorBundle\Security\Voter
  */
 class TrustedDeviceVoter extends Voter
 {
@@ -70,19 +70,19 @@ class TrustedDeviceVoter extends Voter
             return false;
         }
 
-        /** @var TwoFASUserInterface $twoFASUser */
-        $twoFASUser = $this->objectManager->merge($this->userStorage->getUser());
+        /** @var FungioUserInterface $fungioUser */
+        $fungioUser = $this->objectManager->merge($this->userStorage->getUser());
 
-        return $this->canRemove($twoFASUser, $subject);
+        return $this->canRemove($fungioUser, $subject);
     }
 
     /**
-     * @param TwoFASUserInterface      $user
+     * @param FungioUserInterface      $user
      * @param RememberMeTokenInterface $token
      *
      * @return bool
      */
-    private function canRemove(TwoFASUserInterface $user, RememberMeTokenInterface $token)
+    private function canRemove(FungioUserInterface $user, RememberMeTokenInterface $token)
     {
         return $user === $token->getUser();
     }
