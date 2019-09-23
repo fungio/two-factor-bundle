@@ -12,11 +12,11 @@ use \ReflectionClass;
  */
 final class CacheKeys
 {
-    const LOGIN      = 'two_fas_two_factor.cache.login';
-    const TOKEN      = 'two_fas_two_factor.cache.token';
-    const STATUS     = 'two_fas_two_factor.cache.status';
-    const CONFIGURED = 'two_fas_two_factor.cache.configured';
-    const ENABLED    = 'two_fas_two_factor.cache.enabled';
+    const LOGIN      = 'fungio_two_factor.cache.login';
+    const TOKEN      = 'fungio_two_factor.cache.token';
+    const STATUS     = 'fungio_two_factor.cache.status';
+    const CONFIGURED = 'fungio_two_factor.cache.configured';
+    const ENABLED    = 'fungio_two_factor.cache.enabled';
 
     /**
      * @return array

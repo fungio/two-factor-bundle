@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Storage;
 
-use Fungio\Encryption\AESKey;
+use TwoFAS\Encryption\AESKey;
 use Fungio\TwoFactorBundle\Storage\EncryptionStorage;
 
 class EncryptionStorageTest extends \PHPUnit_Framework_TestCase

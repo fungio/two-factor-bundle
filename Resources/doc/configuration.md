@@ -29,7 +29,7 @@ $ php app/console fungio:encryption-key:create
 $ php bin/console fungio:encryption-key:create
 ```
 
-Command the print encryption key in the console so you have to copy it and paste in your config.yml under the *two_fas_two_factor.encryption_key*
+Command the print encryption key in the console so you have to copy it and paste in your config.yml under the *fungio_two_factor.encryption_key*
 
 We recommend that you keep it in parameters.yml (and update your parameters.yml.dist file)
 

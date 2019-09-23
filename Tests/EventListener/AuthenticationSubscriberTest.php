@@ -2,8 +2,8 @@
 
 namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
-use Fungio\Api\Code\AcceptedCode;
-use Fungio\Api\Code\RejectedCodeCannotRetry;
+use TwoFAS\Api\Code\AcceptedCode;
+use TwoFAS\Api\Code\RejectedCodeCannotRetry;
 use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
 use Fungio\TwoFactorBundle\EventListener\AuthenticationSubscriber;
 use Fungio\TwoFactorBundle\Util\AuthenticationManager;

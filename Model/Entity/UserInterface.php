@@ -3,8 +3,8 @@
 namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Exception\Exception as ApiException;
 
 /**
  * Contract for User Model class.

@@ -4,7 +4,7 @@ namespace Fungio\TwoFactorBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Fungio\Api\TotpSecretGenerator;
+use TwoFAS\Api\TotpSecretGenerator;
 
 /**
  * Validates TOTP Secret

@@ -4,10 +4,10 @@ namespace Fungio\TwoFactorBundle\Tests\Util;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Fungio\Api\Authentication as FungioAuthentication;
-use Fungio\Api\Methods;
-use Fungio\Api\TotpSecretGenerator;
-use Fungio\Api\Fungio;
+use TwoFAS\Api\Authentication as FungioAuthentication;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\TotpSecretGenerator;
+use TwoFAS\Api\TwoFAS;
 use Fungio\TwoFactorBundle\Model\Entity\Authentication;
 use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use Fungio\TwoFactorBundle\Model\Entity\User;
@@ -54,7 +54,7 @@ class AuthenticationManagerTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
 
         $this->api = $this
-            ->getMockBuilder(Fungio::class)
+            ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()
             ->setMethods(['requestAuth', 'requestAuthViaTotp'])
             ->getMock();

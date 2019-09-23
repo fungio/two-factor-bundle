@@ -3,7 +3,7 @@
 namespace Fungio\TwoFactorBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\IntegrationUser;
 
 /**
  * Event fires when configuration is completed.

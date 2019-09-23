@@ -3,8 +3,8 @@
 namespace Fungio\TwoFactorBundle\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Methods;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Methods;
 
 /**
  * Model class for Fungio User.

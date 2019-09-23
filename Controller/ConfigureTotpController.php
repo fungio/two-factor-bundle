@@ -6,9 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Fungio\Api\Exception\Exception as ApiException;
-use Fungio\Api\Methods;
-use Fungio\Api\TotpSecretGenerator;
+use TwoFAS\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\TotpSecretGenerator;
 use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
 use Fungio\TwoFactorBundle\Event\FungioEvents;
 use Fungio\TwoFactorBundle\Form\CodeForm;
@@ -36,8 +36,8 @@ class ConfigureTotpController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $authenticationManager = $this->get('two_fas_two_factor.util.authentication_manager');
-            $userStorage           = $this->get('two_fas_two_factor.storage.user_session_storage');
+            $authenticationManager = $this->get('fungio_two_factor.util.authentication_manager');
+            $userStorage           = $this->get('fungio_two_factor.storage.user_session_storage');
             $dispatcher            = $this->get('event_dispatcher');
             $user                  = $this->getFungioUser();
             $data                  = $form->getData();

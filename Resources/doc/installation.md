@@ -56,7 +56,7 @@ Load the routing definition of the bundle in the application (usually in the
 
 ```yaml
 # app/config/routing.yml
-two_fas_two_factor:
+fungio_two_factor:
     resource: "@FungioTwoFactorBundle/Resources/config/routing.xml"
     prefix:   /2fas
 ```
@@ -70,7 +70,7 @@ in your application:
 
 ```yaml
 # app/config/config.yml
-two_fas_two_factor:
+fungio_two_factor:
     account_name: ~
     db_driver: orm
     encryption_key: ~

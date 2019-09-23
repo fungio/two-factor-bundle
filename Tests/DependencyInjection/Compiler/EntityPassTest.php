@@ -29,7 +29,7 @@ class EntityPassTest extends \PHPUnit_Framework_TestCase
 
     public function testDoctrineOrmDriver()
     {
-        $this->containerBuilder->setParameter('two_fas_two_factor.db_driver', 'orm');
+        $this->containerBuilder->setParameter('fungio_two_factor.db_driver', 'orm');
 
         $this->pass->process($this->containerBuilder);
 
@@ -51,7 +51,7 @@ class EntityPassTest extends \PHPUnit_Framework_TestCase
 
     public function testCustomDriver()
     {
-        $this->containerBuilder->setParameter('two_fas_two_factor.db_driver', 'custom');
+        $this->containerBuilder->setParameter('fungio_two_factor.db_driver', 'custom');
 
         $this->pass->process($this->containerBuilder);
 
@@ -75,7 +75,7 @@ class EntityPassTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(\InvalidArgumentException::class, 'Invalid db driver');
 
-        $this->containerBuilder->setParameter('two_fas_two_factor.db_driver', 'foo');
+        $this->containerBuilder->setParameter('fungio_two_factor.db_driver', 'foo');
 
         $this->pass->process($this->containerBuilder);
     }

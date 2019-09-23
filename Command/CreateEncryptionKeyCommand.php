@@ -5,7 +5,7 @@ namespace Fungio\TwoFactorBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Fungio\Encryption\AESGeneratedKey;
+use TwoFAS\Encryption\AESGeneratedKey;
 
 /**
  * Creates encryption key for encrypt Two FAS Data (Login and Token)

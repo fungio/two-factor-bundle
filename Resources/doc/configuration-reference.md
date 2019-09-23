@@ -9,7 +9,7 @@ in your application:
 
 ```yaml
 # app/config/config.yml
-two_fas_two_factor:
+fungio_two_factor:
     account_name: ~
     db_driver: orm
     encryption_key: ~
@@ -23,7 +23,7 @@ Full configuration for TwoFactorBundle:
 
 ```yaml
 # app/config/config.yml
-two_fas_two_factor:
+fungio_two_factor:
     account_name: ~
     db_driver: orm
     encryption_key: ~

@@ -19,19 +19,19 @@ class RememberMePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $secret        = $container->getParameter('two_fas_two_factor.encryption_key');
+        $secret        = $container->getParameter('fungio_two_factor.encryption_key');
         $firewalls     = $this->getFirewalls($container);
         $userProviders = $this->getUserProviders($container);
         $authProviders = $this->getAuthProviders($container, $firewalls, $secret);
 
         // Remember me service factory
-        $rememberMeServiceFactory = $container->getDefinition('two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
+        $rememberMeServiceFactory = $container->getDefinition('fungio_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
         $rememberMeServiceFactory->replaceArgument(0, $userProviders);
         $rememberMeServiceFactory->replaceArgument(1, $secret);
-        $rememberMeServiceFactory->replaceArgument(6, ['lifetime' => $container->getParameter('two_fas_two_factor.remember_me.lifetime')]);
+        $rememberMeServiceFactory->replaceArgument(6, ['lifetime' => $container->getParameter('fungio_two_factor.remember_me.lifetime')]);
 
         // Authentication manager
-        $authenticationManager = $container->getDefinition('two_fas_two_factor.authentication.manager');
+        $authenticationManager = $container->getDefinition('fungio_two_factor.authentication.manager');
         $authenticationManager->replaceArgument(0, $authProviders);
     }
 
@@ -42,7 +42,7 @@ class RememberMePass implements CompilerPassInterface
      */
     private function getFirewalls(ContainerBuilder $container)
     {
-        $firewalls = $container->getParameter('two_fas_two_factor.firewalls');
+        $firewalls = $container->getParameter('fungio_two_factor.firewalls');
 
         if (0 === count($firewalls)) {
             throw new \RuntimeException('You must configure at least one firewall.');
@@ -91,7 +91,7 @@ class RememberMePass implements CompilerPassInterface
         $authProviders = [];
 
         foreach ($firewalls as $id) {
-            $authProvider = $container->getDefinition('two_fas_two_factor.authentication.provider.remember_me');
+            $authProvider = $container->getDefinition('fungio_two_factor.authentication.provider.remember_me');
             $authProvider
                 ->replaceArgument(0, new Reference('security.user_checker.' . $id))
                 ->replaceArgument(1, $secret)

@@ -5,7 +5,7 @@ namespace Fungio\TwoFactorBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Fungio\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\Exception\Exception as ApiException;
 
 /**
  * Dashboard for Two FAS (2FA status, enabled channels, list of trusted devices).
@@ -22,7 +22,7 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
-        $configuration   = $this->get('two_fas_two_factor.util.configuration_checker');
+        $configuration   = $this->get('fungio_two_factor.util.configuration_checker');
         $user            = $this->getFungioUser();
 
         return $this->render('FungioTwoFactorBundle:Dashboard:index.html.twig', [

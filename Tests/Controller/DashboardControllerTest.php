@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use Fungio\Api\Methods;
+use TwoFAS\Api\Methods;
 
 class DashboardControllerTest extends ControllerTestCase
 {

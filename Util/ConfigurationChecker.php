@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Util;
 
-use Fungio\Api\Methods;
+use TwoFAS\Api\Methods;
 use Psr\SimpleCache\CacheInterface;
 use Fungio\TwoFactorBundle\Cache\CacheKeys;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;

@@ -3,8 +3,8 @@
 namespace Fungio\TwoFactorBundle\Proxy;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\Code\Code;
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\Code\Code;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 

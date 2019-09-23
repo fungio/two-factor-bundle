@@ -7,8 +7,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage as
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Fungio\Api\Code\AcceptedCode;
-use Fungio\Api\Code\RejectedCodeCanRetry;
+use TwoFAS\Api\Code\AcceptedCode;
+use TwoFAS\Api\Code\RejectedCodeCanRetry;
 use Fungio\TwoFactorBundle\Event\CodeCheckEvent;
 use Fungio\TwoFactorBundle\EventListener\TokenListener;
 use Fungio\TwoFactorBundle\Model\Entity\Authentication;

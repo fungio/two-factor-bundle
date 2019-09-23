@@ -60,8 +60,8 @@ class GenerateQrCodeController extends Controller
     protected function getQrCode(Request $request, $totpSecret, $mobileSecret)
     {
         /** @var TotpQrCodeGeneratorInterface $qrCodeGenerator */
-        $qrCodeGenerator = $this->get('two_fas_two_factor.util.totp_qr_code_generator');
-        $description     = $this->getParameter('two_fas_two_factor.account_name');
+        $qrCodeGenerator = $this->get('fungio_two_factor.util.totp_qr_code_generator');
+        $description     = $this->getParameter('fungio_two_factor.account_name');
 
         if (is_null($description)) {
             $description = 'Symfony ' . Kernel::VERSION . '@' . $request->getHttpHost();

@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface as FungioUserInterface;
 use Fungio\TwoFactorBundle\Util\IntegrationUserManager;
 use Fungio\TwoFactorBundle\Util\UserManager;

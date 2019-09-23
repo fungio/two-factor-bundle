@@ -2,8 +2,8 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use Fungio\Api\Methods;
-use Fungio\Api\TotpSecretGenerator;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\TotpSecretGenerator;
 
 class ChannelControllerTest extends ControllerTestCase
 {

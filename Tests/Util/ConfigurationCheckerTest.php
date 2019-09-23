@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Util;
 
-use Fungio\Api\Methods;
+use TwoFAS\Api\Methods;
 use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
 use Fungio\TwoFactorBundle\Model\Entity\Option;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;

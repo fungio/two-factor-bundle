@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Util;
 
-use Fungio\Api\QrCodeGenerator;
+use TwoFAS\Api\QrCodeGenerator;
 
 /**
  * Generates Qr Code includes TOTP(Time-based One-time Password Algorithm) secret.

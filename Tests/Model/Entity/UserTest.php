@@ -3,7 +3,7 @@
 namespace Fungio\TwoFactorBundle\Tests\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\Methods;
+use TwoFAS\Api\Methods;
 use Fungio\TwoFactorBundle\Entity\Authentication;
 use Fungio\TwoFactorBundle\Entity\RememberMeToken;
 use Fungio\TwoFactorBundle\Model\Entity\User;

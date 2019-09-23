@@ -7,8 +7,8 @@ use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
-use Fungio\Api\Fungio;
-use Fungio\Encryption\Cryptographer;
+use TwoFAS\Api\TwoFAS;
+use TwoFAS\Encryption\Cryptographer;
 use Fungio\TwoFactorBundle\Cache\CacheKeys;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
@@ -91,7 +91,7 @@ class ApiSdkFactory
             'App-Url'        => $this->getUrl()
         ];
 
-        $fungio = new Fungio($this->getLogin(), $this->getToken(), $headers);
+        $fungio = new TwoFAS($this->getLogin(), $this->getToken(), $headers);
 
         if (!is_null($this->baseUrl)) {
             $fungio->setBaseUrl($this->baseUrl);

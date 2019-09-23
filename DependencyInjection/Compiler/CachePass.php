@@ -20,16 +20,16 @@ class CachePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $cacheEnabled = $container->getParameter('two_fas_two_factor.cache.enabled');
+        $cacheEnabled = $container->getParameter('fungio_two_factor.cache.enabled');
 
         if (!$cacheEnabled) {
-            $container->register('two_fas_two_factor.cache.storage', EmptyCacheStorage::class);
+            $container->register('fungio_two_factor.cache.storage', EmptyCacheStorage::class);
             return;
         }
 
         $container->setAlias(
-            'two_fas_two_factor.cache.storage',
-            new Alias($container->getParameter('two_fas_two_factor.cache.service'))
+            'fungio_two_factor.cache.storage',
+            new Alias($container->getParameter('fungio_two_factor.cache.service'))
         );
     }
 }

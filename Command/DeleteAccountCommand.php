@@ -85,7 +85,7 @@ class DeleteAccountCommand extends ContainerAwareCommand
      */
     private function getOptionPersister()
     {
-        return $this->getContainer()->get('two_fas_two_factor.option_persister');
+        return $this->getContainer()->get('fungio_two_factor.option_persister');
     }
 
     /**
@@ -93,7 +93,7 @@ class DeleteAccountCommand extends ContainerAwareCommand
      */
     private function getUserPersister()
     {
-        return $this->getContainer()->get('two_fas_two_factor.user_persister');
+        return $this->getContainer()->get('fungio_two_factor.user_persister');
     }
 
     /**
@@ -101,6 +101,6 @@ class DeleteAccountCommand extends ContainerAwareCommand
      */
     protected function getCache()
     {
-        return $this->getContainer()->get('two_fas_two_factor.cache.storage');
+        return $this->getContainer()->get('fungio_two_factor.cache.storage');
     }
 }

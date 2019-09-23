@@ -3,8 +3,8 @@
 namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
-use Fungio\Api\Exception\Exception as ApiException;
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
 
@@ -31,7 +31,7 @@ class Controller extends BaseController
      */
     protected function getFungioUser()
     {
-        $userStorage = $this->get('two_fas_two_factor.storage.user_session_storage');
+        $userStorage = $this->get('fungio_two_factor.storage.user_session_storage');
         $user        = $userStorage->getUser();
 
         if (is_null($user)) {
@@ -57,7 +57,7 @@ class Controller extends BaseController
     protected function getTrustedDevices()
     {
         /** @var ObjectPersisterInterface $tokenPersister */
-        $tokenPersister = $this->get('two_fas_two_factor.remember_me_persister');
+        $tokenPersister = $this->get('fungio_two_factor.remember_me_persister');
         $tokens         = $tokenPersister->getRepository()->findBy(['user' => $this->getFungioUser()]);
 
         return $tokens;

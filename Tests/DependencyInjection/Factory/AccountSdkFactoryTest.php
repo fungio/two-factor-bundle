@@ -4,16 +4,16 @@ namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Fungio\Encryption\Cryptographer;
-use Fungio\Encryption\DummyKeyStorage;
+use TwoFAS\Encryption\Cryptographer;
+use TwoFAS\Encryption\DummyKeyStorage;
 use Fungio\TwoFactorBundle\DependencyInjection\Factory\AccountSdkFactory;
 use Fungio\TwoFactorBundle\Model\Entity\Option;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
 use Fungio\TwoFactorBundle\Storage\OAuthTokenStorage;
-use Fungio\Account\OAuth\Interfaces\TokenStorage;
-use Fungio\Account\OAuth\TokenType;
-use Fungio\Account\Fungio;
+use TwoFAS\Account\OAuth\Interfaces\TokenStorage;
+use TwoFAS\Account\OAuth\TokenType;
+use TwoFAS\Account\TwoFAS;
 
 class AccountSdkFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,6 +46,6 @@ class AccountSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(Fungio::class, $this->factory->createInstance());
+        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
     }
 }

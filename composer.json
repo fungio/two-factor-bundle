@@ -46,8 +46,9 @@
         "twofas/simple-login-form-bundle": "^1.0"
     },
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "Fungio\\TwoFactorBundle\\": ""
         }
-    }
+    },
+    "target-dir": "Fungio/TwoFactorBundle"
 }

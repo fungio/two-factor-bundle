@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Translation\TranslatorInterface;
-use Fungio\Api\Exception\AuthorizationException;
-use Fungio\Api\Exception\ValidationException;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Api\Exception\AuthorizationException;
+use TwoFAS\Api\Exception\ValidationException;
+use TwoFAS\ValidationRules\ValidationRules;
 
 /**
  * Listen for Fungio Api Exceptions, add flash, etc.

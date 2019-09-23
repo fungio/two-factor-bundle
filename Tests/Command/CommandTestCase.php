@@ -11,8 +11,8 @@ use Fungio\TwoFactorBundle\Model\Entity\Option;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepositoryInterface;
-use Fungio\Account\Integration;
-use Fungio\Account\Key;
+use TwoFAS\Account\Integration;
+use TwoFAS\Account\Key;
 
 class CommandTestCase extends KernelTestCase
 {
@@ -57,7 +57,7 @@ class CommandTestCase extends KernelTestCase
         $this->optionRepository  = new InMemoryRepository(Option::class, 'id');
         $optionPersister         = new InMemoryObjectPersister($this->optionRepository);
 
-        $this->container->set('two_fas_two_factor.option_persister', $optionPersister);
+        $this->container->set('fungio_two_factor.option_persister', $optionPersister);
     }
 
     /**

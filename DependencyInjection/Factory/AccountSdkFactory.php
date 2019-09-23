@@ -6,9 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
 use Fungio\TwoFactorBundle\FungioTwoFactorBundle;
-use Fungio\Account\OAuth\Interfaces\TokenStorage;
-use Fungio\Account\OAuth\TokenType;
-use Fungio\Account\Fungio;
+use TwoFAS\Account\OAuth\Interfaces\TokenStorage;
+use TwoFAS\Account\OAuth\TokenType;
+use TwoFAS\Account\TwoFAS;
 
 /**
  * Factory for Account SDK.
@@ -72,7 +72,7 @@ class AccountSdkFactory
             'App-Url'        => $this->getUrl()
         ];
 
-        $account = new Fungio($this->tokenStorage, $this->tokenType, $headers);
+        $account = new TwoFAS($this->tokenStorage, $this->tokenType, $headers);
 
         if (!is_null($this->baseUrl)) {
             $account->setBaseUrl($this->baseUrl);

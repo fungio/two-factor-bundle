@@ -11,8 +11,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
-use Fungio\Api\Exception\AuthorizationException;
-use Fungio\Api\Exception\ValidationException;
+use TwoFAS\Api\Exception\AuthorizationException;
+use TwoFAS\Api\Exception\ValidationException;
 use Fungio\TwoFactorBundle\EventListener\ApiExceptionListener;
 
 class ApiExceptionListenerTest extends \PHPUnit_Framework_TestCase

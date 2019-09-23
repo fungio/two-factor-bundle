@@ -14,12 +14,12 @@ use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Translation\TranslatorInterface;
-use Fungio\Api\Code\AcceptedCode;
-use Fungio\Api\Code\RejectedCodeCannotRetry;
-use Fungio\Api\Code\RejectedCodeCanRetry;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Methods;
-use Fungio\Api\Fungio;
+use TwoFAS\Api\Code\AcceptedCode;
+use TwoFAS\Api\Code\RejectedCodeCannotRetry;
+use TwoFAS\Api\Code\RejectedCodeCanRetry;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\TwoFAS;
 use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
 use Fungio\TwoFactorBundle\Model\Entity\Authentication;
 use Fungio\TwoFactorBundle\Model\Entity\Option;
@@ -178,7 +178,7 @@ abstract class ControllerTestCase extends WebTestCase
     protected function setAuthenticated(AbstractToken $token, $firewall)
     {
         $session      = $this->container->get('session');
-        $tokenStorage = $this->container->get('two_fas_two_factor.storage.token_storage');
+        $tokenStorage = $this->container->get('fungio_two_factor.storage.token_storage');
 
         $tokenStorage->setToken($token);
 
@@ -230,14 +230,14 @@ abstract class ControllerTestCase extends WebTestCase
     protected function mockApi()
     {
         $this->api = $this
-            ->getMockBuilder(Fungio::class)
+            ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()
             ->setMethods(['requestAuth', 'requestAuthViaTotp', 'checkCode'])
             ->getMock();
 
         $this->api->setBaseUrl('http://localhost');
 
-        $this->container->set('two_fas_two_factor.sdk.api', $this->api);
+        $this->container->set('fungio_two_factor.sdk.api', $this->api);
     }
 
     protected function mockIntegrationUserManager()
@@ -249,7 +249,7 @@ abstract class ControllerTestCase extends WebTestCase
             ->getMock();
 
         $this->integrationUserManager->method('findByExternalId')->willReturn($this->integrationUser);
-        $this->container->set('two_fas_two_factor.util.integration_user_manager', $this->integrationUserManager);
+        $this->container->set('fungio_two_factor.util.integration_user_manager', $this->integrationUserManager);
     }
 
     protected function mockAuthenticationManager()
@@ -257,15 +257,15 @@ abstract class ControllerTestCase extends WebTestCase
         $this->authenticationManager = $this
             ->getMockBuilder(AuthenticationManager::class)
             ->setConstructorArgs([
-                $this->container->get('two_fas_two_factor.proxy.api_provider'),
-                $this->container->get('two_fas_two_factor.authentication_persister'),
-                $this->container->get('two_fas_two_factor.object_manager'),
+                $this->container->get('fungio_two_factor.proxy.api_provider'),
+                $this->container->get('fungio_two_factor.authentication_persister'),
+                $this->container->get('fungio_two_factor.object_manager'),
                 $this->container->get('event_dispatcher'),
-                $this->container->getParameter('two_fas_two_factor.block_user_login_in_minutes')
+                $this->container->getParameter('fungio_two_factor.block_user_login_in_minutes')
             ])
             ->setMethods(['getOpenAuthentications', 'openAuthentication', 'openTotpAuthentication', 'closeAuthentications', 'blockAuthentications'])
             ->getMock();
-        $this->container->set('two_fas_two_factor.util.authentication_manager', $this->authenticationManager);
+        $this->container->set('fungio_two_factor.util.authentication_manager', $this->authenticationManager);
     }
 
     protected function mockOptionRepository()
@@ -280,21 +280,21 @@ abstract class ControllerTestCase extends WebTestCase
         $this->optionRepository->add($this->fungioStatus);
 
         $optionPersister = new InMemoryObjectPersister($this->optionRepository);
-        $this->container->set('two_fas_two_factor.option_persister', $optionPersister);
+        $this->container->set('fungio_two_factor.option_persister', $optionPersister);
     }
 
     protected function mockTokenRepository()
     {
         $this->tokenRepository = new InMemoryRepository(FungioRememberMeToken::class, 'series');
         $tokenPersister        = new InMemoryObjectPersister($this->tokenRepository);
-        $this->container->set('two_fas_two_factor.remember_me_persister', $tokenPersister);
+        $this->container->set('fungio_two_factor.remember_me_persister', $tokenPersister);
     }
 
     protected function mockUserRepository()
     {
         $this->userRepository = new InMemoryRepository(UserEntity::class, 'id');
         $userPersister        = new InMemoryObjectPersister($this->userRepository);
-        $this->container->set('two_fas_two_factor.user_persister', $userPersister);
+        $this->container->set('fungio_two_factor.user_persister', $userPersister);
     }
 
     protected function mockUserStorage()
@@ -304,13 +304,13 @@ abstract class ControllerTestCase extends WebTestCase
 
         $userStorage = new UserSessionStorage(
             $session,
-            $this->container->get('two_fas_two_factor.storage.token_storage'),
-            $this->container->get('two_fas_two_factor.object_manager'),
-            $this->container->get('two_fas_two_factor.util.user_manager'),
+            $this->container->get('fungio_two_factor.storage.token_storage'),
+            $this->container->get('fungio_two_factor.object_manager'),
+            $this->container->get('fungio_two_factor.util.user_manager'),
             $this->integrationUserManager
         );
 
-        $this->container->set('two_fas_two_factor.storage.user_session_storage', $userStorage);
+        $this->container->set('fungio_two_factor.storage.user_session_storage', $userStorage);
     }
 
     protected function mockObjectManager()
@@ -318,28 +318,28 @@ abstract class ControllerTestCase extends WebTestCase
         $objectManager = $this->getMockForAbstractClass(ObjectManager::class);
         $objectManager->method('merge')->willReturn($this->fungioUser);
 
-        $this->container->set('two_fas_two_factor.object_manager', $objectManager);
+        $this->container->set('fungio_two_factor.object_manager', $objectManager);
     }
 
     protected function mockTrustedDeviceVoter()
     {
         $this->trustedDeviceVoter = new TrustedDeviceVoter(
-            $this->container->get('two_fas_two_factor.storage.user_session_storage'),
-            $this->container->get('two_fas_two_factor.object_manager')
+            $this->container->get('fungio_two_factor.storage.user_session_storage'),
+            $this->container->get('fungio_two_factor.object_manager')
         );
 
-        $this->container->set('two_fas_two_factor.security_voter.trusted_device_voter', $this->trustedDeviceVoter);
+        $this->container->set('fungio_two_factor.security_voter.trusted_device_voter', $this->trustedDeviceVoter);
     }
 
     protected function mockConfigurationChecker()
     {
         $configurationChecker = new ConfigurationChecker(
-            $this->container->get('two_fas_two_factor.option_persister'),
-            $this->container->get('two_fas_two_factor.storage.user_session_storage'),
+            $this->container->get('fungio_two_factor.option_persister'),
+            $this->container->get('fungio_two_factor.storage.user_session_storage'),
             new EmptyCacheStorage()
         );
 
-        $this->container->set('two_fas_two_factor.util.configuration_checker', $configurationChecker);
+        $this->container->set('fungio_two_factor.util.configuration_checker', $configurationChecker);
     }
 
     /**

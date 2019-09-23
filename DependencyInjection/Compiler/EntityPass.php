@@ -21,17 +21,17 @@ use Fungio\TwoFactorBundle\Model\Entity\User as ModelUser;
  */
 class EntityPass implements CompilerPassInterface
 {
-    const OPTION_CLASS = 'two_fas_two_factor.entities.option_class';
-    const USER_CLASS = 'two_fas_two_factor.entities.user_class';
-    const AUTHENTICATION_CLASS = 'two_fas_two_factor.entities.authentication_class';
-    const REMEMBER_ME_CLASS = 'two_fas_two_factor.entities.remember_me_class';
+    const OPTION_CLASS = 'fungio_two_factor.entities.option_class';
+    const USER_CLASS = 'fungio_two_factor.entities.user_class';
+    const AUTHENTICATION_CLASS = 'fungio_two_factor.entities.authentication_class';
+    const REMEMBER_ME_CLASS = 'fungio_two_factor.entities.remember_me_class';
 
     /**
      * @inheritDoc
      */
     public function process(ContainerBuilder $container)
     {
-        $dbDriver = $container->getParameter('two_fas_two_factor.db_driver');
+        $dbDriver = $container->getParameter('fungio_two_factor.db_driver');
 
         switch ($dbDriver) {
             case 'orm':

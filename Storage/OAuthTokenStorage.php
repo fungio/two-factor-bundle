@@ -2,12 +2,12 @@
 
 namespace Fungio\TwoFactorBundle\Storage;
 
-use Fungio\Encryption\Cryptographer;
+use TwoFAS\Encryption\Cryptographer;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use Fungio\Account\OAuth\Interfaces\TokenStorage as AccountTokenStorage;
-use Fungio\Account\OAuth\Token;
-use Fungio\Account\OAuth\TokenNotFoundException;
+use TwoFAS\Account\OAuth\Interfaces\TokenStorage as AccountTokenStorage;
+use TwoFAS\Account\OAuth\Token;
+use TwoFAS\Account\OAuth\TokenNotFoundException;
 
 /**
  * Storage for OAuth tokens.

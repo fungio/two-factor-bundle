@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Fungio\Api\Exception\AuthorizationException;
-use Fungio\Api\Exception\ChannelNotActiveException;
-use Fungio\Api\Exception\Exception as ApiException;
-use Fungio\Api\Exception\ValidationException;
+use TwoFAS\Api\Exception\AuthorizationException;
+use TwoFAS\Api\Exception\ChannelNotActiveException;
+use TwoFAS\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\Exception\ValidationException;
 use Fungio\TwoFactorBundle\Form\CodeForm;
 use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use Fungio\TwoFactorBundle\Security\Token\TwoFactorToken;
@@ -59,7 +59,7 @@ class CheckCodeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $code = $form->getData()['code'];
 
-            $authenticationManager = $this->get('two_fas_two_factor.util.authentication_manager');
+            $authenticationManager = $this->get('fungio_two_factor.util.authentication_manager');
             $response              = $authenticationManager->checkCode($authentications, $code);
 
             if ($response->accepted()) {
@@ -82,8 +82,8 @@ class CheckCodeController extends Controller
     protected function getUserAuthentications($channel)
     {
         try {
-            $userStorage           = $this->get('two_fas_two_factor.storage.user_session_storage');
-            $authenticationManager = $this->get('two_fas_two_factor.util.authentication_manager');
+            $userStorage           = $this->get('fungio_two_factor.storage.user_session_storage');
+            $authenticationManager = $this->get('fungio_two_factor.util.authentication_manager');
             $user                  = $this->getFungioUser();
             $authentications       = $authenticationManager->getOpenAuthentications($user, $channel);
 
@@ -122,9 +122,9 @@ class CheckCodeController extends Controller
      */
     protected function checkSuccessful(Request $request)
     {
-        $targetPath        = 'two_fas_two_factor.redirect_after_login.path';
-        $rememberMeFactory = $this->get('two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
-        $token             = $this->get('two_fas_two_factor.storage.token_storage')->getToken();
+        $targetPath        = 'fungio_two_factor.redirect_after_login.path';
+        $rememberMeFactory = $this->get('fungio_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
+        $token             = $this->get('fungio_two_factor.storage.token_storage')->getToken();
         $session           = $request->getSession();
 
         if (!$token instanceof TwoFactorToken) {

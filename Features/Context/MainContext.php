@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Fungio\Encryption\Cryptographer;
+use TwoFAS\Encryption\Cryptographer;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
@@ -145,7 +145,7 @@ class MainContext implements KernelAwareContext
     public function channelIsDisabled($channelName, $username)
     {
         /** @var UserManager $userManager */
-        $userManager = $this->container->get('two_fas_two_factor.util.user_manager');
+        $userManager = $this->container->get('fungio_two_factor.util.user_manager');
         $user = $userManager->findByUserName($username);
         $user->disableChannel($channelName);
 
@@ -157,7 +157,7 @@ class MainContext implements KernelAwareContext
         $userNames = ['admin', 'user_totp', 'user_sms', 'user_call', 'user_email'];
 
         /** @var ObjectPersisterInterface $userPersister */
-        $userPersister = $this->container->get('two_fas_two_factor.user_persister');
+        $userPersister = $this->container->get('fungio_two_factor.user_persister');
 
         array_map(function($username) use ($userPersister) {
             /** @var UserInterface $user */
@@ -176,8 +176,8 @@ class MainContext implements KernelAwareContext
     private function fillOptions()
     {
         /** @var ObjectPersisterInterface $optionPersister */
-        $optionPersister   = $this->container->get('two_fas_two_factor.option_persister');
-        $encryptionStorage = $this->container->get('two_fas_two_factor.storage.encryption_storage');
+        $optionPersister   = $this->container->get('fungio_two_factor.option_persister');
+        $encryptionStorage = $this->container->get('fungio_two_factor.storage.encryption_storage');
         $cryptographer     = Cryptographer::getInstance($encryptionStorage);
 
         /** @var OptionInterface $login */
@@ -203,7 +203,7 @@ class MainContext implements KernelAwareContext
     public function secondFactorEnabled()
     {
         /** @var ObjectPersisterInterface $optionPersister */
-        $optionPersister = $this->container->get('two_fas_two_factor.option_persister');
+        $optionPersister = $this->container->get('fungio_two_factor.option_persister');
 
         /** @var OptionInterface|null $option */
         $option = $optionPersister->getRepository()->findOneBy(['name' => OptionInterface::STATUS]);

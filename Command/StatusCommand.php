@@ -49,6 +49,6 @@ class StatusCommand extends ContainerAwareCommand
      */
     private function getOptionPersister()
     {
-        return $this->getContainer()->get('two_fas_two_factor.option_persister');
+        return $this->getContainer()->get('fungio_two_factor.option_persister');
     }
 }

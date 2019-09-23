@@ -2,10 +2,10 @@
 
 namespace Fungio\TwoFactorBundle\Util;
 
-use Fungio\Api\Exception\IntegrationUserNotFoundException;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Exception\Exception as ApiException;
-use Fungio\Api\MobileSecretGenerator;
+use TwoFAS\Api\Exception\IntegrationUserNotFoundException;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\MobileSecretGenerator;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 use Fungio\TwoFactorBundle\Proxy\ApiProviderInterface;
 

@@ -7,11 +7,11 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Fungio\TwoFactorBundle\Command\CreateAccountCommand;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
-use Fungio\Account\Exception\AuthorizationException;
-use Fungio\Account\Exception\Exception as AccountException;
-use Fungio\Account\Exception\ValidationException;
-use Fungio\Account\Fungio;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Account\Exception\AuthorizationException;
+use TwoFAS\Account\Exception\Exception as AccountException;
+use TwoFAS\Account\Exception\ValidationException;
+use TwoFAS\Account\TwoFAS;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class CreateAccountCommandTest extends CommandTestCase
 {
@@ -35,12 +35,12 @@ class CreateAccountCommandTest extends CommandTestCase
 
         $this->questionHelper = $this->getMockBuilder(QuestionHelper::class)->setMethods(['ask'])->getMock();
         $this->sdk            = $this
-            ->getMockBuilder(Fungio::class)
+            ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()
             ->setMethods(['createClient', 'createIntegration', 'createKey', 'generateOAuthSetupToken', 'generateIntegrationSpecificToken'])
             ->getMock();
         $this->sdk->setBaseUrl('http://localhost');
-        $this->container->set('two_fas_two_factor.sdk.account', $this->sdk);
+        $this->container->set('fungio_two_factor.sdk.account', $this->sdk);
         $command->getHelperSet()->set($this->questionHelper, 'question');
     }
 
@@ -293,7 +293,7 @@ class CreateAccountCommandTest extends CommandTestCase
     {
         $this->setExpectedException(\Exception::class, 'Previous configuration has detected! Run "fungio:account:delete first if you want create new account or use another credentials."');
         $container = $this->getMockBuilder(ContainerInterface::class)->getMockForAbstractClass();
-        $container->method('get')->willReturn($this->container->get('two_fas_two_factor.option_persister'));
+        $container->method('get')->willReturn($this->container->get('fungio_two_factor.option_persister'));
         $container->method('getParameter')->willReturn('not_null');
         $this->addOption($this->getOption(OptionInterface::STATUS, 1));
         $command = new CreateAccountCommand();

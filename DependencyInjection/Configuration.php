@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('two_fas_two_factor');
+        $rootNode    = $treeBuilder->root('fungio_two_factor');
 
         $supportedDrivers = ['orm', 'custom'];
 
@@ -55,25 +55,25 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->validate()
                 ->ifTrue(function($v) {
-                    return 'custom' === $v['db_driver'] && 'two_fas_two_factor.option_persister.default' === $v['persisters']['option_persister'];
+                    return 'custom' === $v['db_driver'] && 'fungio_two_factor.option_persister.default' === $v['persisters']['option_persister'];
                 })
                 ->thenInvalid('You need to specify your own option persister when using the "custom" driver.')
             ->end()
             ->validate()
                 ->ifTrue(function($v) {
-                    return 'custom' === $v['db_driver'] && 'two_fas_two_factor.user_persister.default' === $v['persisters']['user_persister'];
+                    return 'custom' === $v['db_driver'] && 'fungio_two_factor.user_persister.default' === $v['persisters']['user_persister'];
                 })
                 ->thenInvalid('You need to specify your own user persister when using the "custom" driver.')
             ->end()
             ->validate()
                 ->ifTrue(function($v) {
-                    return 'custom' === $v['db_driver'] && 'two_fas_two_factor.authentication_persister.default' === $v['persisters']['authentication_persister'];
+                    return 'custom' === $v['db_driver'] && 'fungio_two_factor.authentication_persister.default' === $v['persisters']['authentication_persister'];
                 })
                 ->thenInvalid('You need to specify your own authentication persister when using the "custom" driver.')
             ->end()
             ->validate()
                 ->ifTrue(function($v) {
-                    return 'custom' === $v['db_driver'] && 'two_fas_two_factor.remember_me_persister.default' === $v['persisters']['remember_me_persister'];
+                    return 'custom' === $v['db_driver'] && 'fungio_two_factor.remember_me_persister.default' === $v['persisters']['remember_me_persister'];
                 })
                 ->thenInvalid('You need to specify your own remember_me persister when using the "custom" driver.')
             ->end();
@@ -118,10 +118,10 @@ class Configuration implements ConfigurationInterface
                     ->arrayNode('persisters')
                         ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('option_persister')->defaultValue('two_fas_two_factor.option_persister.default')->end()
-                                ->scalarNode('user_persister')->defaultValue('two_fas_two_factor.user_persister.default')->end()
-                                ->scalarNode('authentication_persister')->defaultValue('two_fas_two_factor.authentication_persister.default')->end()
-                                ->scalarNode('remember_me_persister')->defaultValue('two_fas_two_factor.remember_me_persister.default')->end()
+                                ->scalarNode('option_persister')->defaultValue('fungio_two_factor.option_persister.default')->end()
+                                ->scalarNode('user_persister')->defaultValue('fungio_two_factor.user_persister.default')->end()
+                                ->scalarNode('authentication_persister')->defaultValue('fungio_two_factor.authentication_persister.default')->end()
+                                ->scalarNode('remember_me_persister')->defaultValue('fungio_two_factor.remember_me_persister.default')->end()
                         ->end()
                     ->end()
                 ->end()
@@ -159,7 +159,7 @@ class Configuration implements ConfigurationInterface
                         ->addDefaultsIfNotSet()
                             ->children()
                                 ->booleanNode('enabled')->defaultValue(true)->end()
-                                ->variableNode('service')->defaultValue('two_fas_two_factor.storage.file_cache_storage')->end()
+                                ->variableNode('service')->defaultValue('fungio_two_factor.storage.file_cache_storage')->end()
                         ->end()
                     ->end()
                 ->end()

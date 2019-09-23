@@ -3,10 +3,10 @@
 namespace Fungio\TwoFactorBundle\Tests\Proxy;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\Code\AcceptedCode;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Fungio;
-use Fungio\Encryption\DummyKeyStorage;
+use TwoFAS\Api\Code\AcceptedCode;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\TwoFAS;
+use TwoFAS\Encryption\DummyKeyStorage;
 use Fungio\TwoFactorBundle\Model\Entity\Authentication;
 use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use Fungio\TwoFactorBundle\Model\Entity\User;
@@ -34,7 +34,7 @@ class ApiProviderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->api = $this->getMockBuilder(Fungio::class)->disableOriginalConstructor()->getMock();
+        $this->api = $this->getMockBuilder(TwoFAS::class)->disableOriginalConstructor()->getMock();
 
         $this->authenticationRepository = new InMemoryRepository(Authentication::class, 'id');
         $authenticationPersister        = new InMemoryObjectPersister($this->authenticationRepository);
@@ -44,7 +44,7 @@ class ApiProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testRequestAuthViaTotp()
     {
-        $fungioAuthentication = new \Fungio\Api\Authentication('13', new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
+        $fungioAuthentication = new \TwoFAS\Api\Authentication('13', new \DateTime(), (new \DateTime())->add(new \DateInterval('PT15M')));
         $user                 = new User();
         $this->api->method('requestAuthViaTotp')->willReturn($fungioAuthentication);
 

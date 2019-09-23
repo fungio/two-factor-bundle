@@ -4,10 +4,10 @@ namespace Fungio\TwoFactorBundle\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
-use Fungio\Account\Exception\AuthorizationException;
-use Fungio\Account\Exception\Exception as AccountException;
-use Fungio\Account\Exception\ValidationException;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Account\Exception\AuthorizationException;
+use TwoFAS\Account\Exception\Exception as AccountException;
+use TwoFAS\Account\Exception\ValidationException;
+use TwoFAS\ValidationRules\ValidationRules;
 
 /**
  * Class for handle exceptions from Fungio Console Commands.

@@ -12,11 +12,11 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Fungio\Encryption\Cryptographer;
+use TwoFAS\Encryption\Cryptographer;
 use Fungio\TwoFactorBundle\Model\Entity\OptionInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
-use Fungio\Account\Exception\Exception as AccountException;
-use Fungio\Account\Fungio;
+use TwoFAS\Account\Exception\Exception as AccountException;
+use TwoFAS\Account\TwoFAS;
 
 /**
  * Creates Two Factor Authentication Service Account.
@@ -255,7 +255,7 @@ class CreateAccountCommand extends ContainerAwareCommand
      */
     private function getSdk()
     {
-        return $this->getContainer()->get('two_fas_two_factor.sdk.account');
+        return $this->getContainer()->get('fungio_two_factor.sdk.account');
     }
 
     /**
@@ -263,7 +263,7 @@ class CreateAccountCommand extends ContainerAwareCommand
      */
     private function getOptionPersister()
     {
-        return $this->getContainer()->get('two_fas_two_factor.option_persister');
+        return $this->getContainer()->get('fungio_two_factor.option_persister');
     }
 
     /**
@@ -271,7 +271,7 @@ class CreateAccountCommand extends ContainerAwareCommand
      */
     private function getEncryptionKey()
     {
-        return $this->getContainer()->getParameter('two_fas_two_factor.encryption_key');
+        return $this->getContainer()->getParameter('fungio_two_factor.encryption_key');
     }
 
     /**
@@ -279,7 +279,7 @@ class CreateAccountCommand extends ContainerAwareCommand
      */
     private function getCryptographer()
     {
-        return $this->getContainer()->get('two_fas_two_factor.encryption.cryptographer');
+        return $this->getContainer()->get('fungio_two_factor.encryption.cryptographer');
     }
 
     /**
@@ -295,6 +295,6 @@ class CreateAccountCommand extends ContainerAwareCommand
      */
     protected function getCache()
     {
-        return $this->getContainer()->get('two_fas_two_factor.cache.storage');
+        return $this->getContainer()->get('fungio_two_factor.cache.storage');
     }
 }

@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Fungio\TwoFactorBundle\Entity\RememberMeToken" table="two_fas_remember_me_token">
+    <entity name="Fungio\TwoFactorBundle\Entity\RememberMeToken" table="fungio_remember_me_token">
         <id name="series" type="string" column="series" length="88">
             <generator strategy="NONE"/>
         </id>

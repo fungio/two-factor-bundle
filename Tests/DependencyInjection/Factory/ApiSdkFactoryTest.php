@@ -4,8 +4,8 @@ namespace Fungio\TwoFactorBundle\Tests\DependencyInjection\Factory;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Fungio\Api\Fungio;
-use Fungio\Encryption\Cryptographer;
+use TwoFAS\Api\TwoFAS;
+use TwoFAS\Encryption\Cryptographer;
 use Fungio\TwoFactorBundle\Cache\EmptyCacheStorage;
 use Fungio\TwoFactorBundle\DependencyInjection\Factory\ApiSdkFactory;
 use Fungio\TwoFactorBundle\Model\Entity\Option;
@@ -63,7 +63,7 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(Fungio::class, $this->factory->createInstance());
+        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
     }
 
     public function testCreateEmptyInstanceIfCannotGetOptions()
@@ -76,6 +76,6 @@ class ApiSdkFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(Fungio::class, $this->factory->createInstance());
+        $this->assertInstanceOf(TwoFAS::class, $this->factory->createInstance());
     }
 }

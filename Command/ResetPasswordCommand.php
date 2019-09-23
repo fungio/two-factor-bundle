@@ -11,9 +11,9 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Fungio\Account\Exception\Exception as AccountException;
-use Fungio\Account\Exception\NotFoundException;
-use Fungio\Account\Fungio;
+use TwoFAS\Account\Exception\Exception as AccountException;
+use TwoFAS\Account\Exception\NotFoundException;
+use TwoFAS\Account\TwoFAS;
 
 /**
  * Send instructions to reset password to email.
@@ -113,7 +113,7 @@ class ResetPasswordCommand extends ContainerAwareCommand
      */
     private function getSdk()
     {
-        return $this->getContainer()->get('two_fas_two_factor.sdk.account');
+        return $this->getContainer()->get('fungio_two_factor.sdk.account');
     }
 
     /**

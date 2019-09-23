@@ -4,10 +4,10 @@ namespace Fungio\TwoFactorBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Fungio\Api\Methods;
 use Fungio\TwoFactorBundle\Event\ChannelStatusChangedEvent;
 use Fungio\TwoFactorBundle\Event\FungioEvents;
-use Fungio\Api\Exception\Exception as ApiException;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\Exception\Exception as ApiException;
 
 /**
  * Manage 2FAS channels.
@@ -69,7 +69,7 @@ class ChannelController extends Controller
     protected function changeChannelStatus($channel, $status)
     {
         $user            = $this->getFungioUser();
-        $userStorage     = $this->get('two_fas_two_factor.storage.user_session_storage');
+        $userStorage     = $this->get('fungio_two_factor.storage.user_session_storage');
         $eventDispatcher = $this->get('event_dispatcher');
 
         if (true === (bool) $status) {

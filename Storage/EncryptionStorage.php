@@ -2,8 +2,8 @@
 
 namespace Fungio\TwoFactorBundle\Storage;
 
-use Fungio\Encryption\AESKey;
-use Fungio\Encryption\Interfaces\ReadKey;
+use TwoFAS\Encryption\AESKey;
+use TwoFAS\Encryption\Interfaces\ReadKey;
 
 /**
  * Store encryption key for Fungio Data.

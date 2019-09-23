@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Storage;
 
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 
 /**

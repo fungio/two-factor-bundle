@@ -2,7 +2,7 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Event;
 
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
 
 class IntegrationUserConfigurationCompleteEventTest extends \PHPUnit_Framework_TestCase

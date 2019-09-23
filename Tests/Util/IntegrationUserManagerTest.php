@@ -2,9 +2,9 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Util;
 
-use Fungio\Api\Exception\IntegrationUserNotFoundException;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Fungio;
+use TwoFAS\Api\Exception\IntegrationUserNotFoundException;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\TwoFAS;
 use Fungio\TwoFactorBundle\Model\Entity\User;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryObjectPersister;
 use Fungio\TwoFactorBundle\Model\Persister\InMemoryRepository;
@@ -33,7 +33,7 @@ class IntegrationUserManagerTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
 
         $this->api = $this
-            ->getMockBuilder(Fungio::class)
+            ->getMockBuilder(TwoFAS::class)
             ->disableOriginalConstructor()
             ->setMethods(['getIntegrationUserByExternalId', 'addIntegrationUser', 'updateIntegrationUser'])
             ->getMock();

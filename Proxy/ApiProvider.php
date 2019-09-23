@@ -3,12 +3,12 @@
 namespace Fungio\TwoFactorBundle\Proxy;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\Authentication as ApiAuthentication;
-use Fungio\Api\AuthenticationCollection;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Methods;
-use Fungio\Api\Fungio;
-use Fungio\Encryption\Interfaces\ReadKey;
+use TwoFAS\Api\Authentication as ApiAuthentication;
+use TwoFAS\Api\AuthenticationCollection;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Methods;
+use TwoFAS\Api\TwoFAS;
+use TwoFAS\Encryption\Interfaces\ReadKey;
 use Fungio\TwoFactorBundle\Model\Entity\AuthenticationInterface;
 use Fungio\TwoFactorBundle\Model\Entity\UserInterface;
 use Fungio\TwoFactorBundle\Model\Persister\ObjectPersisterInterface;
@@ -43,7 +43,7 @@ class ApiProvider implements ApiProviderInterface
      * @param ObjectPersisterInterface $authenticationPersister
      * @param ReadKey               $encryptionStorage
      */
-    public function __construct(Fungio $api, ObjectPersisterInterface $authenticationPersister, ReadKey $encryptionStorage)
+    public function __construct(TwoFAS $api, ObjectPersisterInterface $authenticationPersister, ReadKey $encryptionStorage)
     {
         $this->api                     = $api;
         $this->authenticationPersister = $authenticationPersister;

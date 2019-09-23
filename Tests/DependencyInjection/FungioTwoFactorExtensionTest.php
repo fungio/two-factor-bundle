@@ -11,7 +11,7 @@ class FungioTwoFactorExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    private $alias = 'two_fas_two_factor';
+    private $alias = 'fungio_two_factor';
 
     public function testDefaultConfiguration()
     {

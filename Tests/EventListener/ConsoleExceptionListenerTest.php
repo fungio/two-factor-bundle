@@ -8,10 +8,10 @@ use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Fungio\TwoFactorBundle\EventListener\ConsoleExceptionListener;
-use Fungio\Account\Exception\AuthorizationException;
-use Fungio\Account\Exception\Exception;
-use Fungio\Account\Exception\ValidationException;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Account\Exception\AuthorizationException;
+use TwoFAS\Account\Exception\Exception;
+use TwoFAS\Account\Exception\ValidationException;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class ConsoleExceptionListenerTest extends \PHPUnit_Framework_TestCase
 {

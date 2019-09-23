@@ -216,6 +216,6 @@ class SecondFactorListener
      */
     protected function saveRedirectPath(Request $request)
     {
-        $this->session->set('two_fas_two_factor.redirect_after_login.path', $request->getRequestUri());
+        $this->session->set('fungio_two_factor.redirect_after_login.path', $request->getRequestUri());
     }
 }

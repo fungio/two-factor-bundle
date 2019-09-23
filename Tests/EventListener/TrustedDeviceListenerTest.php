@@ -3,7 +3,7 @@
 namespace Fungio\TwoFactorBundle\Tests\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Fungio\Api\IntegrationUser;
+use TwoFAS\Api\IntegrationUser;
 use Fungio\TwoFactorBundle\Event\IntegrationUserConfigurationCompleteEvent;
 use Fungio\TwoFactorBundle\EventListener\TrustedDeviceListener;
 use Fungio\TwoFactorBundle\Model\Entity\RememberMeToken;

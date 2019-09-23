@@ -3,10 +3,10 @@
 namespace Fungio\TwoFactorBundle\Tests\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Fungio\Api\Exception\AuthorizationException;
-use Fungio\Api\Exception\ValidationException;
-use Fungio\Api\Methods;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Api\Exception\AuthorizationException;
+use TwoFAS\Api\Exception\ValidationException;
+use TwoFAS\Api\Methods;
+use TwoFAS\ValidationRules\ValidationRules;
 
 class CheckCodeControllerTest extends ControllerTestCase
 {

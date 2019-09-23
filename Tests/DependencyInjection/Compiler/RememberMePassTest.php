@@ -34,14 +34,14 @@ class RememberMePassTest extends \PHPUnit_Framework_TestCase
         $this->containerBuilder = new ContainerBuilder();
         $this->pass             = new RememberMePass($this->containerBuilder);
 
-        $this->containerBuilder->setParameter('two_fas_two_factor.encryption_key', 'foo');
+        $this->containerBuilder->setParameter('fungio_two_factor.encryption_key', 'foo');
     }
 
     public function testNoFirewallsConfigured()
     {
         $this->setExpectedException(\RuntimeException::class, 'You must configure at least one firewall.');
 
-        $this->containerBuilder->setParameter('two_fas_two_factor.firewalls', []);
+        $this->containerBuilder->setParameter('fungio_two_factor.firewalls', []);
 
         $this->pass->process($this->containerBuilder);
     }
@@ -61,8 +61,8 @@ class RememberMePassTest extends \PHPUnit_Framework_TestCase
 
         $this->pass->process($this->containerBuilder);
 
-        $authenticationManager    = $this->containerBuilder->getDefinition('two_fas_two_factor.authentication.manager');
-        $rememberMeServiceFactory = $this->containerBuilder->getDefinition('two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
+        $authenticationManager    = $this->containerBuilder->getDefinition('fungio_two_factor.authentication.manager');
+        $rememberMeServiceFactory = $this->containerBuilder->getDefinition('fungio_two_factor.dependency_injection_factory.persistent_remember_me_services_factory');
 
         $authenticationProviders = $authenticationManager->getArgument(0);
         $userProviders           = $rememberMeServiceFactory->getArgument(0);
@@ -91,9 +91,9 @@ class RememberMePassTest extends \PHPUnit_Framework_TestCase
         $this->setFirewalls();
         $this->containerBuilder->prependExtensionConfig('security', $this->prepareSecurityConfig());
 
-        $tokenStorageReference  = new Reference('two_fas_two_factor.storage.token_storage');
-        $tokenProviderReference = new Reference('two_fas_two_factor.security.persistent_remember_me_token_provider');
-        $rememberMeService      = new Reference('two_fas_two_factor.storage.user_session_storage');
+        $tokenStorageReference  = new Reference('fungio_two_factor.storage.token_storage');
+        $tokenProviderReference = new Reference('fungio_two_factor.security.persistent_remember_me_token_provider');
+        $rememberMeService      = new Reference('fungio_two_factor.storage.user_session_storage');
         $loggerReference        = new Reference('monolog.logger');
 
         $managerDefinition            = new Definition(AuthenticationProviderManager::class, [[], true]);
@@ -114,20 +114,20 @@ class RememberMePassTest extends \PHPUnit_Framework_TestCase
         $customMockProvider           = $this->getMockForAbstractClass(UserProviderInterface::class);
         $customProvider               = new Definition(get_class($customMockProvider));
 
-        $this->containerBuilder->setDefinition('two_fas_two_factor.authentication.manager', $managerDefinition);
-        $this->containerBuilder->setDefinition('two_fas_two_factor.authentication.provider.remember_me', $rememberMeProviderDefinition);
-        $this->containerBuilder->setDefinition('two_fas_two_factor.dependency_injection_factory.persistent_remember_me_services_factory', $rememberMeFactoryDefinition);
+        $this->containerBuilder->setDefinition('fungio_two_factor.authentication.manager', $managerDefinition);
+        $this->containerBuilder->setDefinition('fungio_two_factor.authentication.provider.remember_me', $rememberMeProviderDefinition);
+        $this->containerBuilder->setDefinition('fungio_two_factor.dependency_injection_factory.persistent_remember_me_services_factory', $rememberMeFactoryDefinition);
         $this->containerBuilder->setDefinition('security.user.provider.concrete.in_memory', $inMemoryUserProvider);
         $this->containerBuilder->setDefinition('security.user.provider.concrete.my_chain_provider', $chainUserProvider);
         $this->containerBuilder->setDefinition('security.user.provider.concrete.my_ldap_provider', $ldapUserProvider);
         $this->containerBuilder->setDefinition('security.user.provider.concrete.my_db_provider', $entityUserProvider);
         $this->containerBuilder->setDefinition('security.user.provider.concrete.my_some_custom_provider', $customProvider);
-        $this->containerBuilder->setParameter('two_fas_two_factor.remember_me.lifetime', 600);
+        $this->containerBuilder->setParameter('fungio_two_factor.remember_me.lifetime', 600);
     }
 
     private function setFirewalls()
     {
-        $this->containerBuilder->setParameter('two_fas_two_factor.firewalls', ['2fas', 'main']);
+        $this->containerBuilder->setParameter('fungio_two_factor.firewalls', ['2fas', 'main']);
     }
 
     private function prepareSecurityConfig()

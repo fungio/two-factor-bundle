@@ -56,8 +56,8 @@ class DeleteAccountCommandTest extends KernelTestCase
         $this->userRepository = new InMemoryRepository(UserEntity::class, 'id');
         $userPersister        = new InMemoryObjectPersister($this->userRepository);
 
-        $container->set('two_fas_two_factor.option_persister', $optionPersister);
-        $container->set('two_fas_two_factor.user_persister', $userPersister);
+        $container->set('fungio_two_factor.option_persister', $optionPersister);
+        $container->set('fungio_two_factor.user_persister', $userPersister);
     }
 
     public function testExit()

@@ -3,7 +3,7 @@
 namespace Fungio\TwoFactorBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use Fungio\Api\Code\Code;
+use TwoFAS\Api\Code\Code;
 
 /**
  * Event fires when 2FAS Code is used (check code).

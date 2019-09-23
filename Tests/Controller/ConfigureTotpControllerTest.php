@@ -2,11 +2,11 @@
 
 namespace Fungio\TwoFactorBundle\Tests\Controller;
 
-use Fungio\Api\Exception\AuthorizationException;
-use Fungio\Api\Exception\ValidationException;
-use Fungio\Api\IntegrationUser;
-use Fungio\Api\Methods;
-use Fungio\ValidationRules\ValidationRules;
+use TwoFAS\Api\Exception\AuthorizationException;
+use TwoFAS\Api\Exception\ValidationException;
+use TwoFAS\Api\IntegrationUser;
+use TwoFAS\Api\Methods;
+use TwoFAS\ValidationRules\ValidationRules;
 use Fungio\TwoFactorBundle\EventListener\TrustedDeviceListener;
 
 class ConfigureTotpControllerTest extends ControllerTestCase
@@ -353,11 +353,11 @@ class ConfigureTotpControllerTest extends ControllerTestCase
     protected function mockTrustedDeviceListener()
     {
         $trustedDeviceListener = new TrustedDeviceListener(
-            $this->container->get('two_fas_two_factor.storage.user_session_storage'),
-            $this->container->get('two_fas_two_factor.object_manager'),
-            $this->container->get('two_fas_two_factor.remember_me_persister')
+            $this->container->get('fungio_two_factor.storage.user_session_storage'),
+            $this->container->get('fungio_two_factor.object_manager'),
+            $this->container->get('fungio_two_factor.remember_me_persister')
         );
 
-        $this->container->set('two_fas_two_factor.event_listener.trusted_device', $trustedDeviceListener);
+        $this->container->set('fungio_two_factor.event_listener.trusted_device', $trustedDeviceListener);
     }
 }

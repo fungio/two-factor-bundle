@@ -26,7 +26,7 @@ class TrustedDeviceController extends Controller
     public function removeAction(Request $request)
     {
         /** @var ObjectPersisterInterface $tokenPersister */
-        $tokenPersister = $this->get('two_fas_two_factor.remember_me_persister');
+        $tokenPersister = $this->get('fungio_two_factor.remember_me_persister');
 
         if (!$this->isCsrfTokenValid('fungio_csrf_token', $request->get('_token'))) {
             throw new AccessDeniedHttpException($this->trans('general.denied_action'));
