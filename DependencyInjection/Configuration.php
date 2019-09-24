@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fungio_two_factor');
+        $treeBuilder = new TreeBuilder('fungio_two_factor');
+        $rootNode    = $treeBuilder->getRootNode();
 
         $supportedDrivers = ['orm', 'custom'];
 
