@@ -89,7 +89,7 @@ class FungioExtension extends Twig_Extension
      */
     public function fileMTime($path)
     {
-        $filePath = new SplFileInfo($this->rootDir . '/../web' . $path);
+        $filePath = new SplFileInfo($this->rootDir . '/../public' . $path);
 
         if (!$filePath->isFile()) {
             throw new InvalidArgumentException('File "' . $path . '" does not exists.');
