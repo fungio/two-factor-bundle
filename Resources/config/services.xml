@@ -70,7 +70,7 @@
         </service>
 
         <!-- Token Storage -->
-        <service id="fungio_two_factor.storage.token_storage" class="%fungio_two_factor.storage.token_storage.class%" lazy="true">
+        <service id="fungio_two_factor.storage.token_storage" class="%fungio_two_factor.storage.token_storage.class%" lazy="true" public="true">
             <argument id="security.token_storage" type="service"/>
         </service>
 
