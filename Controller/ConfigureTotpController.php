@@ -61,7 +61,7 @@ class ConfigureTotpController extends Controller
             }
         }
 
-        return $this->render('FungioTwoFactorBundle:ConfigureTotp:configure.html.twig', [
+        return $this->render('@FungioTwoFactor/ConfigureTotp/configure.html.twig', [
             'totp_secret'   => (!empty($integrationUser->getTotpSecret()) ? $integrationUser->getTotpSecret() : TotpSecretGenerator::generate()),
             'mobile_secret' => $integrationUser->getMobileSecret(),
             'form'          => $form->createView()

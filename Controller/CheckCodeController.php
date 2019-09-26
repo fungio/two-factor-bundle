@@ -67,7 +67,7 @@ class CheckCodeController extends Controller
             }
         }
 
-        return $this->render('FungioTwoFactorBundle:CheckCode:check.html.twig', [
+        return $this->render('@FungioTwoFactor/CheckCode/check.html.twig', [
             'form' => $form->createView()
         ]);
     }

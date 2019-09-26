@@ -1,6 +1,6 @@
-{% extends "FungioTwoFactorBundle::layout.html.twig" %}
+{% extends "@FungioTwoFactor/layout.html.twig" %}
 
-{% trans_default_domain 'FungioTwoFactorBundle' %}
+{% trans_default_domain '@FungioTwoFactor' %}
 {% form_theme form with ['bootstrap_3_layout.html.twig', '@FungioTwoFactor/fields.html.twig'] %}
 {% block title %}{{ 'check_code.title'|trans }}{% endblock %}
 

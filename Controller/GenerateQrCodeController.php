@@ -27,7 +27,7 @@ class GenerateQrCodeController extends Controller
     {
         $qrCode = $this->getQrCode($request, $totpSecret, $mobileSecret);
 
-        return $this->render('FungioTwoFactorBundle:GenerateQrCode:generate.html.twig', [
+        return $this->render('@FungioTwoFactor/GenerateQrCode/generate.html.twig', [
             'qr_code'     => $qrCode,
             'totp_secret' => $totpSecret
         ]);

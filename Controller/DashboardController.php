@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $configuration   = $this->get('fungio_two_factor.util.configuration_checker');
         $user            = $this->getFungioUser();
 
-        return $this->render('FungioTwoFactorBundle:Dashboard:index.html.twig', [
+        return $this->render('@FungioTwoFactor/Dashboard/index.html.twig', [
             'integration_user' => $user->getIntegrationUser(),
             'status'           => $configuration->isFungioEnabled(),
             'channels'         => $user->getChannels(),
