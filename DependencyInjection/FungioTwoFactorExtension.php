@@ -52,8 +52,8 @@ class FungioTwoFactorExtension extends Extension
         $loader->load('listeners.xml');
         $loader->load('security.xml');
 
-        if ('test' == $container->getParameter('kernel.environment')) {
-            $loader->load('test.xml');
-        }
+//        if ('test' == $container->getParameter('kernel.environment')) {
+//            $loader->load('test.xml');
+//        }
     }
 }
